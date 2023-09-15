@@ -12,13 +12,13 @@ public class MemberController {
 	
 	//로그인 페이지 이동
 	@GetMapping("/login")
-	public void GETlogin() {
+	public void login() {
 		
 		log.info("로그인 페이지 진입");
 	}
 	//회원가입 페이지 이동
 	@GetMapping("/join")
-	public void GETjoin() {
+	public void join() {
 		
 		log.info("회원가입 페이지 진입");
 	}
