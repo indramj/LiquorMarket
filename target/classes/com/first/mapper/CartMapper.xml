@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+	<insert id="addCart">
+	
+		insert into vam_cart(memberId, drinkId, drinkCount)
+		values(#{memberId}, #{drinkId}, #{drinkCount}) 
+	
+	</insert>
+	
+	
+	<!-- 카트 삭제 -->
+	<delete id="deleteCart">
+	
+		delete from cart where cartId = #{cartId}
+	
+	</delete>
+	
+	<!-- 카트 수량 수정 -->
+	<update id="modifyCount">
+	
+		update cart set drinkCount=#{drinkCount} where cartId = #{cartId}
+	
+	</update>
+	
+	
+	<!-- 카트 목록 -->
+	<select id="getCart" resultType="com.first.domain.CartDTO">
+	
+		select a.cartId, a.memberId, a.drinkId, a.drinkCount, b.drinkName, b.drinkPrice,
+		from cart a left outer join drink b on a.drinkId = b.drinkId
+		where memberId = #{memberId}	
+	
+	</select>
+	
+	<!-- 카트 확인 -->
+	<select id="checkCart" resultType="com.first.domain.CartDTO">
+	
+		select * from cart 
+		where memberId = #{memberId} and drinkId = #{drinkId}
+	
+	</select>
