@@ -17,12 +17,14 @@ import com.first.domain.Criteria;
 import com.first.domain.PageDTO;
 import com.first.service.BoardSerivce;
 
+import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 import lombok.extern.log4j.Log4j;
 
 @Controller
 @RequestMapping("/board/*")
 @Log4j
+@RequiredArgsConstructor
 public class BoardController {
 	
 	@Autowired
@@ -66,9 +68,10 @@ public class BoardController {
 	}
 	
 	@GetMapping("/get")
-	public void getBoard(@RequestParam("bno") Long bno , Model model)
+	public void getBoard(@RequestParam("bno") Long bno, @ModelAttribute("cri") Criteria cri, Model model)
 	{
 		BoardVO board = service.getBoard(bno);
+	
 		model.addAttribute("board" , board);
 		
 	}

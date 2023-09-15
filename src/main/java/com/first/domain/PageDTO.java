@@ -8,12 +8,12 @@ public class PageDTO {
 	private int startPage;  
 	private int endPage;
 	private boolean prev, next;
-	private Criteria criteria;
+	private Criteria cri;
 	
 	
 	public PageDTO(Criteria cri , int total)
 	{
-		this.criteria = cri;
+		this.cri = cri;
 		this.totalBoard = total;
 		
 		this.endPage = (int)(Math.ceil(cri.getCurrentPage()/10.0)) * 10;

@@ -23,7 +23,7 @@
 </div>	
 
 <button class = "btnModify">수정</button>
-<a href = "/board/list?currentPage = <c:out value = '${pageDTO.criteria.currentPage}'/>"><button class = "btnList" >목록으로</button></a>
+<a href = "/board/list?currentPage=<c:out value = '${cri.currentPage}'/>"><button class = "btnList" >목록으로</button></a>
 
 </body>
 </html>
