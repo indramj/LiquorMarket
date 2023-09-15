@@ -10,7 +10,7 @@ public class MainController {
 	
 	//메인 페이지 이동
 	@GetMapping("/mainhome")
-	public void GETmainhome() {
+	public void getMainHome() {
 			
 		log.info("메인 페이지 진입");
 		
