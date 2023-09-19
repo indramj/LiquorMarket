@@ -31,7 +31,7 @@ import com.first.service.AdminService;
 	    @RequestMapping(value="main", method = RequestMethod.GET)
 	    public void adminMainGET() throws Exception{
 	        
-	        logger.info("관리자 페이지로 이동");	        	        
+	        logger.info("관리자 페이지  이동");	        	        
 	    }
 	    
 	    //상품 관리(상품목록) 페이지 접속
