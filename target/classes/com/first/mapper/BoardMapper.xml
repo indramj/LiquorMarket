@@ -44,7 +44,7 @@ insert into table_board(bno , title , content , writer )
 </update>
 
 <delete id = "delete">
-	delete table_board where bno = #{bno};
+	delete table_board where bno = #{bno}
 	
 
 </delete>
