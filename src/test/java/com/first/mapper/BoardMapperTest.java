@@ -77,7 +77,7 @@ public class BoardMapperTest {
 	@Test
 	public void testDelete()
 	{
-		Long bno = 50L;
+		Long bno = 101L;
 		mapper.delete(bno);
 		
 	}

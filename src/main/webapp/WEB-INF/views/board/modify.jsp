@@ -17,7 +17,7 @@
 		});
 		
 		$(".btnRemove").on("click" , function(e){
-			operForm.attr("action" , "/board/remove");
+			operForm.attr("action" , "/board/remove" , "method" , "get");
 			operForm.submit();
 			
 		})

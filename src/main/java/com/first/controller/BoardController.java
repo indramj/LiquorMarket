@@ -84,7 +84,7 @@ public class BoardController {
 		
 	}
 	
-	@GetMapping("/remove")
+	@PostMapping("/remove")
 	public String remove(@RequestParam("bno") Long bno)
 	{
 		service.remove(bno);
