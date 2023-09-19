@@ -45,5 +45,19 @@ public class BoardServiceImpl implements BoardSerivce{
 	{
 		return mapper.getTotalBoard(cri);
 	}
+	
+	@Override
+	public boolean modify(BoardVO boardVO)
+	{
+		boolean result =  mapper.updateBoard(boardVO) == 1;
+		return result;
+	}
+	
+	@Override
+	public boolean remove(Long bno)
+	{
+		boolean result = mapper.delete(bno) == 1;
+		return result;
+	}
 
 }

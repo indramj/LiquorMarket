@@ -63,9 +63,9 @@
 	
 	<ul>
 		<c:if test = "${pageDTO.prev}">
-			<li><a href = "/board/list?currentPage=<c:out value = '${pageDTO.startPage-1}'/>" >prev</a></li>
+			<li><a href = "/board/list?currentPage=<c:out value = '${pageDTO.startPage-1}'/>">prev</a></li>
 		</c:if>
-		<c:forEach var = "num" begin = "${pageDTO.startPage}" end = "${pageDTO.endPage}" >
+		<c:forEach var = "num" begin = "${pageDTO.startPage}" end = "${pageDTO.endPage}">
 			<li><a href = "/board/list?currentPage=<c:out value = '${num}'/>">${num}</a></li>
 		</c:forEach>
 		<c:if test = "${pageDTO.next}">

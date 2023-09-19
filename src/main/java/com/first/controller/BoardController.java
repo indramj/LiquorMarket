@@ -8,6 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -67,15 +68,29 @@ public class BoardController {
 		
 	}
 	
-	@GetMapping("/get")
+	@GetMapping({"/get" , "/modify"})
 	public void getBoard(@RequestParam("bno") Long bno, @ModelAttribute("cri") Criteria cri, Model model)
 	{
-		BoardVO board = service.getBoard(bno);
+		model.addAttribute("board" , service.getBoard(bno));
+	}
 	
-		model.addAttribute("board" , board);
+	@PostMapping("/modify")
+	public String modify( BoardVO boardVO , @ModelAttribute("cri") Criteria cri, Model model , RedirectAttributes rttr)
+	{
+		service.modify(boardVO);
+		rttr.addAttribute("bno" , boardVO.getBno());
+		rttr.addAttribute("currentPage" , cri.getCurrentPage());
+		return "redirect:/board/get";
 		
 	}
 	
+	@GetMapping("/remove")
+	public String remove(@RequestParam("bno") Long bno)
+	{
+		service.remove(bno);
+		
+		return "redirect:/board/list";
+	}
 	
 	
 	
