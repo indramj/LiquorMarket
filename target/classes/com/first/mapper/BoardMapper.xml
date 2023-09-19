@@ -5,21 +5,17 @@
 	
 <mapper namespace="com.first.mapper.BoardMapper">
 
-<select id="getList" resultType="com.first.domain.BoardVO">
-<![CDATA[
-select * from table_board where bno > 0 order by bno desc
-]]>
-</select>
+
 
 <select id="getListWithPage" resultType="com.first.domain.BoardVO" parameterType="com.first.domain.Criteria">
 <![CDATA[
 	select 
-		bno , title , content, writer , regdate , updatedate
+		bno , title , content, writer , regdate , updatedate , replycnt
 	from (
-		select
-		 rownum rn , bno , title , content, writer, regdate , updatedate
+		select /*+ INDEX_DESC(table_board pk_board) */
+		 rownum rn , bno , title , content, writer, regdate , updatedate , replycnt
 		from table_board
-			where rownum <= #{currentPage} * #{size}
+			where rownum <= #{currentPage} * #{size} 
 			)
 		where rn > (#{currentPage}-1) * #{size} 
 ]]>
@@ -39,7 +35,17 @@ insert into table_board(bno , title , content , writer )
 	select count(*) from table_board where bno >0
 </select>
 
+<update id="updateBoard">
+	update table_board set
+		title = #{title},
+		content = #{content},
+		updateDate = sysdate
+	where bno = #{bno}
+</update>
 
+<delete id = "delete">
+	delete table_board where bno = #{bno};
+	
 
-
+</delete>
 </mapper>

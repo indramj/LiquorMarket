@@ -50,16 +50,35 @@ public class BoardMapperTest {
 //		
 //	}
 	
+//	@Test
+//	public void testListWithPage()
+//	{
+//		Criteria cri = new Criteria();
+//		
+//		cri.setCurrentPage(3);
+//		cri.setSize(10);
+//		
+//		List<BoardVO> list = mapper.getListWithPage(cri);
+//		list.forEach(board -> log.info(board));
+//		
+//	}
+	
+//	@Test
+//	public void testUpdate()
+//	{
+//		BoardVO board = new BoardVO();
+//		board.setBno(99);
+//		board.setTitle("수정된 제목");
+//		board.setContent("수정된내용");
+//		mapper.updateBoard(board);
+//		log.info(mapper.getBoard(board.getBno()));
+//	}
+	
 	@Test
-	public void testListWithPage()
+	public void testDelete()
 	{
-		Criteria cri = new Criteria();
-		
-		cri.setCurrentPage(3);
-		cri.setSize(10);
-		
-		List<BoardVO> list = mapper.getListWithPage(cri);
-		list.forEach(board -> log.info(board));
+		Long bno = 50L;
+		mapper.delete(bno);
 		
 	}
 	
