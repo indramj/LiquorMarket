@@ -1,0 +1,88 @@
+@charset "UTF-8";
+*{
+	margin: 0;
+	padding:0;
+}
+
+/* 전체 랩 */
+.wrapper{
+	width: 1500px;	
+}
+
+/* content 랩 */
+.wrap{
+	width : 800px;
+	margin: auto;
+}
+
+/* 로그인 area */
+.id_input_box{
+	border: 1px solid black;
+	height:31px;
+	padding: 10px 14px;	
+	display: block;
+	width : 50%;
+	margin : 100px auto;	
+}
+.id_input{
+	width:100%;
+	height:100%;
+	border:none;
+	font-size:28px;
+}
+
+.pw_wrap{
+	margin-top: 40px;
+}
+.pw_input_box{
+	border: 1px solid black;
+	height:31px;
+	padding: 10px 14px;	
+	display: block;
+	width : 50%;
+	margin : auto;	
+}
+.pw_iput{
+	width:100%;
+	height:100%;
+	border:none;
+	font-size:28px;
+}
+
+
+.login_button_wrap{
+	margin-top: 40px;
+	text-align: center;
+}
+.login_button{
+	width: 60%;
+    height: 80px;
+    background-color: #28f0b9;
+    font-size: 40px;
+    font-weight: 900;
+    color: white;
+    margin : auto;
+}
+
+.join_wrap{
+	text-align: center;	
+	margin: 30px auto;	
+}
+.join_wrap span{
+	font-size : 30px;
+	font-weight: 500;
+}
+
+.mainhome_wrap{
+	text-align: center;	
+	margin: 30px auto;	
+}
+.mainhome span{
+	font-size : 20px;
+	font-weight: 500;
+}
+
+/* float 속성 해제 */
+.clearfix{
+	clear: both;
+}
