@@ -7,7 +7,7 @@
 <!-- 주류 등록 -->
 <insert id="drinkEnroll">
   	
-  		insert into tbl_drink(drinkName, drinkId, cateCode, cateName, drinkPrice, drinkIntro)
+  		insert into table_drink(drinkName, drinkId, cateCode, cateName, drinkPrice, drinkIntro)
 		values(#{drinkName},#{drinkId}, #{cateCode},#{cateName},#{drinkPrice},#{drinkIntro})
 
   	</insert>
