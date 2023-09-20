@@ -11,6 +11,7 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script type="text/javascript">
 	$(document).ready(function() {
+		var bno = '<c:out value="${board.bno}"/>';
 		
 		var operForm = $("#operForm");
 			$(".btnModify").on("click" , function(e){
@@ -19,9 +20,40 @@
 			
 			$(".btnList").on("click" , function(e){
 				operForm.attr("action" , "/board/list").submit();
-				
 			})
 			
+			var listGroup = $(".replyList");
+			
+			function formatTime(str){
+                var date = new Date(str);
+                return date.getFullYear() + '/' +
+                (date.getMonth() + 1) + '/' +
+                date.getDate() + ' ' +
+                date.getHours() + ':' +
+                date.getMinutes();
+       }
+			
+				function loadJSONData(){
+					$.getJSON('/replies/' + bno , function(arr){
+					    
+					    var str = "";
+					   
+					    $.each(arr , function(idx , reply){
+					        console.log(reply);
+					        str+= '<div class = "card-body" data-rno ="'+reply.rno+'"><b>'+reply.rno+'</b>';
+					        str+= '<h5 class = "card-title">'+reply.text+'</h5>';
+					        str+= '<h6 class = "card-subtitle mb-2 text-muted">'+reply.replyer+'</h6>';
+					        str+= '<p class = "card-text">'+formatTime(reply.regDate)+'</p>';
+					        str+= '</div>';
+					    })
+					    listGroup.html(str);
+					});
+				}
+				
+				loadJSONData();
+				
+				
+	
 	})
 	
 
@@ -47,10 +79,20 @@
 <button class = "btnModify">수정</button>
 <button class = "btnList" >목록으로</button>
 
-<form id = "operForm" action = "/board/list" method = "get">
+	<div>
+		<div class="mt-4">
+			<h5>
+				<span class="addReply">Add Reply</span>
+			</h5>
+		</div>
+		<div class="replyList">
+		
+		</div>
+	</div>
+
+	<form id = "operForm" action = "/board/list" method = "get">
 	<input type = "hidden" name = "currentPage" value = "${cri.currentPage}">
 	<input type = "hidden" name = "bno" value = "${board.bno}">
-	
 </form>
 
 </body>
