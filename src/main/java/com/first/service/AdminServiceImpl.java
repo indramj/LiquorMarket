@@ -1,12 +1,8 @@
 package com.first.service;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.first.domain.CateVO;
-import com.first.domain.Criteria;
 import com.first.domain.DrinkVO;
 import com.first.mapper.AdminMapper;
 
@@ -27,25 +23,5 @@ public class AdminServiceImpl implements AdminService {
 
 		adminMapper.drinkEnroll(drink);
 	}
-	//카테고리 리스트 
-	@Override
-	public List<CateVO> cateList() {
-		
-		log.info("(service)cateList........");
-		
-		return adminMapper.cateList();
-	}
 
-	//상품 리스트
-	@Override
-	public List<DrinkVO> goodsGetList(Criteria cri) {
-		log.info("goodsGetTotalList()..........");
-		return adminMapper.goodsGetList(cri);
-	}
-
-	//상품 총 갯수
-	public int goodsGetTotal(Criteria cri) {
-		log.info("goodsGetTotal().........");
-		return adminMapper.goodsGetTotal(cri);
-	}	
 }
