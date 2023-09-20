@@ -32,7 +32,7 @@ public class BoardMapperTest {
 //	public void insertDummies()
 //	{
 //		BoardVO board = new BoardVO();
-//		for( int i = 0; i < 100; i++)
+//		for( int i = 0; i < 200; i++)
 //		{
 //			board.setWriter("user"+ i);
 //			board.setTitle("Test Title" + i);

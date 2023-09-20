@@ -47,7 +47,7 @@
 	<button class = "btnRemove" type = "button">삭제</button>
 
 	<a href="/board/list?currentPage=<c:out value = '${cri.currentPage}'/>"><button
-			class="btnList">목록으로</button></a>
+			class="btnList">취소</button></a>
 
 
 	

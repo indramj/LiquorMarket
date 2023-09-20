@@ -18,6 +18,7 @@ import com.first.domain.Criteria;
 import com.first.domain.PageDTO;
 import com.first.service.BoardSerivce;
 
+import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 import lombok.extern.log4j.Log4j;
@@ -25,7 +26,7 @@ import lombok.extern.log4j.Log4j;
 @Controller
 @RequestMapping("/board/*")
 @Log4j
-@RequiredArgsConstructor
+@AllArgsConstructor
 public class BoardController {
 	
 	@Autowired
