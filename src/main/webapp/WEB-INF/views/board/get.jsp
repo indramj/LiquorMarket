@@ -40,11 +40,8 @@
 					   
 					    $.each(arr , function(idx , reply){
 					        console.log(reply);
-					        str+= '<div class = "card-body" data-rno ="'+reply.rno+'"><b>'+reply.rno+'</b>';
-					        str+= '<h5 class = "card-title">'+reply.text+'</h5>';
-					        str+= '<h6 class = "card-subtitle mb-2 text-muted">'+reply.replyer+'</h6>';
-					        str+= '<p class = "card-text">'+formatTime(reply.regDate)+'</p>';
-					        str+= '</div>';
+					        str += '<li>'+reply.replyer+' '+formatTime(reply.regDate)+' '+reply.reply; 
+					        str += '</li>';
 					    })
 					    listGroup.html(str);
 					});
@@ -52,8 +49,24 @@
 				
 				loadJSONData();
 				
-				
-	
+				$(".addReply").on("click" , function(e){
+					var reply = {
+							bno : bno,
+							reply : $('textarea[name = "reply"]').val(),
+							replyer : $('input[name = "replyer"]').val()
+					}
+					
+					$.ajax({
+						url : '/replies/new',
+						method : 'post',
+						data : JSON.stringify(reply),
+						contentType : 'application/json; charset=utf-8',
+						dataType : 'json',
+						success : function(data){
+							loadJSONData();
+						}
+					})
+				});	
 	})
 	
 
@@ -79,16 +92,25 @@
 <button class = "btnModify">수정</button>
 <button class = "btnList" >목록으로</button>
 
+
 	<div>
-		<div class="mt-4">
-			<h5>
-				<span class="addReply">Add Reply</span>
-			</h5>
+		<ul class = "replyList">		
+		</ul>	
+	</div>
+	
+	<div>
+		<div>
+			작성자</b>
+			<input type = "text" size = "10" name = "replyer">
 		</div>
-		<div class="replyList">
-		
+		<div>
+			<textarea rows="3" cols="30" name = "reply"></textarea>
+		</div>
+		<div>
+			<button type = "button" class = "addReply">addReply</button>
 		</div>
 	</div>
+	
 
 	<form id = "operForm" action = "/board/list" method = "get">
 	<input type = "hidden" name = "currentPage" value = "${cri.currentPage}">

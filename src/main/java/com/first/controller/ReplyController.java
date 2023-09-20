@@ -37,14 +37,14 @@ public class ReplyController {
 	}
 	
 	
-//	@PostMapping(value = "/board{bno}", consumes = "application/json", 
-//			produces = MediaType.TEXT_PLAIN_VALUE)
-//	public ResponseEntity<String> create(@RequestBody ReplyVO vo , @PathVariable("bno") Long bno) {
-//	
-//		long insertCount = replyService.register(vo);
-//	
-//		return insertCount == 1 ? new ResponseEntity<>("success", HttpStatus.OK) :
-//			new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);	
-//	}
+	@PostMapping(value = "/new", consumes = "application/json", 
+			produces = MediaType.TEXT_PLAIN_VALUE)
+	public ResponseEntity<String> create(@RequestBody ReplyVO replyVO , @PathVariable("bno") Long bno) {
+	
+		long insertCount = replyService.register(replyVO);
+	
+		return insertCount == 1 ? new ResponseEntity<>("success", HttpStatus.OK) :
+			new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);	
+	}
 
 }
