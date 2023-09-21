@@ -5,7 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" href="../resources/css/admin/goodsEnroll.css">
+<link rel="stylesheet" href="../resources/css/admin/enrollGoods.css">
  
 <script
   src="https://code.jquery.com/jquery-3.4.1.js"
@@ -29,10 +29,10 @@
                 <div class="admin_navi_wrap">
                   <ul>
                       <li >
-                          <a class="admin_list_01" href="/admin/goodsEnroll">상품 등록</a>
+                          <a class="admin_list_01" href="/admin/enrollGoods">상품 등록</a>
                       </li>
                       <li>
-                          <a class="admin_list_02" href="/admin/goodsManage">상품 관리</a>
+                          <a class="admin_list_02" href="/admin/manageGoods">상품 관리</a>
                       </li>
     
                       <lI>
@@ -43,7 +43,7 @@
                 <div class="admin_content_wrap">
                     <div class="admin_content_subject"><span>상품 등록</span></div>
                      <div class="admin_content_main">
-                    	<form action="/admin/goodsEnroll" method="post" id="enrollForm">
+                    	<form action="/admin/enrollGoods" method="post" id="enrollForm">
                     	
                     	                  		
                     		           
@@ -136,7 +136,7 @@
 /* 취소 버튼 */
 $("#cancelBtn").click(function(){
 	
-	location.href="/admin/goodsManage"
+	location.href="/admin/manageGoods"
 	
 });
 

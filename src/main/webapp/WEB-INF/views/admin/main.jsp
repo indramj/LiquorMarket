@@ -30,10 +30,10 @@
                 <div class="admin_navi_wrap">
                     <ul>
                         <li >
-                            <a class="admin_list_01" href="/admin/goodsEnroll">상품 등록</a>
+                            <a class="admin_list_01" href="/admin/enrollGoods">상품 등록</a>
                         </li>
                         <li>
-                             <a class="admin_list_02" href="/admin/goodsManage">상품 관리</a>
+                             <a class="admin_list_02" href="/admin/manageGoods">상품 관리</a>
                         </li>
                         <lI>
                             <a class="admin_list_05">회원 관리</a>                            
