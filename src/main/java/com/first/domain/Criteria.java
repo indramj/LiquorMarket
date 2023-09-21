@@ -31,6 +31,8 @@ public class Criteria {
 //				.queryParam("keyword", keyword);
 		return builder.toUriString();
 	}
+
+	
 	
 	
 }

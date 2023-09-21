@@ -5,10 +5,16 @@
   <mapper namespace="com.first.mapper.AdminMapper">
 
 <!-- 주류 등록 -->
-<insert id="drinkEnroll">
+<insert id="enrollDrink">
   	
   		insert into table_drink(drinkName, drinkId, cateCode, cateName, drinkPrice, drinkIntro)
 		values(#{drinkName},#{drinkId}, #{cateCode},#{cateName},#{drinkPrice},#{drinkIntro})
-
   	</insert>
+  	
+  	<!-- 카테고리 리스트 -->
+  	<select id="cateList" resultType="com.first.domain.CateVO">
+  	
+  		select * from table_DrinkCate order by cateCode
+  	
+  	</select>
   </mapper>
