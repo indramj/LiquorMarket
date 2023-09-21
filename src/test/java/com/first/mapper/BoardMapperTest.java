@@ -1,5 +1,6 @@
 package com.first.mapper;
 
+import java.util.Iterator;
 import java.util.List;
 
 import org.junit.Test;
@@ -55,7 +56,7 @@ public class BoardMapperTest {
 //	{
 //		Criteria cri = new Criteria();
 //		
-//		cri.setCurrentPage(3);
+//		cri.setCurrentPage(1);
 //		cri.setSize(10);
 //		
 //		List<BoardVO> list = mapper.getListWithPage(cri);
@@ -74,12 +75,21 @@ public class BoardMapperTest {
 //		log.info(mapper.getBoard(board.getBno()));
 //	}
 	
-	@Test
-	public void testDelete()
-	{
-		Long bno = 101L;
-		mapper.delete(bno);
-		
-	}
+//	@Test
+//	public void testDelete()
+//	{
+//		Long bno = 101L;
+//		mapper.delete(bno);
+//		
+//	}
 	
+//	@Test
+//	public void updateReplyCnt()
+//	{
+//		List<BoardVO> boardList = mapper.getList();
+//		boardList.forEach(arr -> {
+//				mapper.updateReplyCnt(arr.getBno());
+//		});
+//		
+//	}
 }

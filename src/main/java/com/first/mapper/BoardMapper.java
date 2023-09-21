@@ -7,6 +7,8 @@ import com.first.domain.Criteria;
 
 public interface BoardMapper {
 	
+	public List<BoardVO> getList();
+	
 	public List<BoardVO> getListWithPage(Criteria cri);
 	
 	public void insert(BoardVO boardVO);
@@ -16,6 +18,8 @@ public interface BoardMapper {
 	public int getTotalBoard(Criteria cri);
 	
 	public int updateBoard(BoardVO boardVO);
+	
+	public void updateReplyCnt(Long bno);
 	
 	public int delete(Long bno);
 

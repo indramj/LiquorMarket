@@ -8,6 +8,7 @@ public interface ReplyService {
 	
 	public long register(ReplyVO replyVO);
 	public List<ReplyVO> getList(long bno);
+	public void remove(Long rno);
 	
 
 }

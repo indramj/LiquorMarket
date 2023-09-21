@@ -33,7 +33,7 @@
                 date.getMinutes();
        }
 			
-				function loadJSONData(){
+			/* 	function loadJSONData(){
 					$.getJSON('/replies/' + bno , function(arr){
 					    
 					    var str = "";
@@ -45,7 +45,35 @@
 					    })
 					    listGroup.html(str);
 					});
-				}
+				} */
+				
+				function loadJSONData(){
+				$.getJSON('/replies/' + bno , function(arr){
+				    
+				    var str = "";
+				    str += '<table border = 1>';
+				    str += '<tr>';
+				    str += '<th>작성자</th>';
+				    str += '<th>내용</th>';
+				    str += '<th>작성일</th>';
+				    str += '</tr>';
+				   
+				    $.each(arr , function(idx , reply){
+				        console.log(reply);
+				        str += '<tr><td>'+reply.replyer+'</td>';
+				        str += '<td><textarea rows="5" cols="20" readonly = "readonly">'+reply.reply+ '</textarea></td>'; 
+				        str += '<td>'+formatTime(reply.regDate)+'</td>';
+				        str += '<td><button type = "button" class = "removeReply">삭제</button</td>'
+				        str += '<button type = "button class = "modifyReply">수정</button></td>'
+				        str += '</tr>';
+				    })
+				    listGroup.html(str);
+				});
+			} 
+				
+				$(".removeReply").on("click" , function(){
+					
+				})
 				
 				loadJSONData();
 				
@@ -55,17 +83,21 @@
 							reply : $('textarea[name = "reply"]').val(),
 							replyer : $('input[name = "replyer"]').val()
 					}
+					console.log(reply);
 					
 					$.ajax({
-						url : '/replies/new',
+						url : '/replies/',
 						method : 'post',
 						data : JSON.stringify(reply),
 						contentType : 'application/json; charset=utf-8',
 						dataType : 'json',
 						success : function(data){
+							console.log(data);
+							var newRno = parseInt(data);
+							alert(newRno + "댓글 등록");
 							loadJSONData();
 						}
-					})
+					});
 				});	
 	})
 	
@@ -93,10 +125,11 @@
 <button class = "btnList" >목록으로</button>
 
 
-	<div>
-		<ul class = "replyList">		
-		</ul>	
+	<div class = replyList>
+	
 	</div>
+	
+	
 	
 	<div>
 		<div>

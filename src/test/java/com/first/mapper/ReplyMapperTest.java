@@ -28,18 +28,27 @@ public class ReplyMapperTest {
 //		
 //	}
 	
+//	@Test
+//	public void insertDummies()
+//	{
+//		for ( int i = 0; i < 10; i++)
+//		{
+//			ReplyVO replyVO = new ReplyVO();
+//			replyVO.setBno(320);
+//			replyVO.setReplyer("replyTestUser..." + i);
+//			replyVO.setReply("replyTest..." + i);
+//			replyMapper.register(replyVO);
+//		}	
+//	}
+	
 	@Test
-	public void insertDummies()
+	public void deleteTest()
 	{
-		for ( int i = 0; i < 10; i++)
-		{
-			ReplyVO replyVO = new ReplyVO();
-			replyVO.setBno(320);
-			replyVO.setReplyer("replyTestUser..." + i);
-			replyVO.setReply("replyTest..." + i);
-			replyMapper.register(replyVO);
-
-		}	
+		Long rno = 69L;
+		
+		replyMapper.remove(rno);
+		
 	}
+	
 
 }
