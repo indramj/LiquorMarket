@@ -9,5 +9,7 @@ public interface ReplyMapper {
 	public int register(ReplyVO replyVO);
 	
 	public List<ReplyVO> getList(long bno);
+	
+	public void remove(Long rno);
 
 }
