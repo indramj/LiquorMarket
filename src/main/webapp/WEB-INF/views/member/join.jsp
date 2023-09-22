@@ -64,6 +64,7 @@
 						<span>인증번호 전송</span>
 					</div>
 					<div class="clearfix"></div>
+					<span id="mail_check_input_box_warn"></span>
 				</div>
 			</div>
 			<div class="address_wrap">
@@ -93,6 +94,8 @@
 	</form>
 </div>
 <script>
+
+var code = "";
 
 $(document).ready(function(){
 	//회원가입 버튼 기능 작동
@@ -128,12 +131,37 @@ $('.id_input').on("propertychange change keyup paste input", function(){
 $(".mail_check_button").click(function(){
     
 	var email = $(".mail_input").val();
+	var ceBox = $(".mail_check_input");        // 인증번호 입력란
+    var boxWrap = $(".mail_check_input_box");    // 인증번호 입력란 박스
 	
 	$.ajax({
         
         type:"GET",
-        url:"mailCheck?email=" + email
+        url:"mailCheck?email=" + email,
+        success:function(data){
+        	
+            ceBox.attr("disabled",false);
+            boxWrap.attr("id", "mail_check_input_box_true");
+            code =data;
+            
+            }
 	});
+});
+
+/* 인증번호 비교 */
+$(".mail_check_input").blur(function(){
+    
+	var inputCode = $(".mail_check_input").val();   
+    var checkResult = $("#mail_check_input_box_warn");
+    
+    if(inputCode == code){
+        checkResult.html("인증번호가 확인되었습니다.");
+        checkResult.css('color','green');        
+    } else {
+        checkResult.html("인증번호를 다시 확인해주세요.");
+        checkResult.css('color','red');
+    }
+    
 });
 
 </script>

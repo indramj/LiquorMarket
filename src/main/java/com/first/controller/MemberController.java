@@ -76,7 +76,7 @@ public class MemberController {
 		/* 이메일 인증 */
 	    @RequestMapping(value="/mailCheck", method=RequestMethod.GET)
 	    @ResponseBody
-	    public void getMailCheck(String email) throws Exception{
+	    public String getMailCheck(String email) throws Exception{
 	        
 	    /* 뷰(View)로부터 넘어온 데이터 확인 */
 	    log.info("이메일 데이터 전송 확인");
@@ -88,7 +88,7 @@ public class MemberController {
 	    log.info("인증번호 " + checkNum);
 	        
 	    /* 이메일 보내기 */
-	    String setFrom = "byhosino@gmail.com";
+	    String setFrom = "shleeeeeee2@gmail.com";
 	    String toMail = email;
 	    String title = "회원가입 인증 이메일 입니다.";
 	    String content = 
@@ -111,6 +111,10 @@ public class MemberController {
         }catch(Exception e) {
             e.printStackTrace();
         }
+	    
+	    String num = Integer.toString(checkNum);
+	    
+	    return num;
 	    
 	    }
 }
