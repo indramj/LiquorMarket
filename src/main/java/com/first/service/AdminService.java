@@ -8,11 +8,13 @@ import com.first.domain.DrinkVO;
 
 public interface AdminService {
 
-	public void enrollDrink(DrinkVO drink);	
+	public void enrollDrink(DrinkVO drink);
+	
 	public List<CateVO> cateList();
-	/* 상품 리스트 */
+	
 	public List<DrinkVO> getGoodsList(Criteria cri);
 	
-	/* 상품 총 개수 */
 	public int getGoodsTotal(Criteria cri);
+	
+	public DrinkVO getGoodsDetail(int drinkId);
 }
