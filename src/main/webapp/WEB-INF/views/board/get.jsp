@@ -71,9 +71,18 @@
 				});
 			} 
 				
-				$(".removeReply").on("click" , function(){
-					
-				})
+/* 				$(".removeReply").on("click" , function(){
+					$.ajax({
+						url : '/replies/' + rno,
+						method : 'DELETE',
+						contentType : 'application/json; charset=utf-8',
+						dataType : 'text',
+						success : function(result)
+						{
+							self.location.reload();
+						}
+					});		
+				}) */
 				
 				loadJSONData();
 				
@@ -81,7 +90,11 @@
 					var reply = {
 							bno : bno,
 							reply : $('textarea[name = "reply"]').val(),
-							replyer : $('input[name = "replyer"]').val()
+							replyer : $('input[name = "replyer"]').val(),
+							dataType : 'text',
+							success : function(result) {
+								self.location.reload();
+							}
 					}
 					console.log(reply);
 					
