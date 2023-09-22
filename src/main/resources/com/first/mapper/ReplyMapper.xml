@@ -19,5 +19,9 @@
 	delete from table_reply where rno = #{rno} 
 </delete>
 
+<select id = "read" resultType = "com.first.domain.ReplyVO">
+	select * from table_reply where rno = #{rno}
+</select>
+
 
 </mapper>

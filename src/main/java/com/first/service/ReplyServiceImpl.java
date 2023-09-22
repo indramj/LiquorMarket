@@ -37,7 +37,9 @@ public class ReplyServiceImpl implements ReplyService {
 	@Override
 	public void remove(Long rno)
 	{
-		replyMapper.remove(rno);
+		ReplyVO replyVO= replyMapper.read(rno);
+		boardMapper.updateReplyCnt(replyVO.getBno());
+		
 	}
 
 }
