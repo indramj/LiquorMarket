@@ -71,16 +71,16 @@
 				<div class="address_name">주소</div>
 				<div class="address_input_1_wrap">
 					<div class="address_input_1_box">
-						<input class="address_input_1" name="memberAddress">
+						<input class="address_input_1" name="memberAddress" readonly="readonly">
 					</div>
-					<div class="address_button">
+					<div class="address_button" onclick="execution_daum_address()">
 						<span>주소 찾기</span>
 					</div>
 					<div class="clearfix"></div>
 				</div>
 				<div class ="address_input_2_wrap">
 					<div class="address_input_2_box">
-						<input class="address_input_2" name="memberAddress2">
+						<input class="address_input_2" name="memberAddress2" readonly="readonly">
 					</div>
 				</div>
 			</div>
@@ -93,6 +93,8 @@
 		</div>
 	</form>
 </div>
+
+<script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script>
 
 var code = "";
@@ -163,6 +165,47 @@ $(".mail_check_input").blur(function(){
     }
     
 });
+
+/* 주소 연동 */
+function execution_daum_address(){
+	
+	//https://postcode.map.daum.net/guide#usage 에서 주석 확인 가능
+	new daum.Postcode({
+        oncomplete: function(data) {
+
+            var addr = ''; 
+            var extraAddr = ''; 
+
+            if (data.userSelectedType === 'R') { 
+                addr = data.roadAddress;
+            } else { 
+                addr = data.jibunAddress;
+            }
+
+            if(data.userSelectedType === 'R'){
+                if(data.bname !== '' && /[동|로|가]$/g.test(data.bname)){
+                    extraAddr += data.bname;
+                }
+                if(data.buildingName !== '' && data.apartment === 'Y'){
+                    extraAddr += (extraAddr !== '' ? ', ' + data.buildingName : data.buildingName);
+                }
+                if(extraAddr !== ''){
+                    extraAddr = ' (' + extraAddr + ')';
+                }
+                addr += extraAddr;
+            
+            } else {
+            	addr += ' ';
+            }
+
+            $(".address_input_1").val(data.zonecode);
+            $(".address_input_2").val(addr);
+            $(".address_input_2").attr("readonly",false);
+            $(".address_input_2").focus();
+          	
+        }
+    }).open(); 
+}
 
 </script>
 
