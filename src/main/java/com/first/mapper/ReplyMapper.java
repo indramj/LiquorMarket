@@ -8,8 +8,10 @@ public interface ReplyMapper {
 	
 	public int register(ReplyVO replyVO);
 	
-	public List<ReplyVO> getList(long bno);
+	public List<ReplyVO> getList(Long bno);
 	
 	public void remove(Long rno);
+	
+	public ReplyVO read(Long rno);
 
 }

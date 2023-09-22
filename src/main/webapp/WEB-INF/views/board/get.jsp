@@ -33,57 +33,30 @@
                 date.getMinutes();
        }
 			
-			/* 	function loadJSONData(){
-					$.getJSON('/replies/' + bno , function(arr){
-					    
-					    var str = "";
-					   
-					    $.each(arr , function(idx , reply){
-					        console.log(reply);
-					        str += '<li>'+reply.replyer+' '+formatTime(reply.regDate)+' '+reply.reply; 
-					        str += '</li>';
-					    })
-					    listGroup.html(str);
-					});
-				} */
+
 				
 				function loadJSONData(){
 				$.getJSON('/replies/' + bno , function(arr){
 				    
 				    var str = "";
-				    str += '<table border = 1>';
-				    str += '<tr>';
-				    str += '<th>작성자</th>';
-				    str += '<th>내용</th>';
-				    str += '<th>작성일</th>';
-				    str += '</tr>';
-				   
+					   
 				    $.each(arr , function(idx , reply){
 				        console.log(reply);
-				        str += '<tr><td>'+reply.replyer+'</td>';
-				        str += '<td><textarea rows="5" cols="20" readonly = "readonly">'+reply.reply+ '</textarea></td>'; 
-				        str += '<td>'+formatTime(reply.regDate)+'</td>';
-				        str += '<td><button type = "button" class = "removeReply">삭제</button</td>'
-				        str += '<button type = "button class = "modifyReply">수정</button></td>'
-				        str += '</tr>';
+				        console.log(reply.rno);
+				        str += '<div class = "list-body">';
+				        str += '<h5>'+reply.replyer+'<h5>';
+				        str += '<textarea rows="1" cols="20" readonly = "readonly">'+reply.reply+ '</textarea>'; 
+				        str += ''+formatTime(reply.regDate)+'';
+				        str += '<button type = "button" class = "removeReply" data-rno = "'+reply.rno+'">삭제</button>';
+				        str += '<button type = "button" class = "modifyReply">수정</button>';
+				        str += '</div>'
+				        
 				    })
 				    listGroup.html(str);
 				});
 			} 
 				
-/* 				$(".removeReply").on("click" , function(){
-					$.ajax({
-						url : '/replies/' + rno,
-						method : 'DELETE',
-						contentType : 'application/json; charset=utf-8',
-						dataType : 'text',
-						success : function(result)
-						{
-							self.location.reload();
-						}
-					});		
-				}) */
-				
+			
 				loadJSONData();
 				
 				$(".addReply").on("click" , function(e){
@@ -100,7 +73,7 @@
 					
 					$.ajax({
 						url : '/replies/',
-						method : 'post',
+						type : 'post',
 						data : JSON.stringify(reply),
 						contentType : 'application/json; charset=utf-8',
 						dataType : 'json',
@@ -112,6 +85,26 @@
 						}
 					});
 				});	
+				
+				
+				$(".replyList").on("click", ".list-body .removeReply" , function(){
+					var rno = $(this).data('rno');
+					
+					console.log(rno);
+	
+						$.ajax({
+	             url : '/replies/'+rno,
+	             type : 'DELETE' ,
+	             contentType : 'application/json; charset=utf-8',
+	             dataType : 'text',
+	             success : function(result){
+	                 console.log("result : " + result);
+	                 self.location.reload();
+	             }
+	         });
+				
+				});
+				
 	})
 	
 
