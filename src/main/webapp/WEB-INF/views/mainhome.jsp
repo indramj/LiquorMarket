@@ -5,7 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>술을 파는 사람들</title>
-<link rel="stylesheet" href="resources/css/mainhome.css"> 
+<link rel="stylesheet" href="../resources/css/mainhome.css"> 
 </head>
 <body>
 <%--  --%>

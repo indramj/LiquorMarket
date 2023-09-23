@@ -6,7 +6,7 @@
 
 /* 전체 랩 */
 .wrapper{
-	width: 1500px;	
+	width: 100%;	
 }
 
 /* content 랩 */
@@ -48,6 +48,16 @@
 	border:none;
 	font-size:28px;
 }
+	/* 아이디 중복 */
+.id_input_re_1{
+	color : green;
+	display : none;
+}
+.id_input_re_2{
+	color : red;
+	display : none;
+}
+
 
 /* 비밀번호 영역 */
 .pw_wrap{
@@ -167,6 +177,12 @@
     padding: 10px 14px;
     width: 61%;
     float: left;
+}
+#mail_check_input_box_false{
+    background-color:#ebebe4;
+}
+#mail_check_input_box_true{
+    background-color:white;
 }
 .mail_check_input{
 	width:100%;

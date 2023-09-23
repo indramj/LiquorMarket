@@ -5,7 +5,7 @@
 }
 /* 화면 전체 렙 */
 .wrapper{
-	width: 1900px;
+	width: 100%;
 }
 /* content 랩 */
 .wrap{
@@ -28,7 +28,7 @@
 .logo_area{
 	width: 25%;
 	height: 100%;
-	background-color: red;
+	background-color: #ff8040;
 	float:left;
 }
 /* 검색 박스 영역 */

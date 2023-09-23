@@ -25,6 +25,9 @@ public class MemberVO {
 	//회원 상세주소
 	private String memberAddress;
 	
+	//회원 상세주소2
+	private String memberAddress2;
+	
 	//등록일자
 	private Date regDate;
 	
