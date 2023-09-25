@@ -41,13 +41,24 @@ public class ReplyMapperTest {
 //		}	
 //	}
 	
+//	@Test
+//	public void deleteTest()
+//	{
+//		Long rno = 69L;
+//		
+//		replyMapper.remove(rno);
+//	}
+	
 	@Test
-	public void deleteTest()
+	public void updateReplyTest()
 	{
-		Long rno = 69L;
+		ReplyVO vo = new ReplyVO();
+		vo.setRno(50L);
+		vo.setReply("수정 해 봅시다.");
+		replyMapper.updateReply(vo);
 		
-		replyMapper.remove(rno);
-		
+		log.info(replyMapper.read(50L));
+
 	}
 	
 

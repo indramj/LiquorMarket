@@ -23,5 +23,9 @@
 	select * from table_reply where rno = #{rno}
 </select>
 
+<update id = "updateReply">
+	update table_reply set reply = #{reply} , updatedate = sysdate where rno = #{rno}
+</update>
+
 
 </mapper>
