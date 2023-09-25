@@ -35,6 +35,8 @@ import com.first.service.AdminService;
 	        logger.info("관리자 페이지로 이동");	        	        
 	    }
 	    
+	    
+	    
 	  /*상품 리스트 데이터*/
 	    
 	    @RequestMapping(value = "manageGoods", method = RequestMethod.POST)
