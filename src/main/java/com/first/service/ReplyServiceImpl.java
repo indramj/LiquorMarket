@@ -38,8 +38,14 @@ public class ReplyServiceImpl implements ReplyService {
 	public void remove(Long rno)
 	{
 		ReplyVO replyVO= replyMapper.read(rno);
+		replyMapper.remove(rno);
 		boardMapper.updateReplyCnt(replyVO.getBno());
-		
+	}
+	
+	@Override
+	public int updateReply(ReplyVO replyVO)
+	{
+		return replyMapper.updateReply(replyVO);
 	}
 
 }

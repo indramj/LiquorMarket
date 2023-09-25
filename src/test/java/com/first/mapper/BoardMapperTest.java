@@ -83,13 +83,13 @@ public class BoardMapperTest {
 //		
 //	}
 	
-//	@Test
-//	public void updateReplyCnt()
-//	{
-//		List<BoardVO> boardList = mapper.getList();
-//		boardList.forEach(arr -> {
-//				mapper.updateReplyCnt(arr.getBno());
-//		});
-//		
-//	}
+	@Test
+	public void updateReplyCnt()
+	{
+		List<BoardVO> boardList = mapper.getList();
+		boardList.forEach(arr -> {
+				mapper.updateReplyCnt(arr.getBno());
+		});
+		
+	}
 }
