@@ -15,5 +15,17 @@
 	select * from table_reply where bno = #{bno}
 </select>
 
+<delete id="remove">
+	delete from table_reply where rno = #{rno} 
+</delete>
+
+<select id = "read" resultType = "com.first.domain.ReplyVO">
+	select * from table_reply where rno = #{rno}
+</select>
+
+<update id = "updateReply">
+	update table_reply set reply = #{reply} , updatedate = sysdate where rno = #{rno}
+</update>
+
 
 </mapper>

@@ -6,25 +6,46 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.first.domain.ReplyVO;
+import com.first.mapper.BoardMapper;
 import com.first.mapper.ReplyMapper;
 
+import lombok.AllArgsConstructor;
 import lombok.Setter;
 
 @Service
+@AllArgsConstructor
 public class ReplyServiceImpl implements ReplyService {
 	
-	@Setter(onMethod_= @Autowired)
-	ReplyMapper replyMapper;
+	private final ReplyMapper replyMapper;
+	private final BoardMapper boardMapper;
 	
+	
+	@Override
 	public long register(ReplyVO replyVO)
 	{
 		long result = replyMapper.register(replyVO);
+		boardMapper.updateReplyCnt(replyVO.getBno());
 		return result;
 	}
 	
+	@Override
 	public List<ReplyVO> getList(long bno)
 	{
 		return replyMapper.getList(bno);
+	}
+	
+	@Override
+	public void remove(Long rno)
+	{
+		ReplyVO replyVO= replyMapper.read(rno);
+		replyMapper.remove(rno);
+		boardMapper.updateReplyCnt(replyVO.getBno());
+	}
+	
+	@Override
+	public int updateReply(ReplyVO replyVO)
+	{
+		return replyMapper.updateReply(replyVO);
 	}
 
 }
