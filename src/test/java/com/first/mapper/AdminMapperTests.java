@@ -17,7 +17,18 @@ public class AdminMapperTests {
 
 	@Autowired
 	private AdminMapper mapper;
-	
+	/* 상품 조회 페이지 */
+//	@Test
+//	public void goodsGetDetailTest() {
+//		
+//		int drinkId = 150;
+//		
+//		DrinkVO result = mapper.getGoodsDetail(drinkId);
+//		
+//		System.out.println("상품 조회 데이터 : " + result);
+//		
+//		
+//	}
 	/* 주류 등록 
 	@Test
 	public void drinkEnrollTest() throws Exception{
@@ -42,25 +53,35 @@ public class AdminMapperTests {
 		
 	}*/
 	/* 상품 리스트 & 상품 총 갯수 */
-	//@Test
-	//public void goodsGetListTest() {
+	@Test
+	public void goodsGetListTest() {
 		
-		//Criteria cri = new Criteria();
+		Criteria cri = new Criteria();
 		
 		/* 검색조건 */
-		//cri.setKeyword("테스트");
+	cri.setKeyword("테스트");
 		
 		/* 검색 리스트 */
-		//List list = mapper.getGoodsList(cri);
-		//for(int i = 0; i < list.size(); i++) {
-		//	System.out.println("result......." + i + " : " + list.get(i));
-		//}
+	List list = mapper.getGoodsList(cri);
+	for(int i = 0; i < list.size(); i++) {
+			System.out.println("result......." + i + " : " + list.get(i));
+		}
 		
 		/* 상품 총 갯수 */
-		//int result = mapper.getGoodsTotal(cri);
-	//	System.out.println("resutl.........." + result);
+		int result = mapper.getGoodsTotal(cri);
+		System.out.println("resutl.........." + result);
 		
-		
-	}
-	
-//}
+			}
+	/* 상품 조회 페이지 */
+//	@Test
+//	public void goodsGetDetailTest() {
+//		
+//		int drinkId = 1;
+//		
+//		DrinkVO result = mapper.getGoodsDetail(drinkId);
+//		
+//		System.out.println("상품 조회 데이터 : " + result);
+//		
+//		
+//	}
+}

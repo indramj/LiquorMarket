@@ -17,11 +17,16 @@ public class Criteria {
 		this.size = 10;
 	}
 	
-	public Criteria(int page , int size)
+	public Criteria(int page , int size,    int pageNum, int amount)
 	{
 		this.currentPage = page;
 		this.size = size;
+		
+		
+		this.pageNum = pageNum;
+		this.amount = amount;
 	}
+	
 	
 	public String getListLink() {
 		UriComponentsBuilder builder = UriComponentsBuilder.fromPath("")
@@ -32,7 +37,14 @@ public class Criteria {
 		return builder.toUriString();
 	}
 
-	
-	
+
+    /* 현재 페이지 번호 */
+    private int pageNum;
+    /* 페이지 표시 개수 */
+    private int amount;
+    /* 검색 타입 */
+    private String type;
+    /* 검색 키워드 */
+    private String keyword;
 	
 }

@@ -45,7 +45,16 @@ public class AdminServiceImpl implements AdminService {
 
 	/* 상품 총 갯수 */
 	public int getGoodsTotal(Criteria cri) {
-		log.info("goodsGetTotal().........");
+		log.info("getGoodsTotal().........");
 		return adminMapper.getGoodsTotal(cri);
 	}
+	
+//	/* 상품 조회 페이지 */
+//	@Override
+//	public DrinkVO getGoodsDetail(int drinkId) {
+//		
+//		log.info("(service)getDrinkDetail......." + drinkId);
+//		
+//		return adminMapper.getGoodsDetail(drinkId);
+//	}
 }
