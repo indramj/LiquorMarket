@@ -15,6 +15,10 @@ public class DrinkVO {
 	private int drinkPrice;
 	private String drinkIntro;
 	
+	private String keyword;
+	private int pageNum;
+	private int amount;
+	
 	
 }
 

@@ -54,6 +54,8 @@ import com.first.service.AdminService;
 	   	model.addAttribute("listCheck", "empty");
 	   	return;
 	   }
+	    
+	    
 	    /*페이지 인터페이스 데이터*/
 	   model.addAttribute("pageMaker", new PageDTO(cri, adminService.getGoodsTotal(cri)));
 	   }
