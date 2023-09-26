@@ -12,6 +12,15 @@
  	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 	<script type="text/javascript">
 	
+	window.onpageshow = function (event) 
+	{
+		if ( event.persisted || (window.performance && window.performance.navigation.type == 2)) {
+			
+			window.location.reload();
+
+    }
+	}
+	
 	$(document).ready(function(){
 		
 		var actionForm = $("#actionForm");
@@ -73,6 +82,14 @@
 			<li><a href = "/board/list?currentPage=<c:out value = '${pageDTO.endPage+1}'/>">next</a></li>
 		</c:if>
 	</ul>
+	
+	<div>
+		<input type = "text" name= "keyword">
+		<select sie = 1>
+			<option value = "제목">
+		</select>
+	
+	</div>
 	
 	<form id = "actionForm" action = "/board/list" method = "get">
 		<input type = "hidden" name = "currentPage" value = "${pageDTO.cri.currentPage}">

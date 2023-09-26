@@ -10,6 +10,8 @@ import lombok.ToString;
 public class Criteria {
 	private int currentPage;
 	private int size;
+	private String type;
+	private String keyword;
 	
 	public Criteria()
 	{
@@ -21,6 +23,10 @@ public class Criteria {
 	{
 		this.currentPage = page;
 		this.size = size;
+	}
+	
+	public String[] getTypeArr() {
+		return type == null? new String[] {} : type.split("");
 	}
 	
 	public String getListLink() {

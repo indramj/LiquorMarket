@@ -10,6 +10,8 @@
 <title>Insert title here</title>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script type="text/javascript">
+
+
 	$(document).ready(function() {
 		var bno = '<c:out value="${board.bno}"/>';
 		
@@ -26,12 +28,8 @@
 			
 			function formatTime(str){
                 var date = new Date(str);
-                return date.getFullYear() + '/' +
-                (date.getMonth() + 1) + '/' +
-                date.getDate() + ' ' +
-                date.getHours() + ':' +
-                date.getMinutes();
-       }
+	              return date.getFullYear()+'/'+(date.getMonth()+1)+'/'+date.getDate()+' '+date.getHours()+':'+date.getMinutes();
+            }
 			
 
 				
