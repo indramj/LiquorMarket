@@ -39,12 +39,19 @@
 				    var str = "";
 					   
 				    $.each(arr , function(idx , reply){
+				    	var replyDate = reply.regDate;
+				    	var updatedate = reply.updateDate;
+				    				    	
+				    	if(updatedate > replyDate)
+				    		{
+				    			replyDate = updatedate;
+				    		}
 				        console.log(reply);
 				        console.log(reply.rno);
 				        str += '<div class = "list-body" >';
 				        str += '<input type = "text" data-rno = "'+reply.rno+'" value = "'+reply.replyer+'" readonly = "true">';
-				        str += '<textarea rows="1" cols="20" readonly = "true" data-rno = "'+reply.rno+'">'+reply.reply+ '</textarea>'; 
-				        str += ''+formatTime(reply.regDate)+'';
+				        str += '<textarea rows="1" cols="20" readonly = "true" data-rno = "'+reply.rno+'">'+reply.reply+ '</textarea>';
+				        str += ''+formatTime(updatedate)+'';
 				        str += '<button type = "button" class = "removeReply" data-rno = "'+reply.rno+'">삭제</button>';
 				        str += '<button type = "button" class = "modifyReply" data-rno = "'+reply.rno+'">수정</button>';
 				        str += '</div>'
@@ -158,6 +165,7 @@
 <div>
 작성자
 	<input type = "text" name = "writer" readonly = "readonly" value = "${board.writer}">
+	
 </div>	
 
 <button class = "btnModify">수정</button>
