@@ -77,6 +77,8 @@
 						success : function(data){
 							console.log(data);
 							var newRno = parseInt(data);
+							$('textarea[name = "reply"]').val("");
+							$('input[name = "replyer"]').val("");
 							alert(newRno + "댓글 등록");
 							
 							loadJSONData();
