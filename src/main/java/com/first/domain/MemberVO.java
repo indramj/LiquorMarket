@@ -7,31 +7,28 @@ import lombok.Data;
 @Data
 public class MemberVO {
 	
-	//회원 id
 	private String memberId;
 	
-	//회원 비밀번호
 	private String memberPw;
 	
-	//회원 이름
 	private String memberName;
 	
-	//회원 이메일
-	private String memberEmail;
-	
-	//회원 전화번호
 	private String memberPhone;
 	
-	//회원 상세주소
-	private String memberAddress;
+	private String memberEmail;
 	
-	//회원 상세주소2
+	private String memberAddress1;
+	
 	private String memberAddress2;
 	
-	//등록일자
+	// 관리자 구분(0:일반사용자, 1:관리자)
+	private int adminCk;
+	
 	private Date regDate;
 	
 	private Date updateDate;
+	
+	private int money;
 	
 	
 }

@@ -6,8 +6,8 @@ public interface MemberMapper {
 	
 	public void joinMember(MemberVO memberVO);
 	
-	public int idCheck(String memberId);
+  public int checkId(String memberId);
 	
-
+	public MemberVO loginMember(MemberVO member);
 
 }
