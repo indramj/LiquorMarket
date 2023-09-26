@@ -49,6 +49,14 @@ public class AdminServiceImpl implements AdminService {
 		return adminMapper.getGoodsTotal(cri);
 	}
 	
+	
+	public List<DrinkVO> getList()
+	   {
+	      return adminMapper.getList();
+	   }
+	
+	
+	
 //	/* 상품 조회 페이지 */
 //	@Override
 //	public DrinkVO getGoodsDetail(int drinkId) {

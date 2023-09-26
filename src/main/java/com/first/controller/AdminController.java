@@ -39,8 +39,8 @@ import com.first.service.AdminService;
 	    
 	  /*상품 리스트 데이터*/
 	    
-	    @RequestMapping(value = "manageGoods", method = RequestMethod.POST)
-	    public void postManageGoods(Criteria cri, Model model) throws Exception{
+	    @GetMapping("/manageGoods")
+	    public void getManageGoods(Criteria cri, Model model) throws Exception{
 	    	
 	    	logger.info("상품 관리 (상품 목록) 페이지 접속");
 	    	
@@ -61,18 +61,11 @@ import com.first.service.AdminService;
 	   }
 	    
  
-	    
-	    /* 상품 관리 페이지 접속 */
-		@RequestMapping(value = "manageGoods", method = RequestMethod.GET)
-		public void getManageGoods(Criteria cri, Model model) throws Exception{
-			logger.info("상품 관리 페이지 접속");
-			
-			
-		}
+	
 		
 		
 	    /* 상품 등록 페이지 접속 */
-	    @RequestMapping(value = "enrollGoods", method = RequestMethod.GET)
+	    @GetMapping("/enrollGoods")
 	    public void enrollGoods() throws Exception{
 	        logger.info("상품 등록 페이지 접속");
 	        

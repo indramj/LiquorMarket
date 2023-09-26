@@ -54,7 +54,7 @@ public class AdminMapperTests {
 	}*/
 	/* 상품 리스트 & 상품 총 갯수 */
 	@Test
-	public void goodsGetListTest() {
+	public void getGoodsListTest() {
 		
 		Criteria cri = new Criteria();
 		
@@ -69,7 +69,7 @@ public class AdminMapperTests {
 		
 		/* 상품 총 갯수 */
 		int result = mapper.getGoodsTotal(cri);
-		System.out.println("resutl.........." + result);
+		System.out.println("result.........." + result);
 		
 			}
 	/* 상품 조회 페이지 */
