@@ -11,10 +11,11 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -32,6 +33,9 @@ public class MemberController {
 	@Autowired
     private JavaMailSender mailSender;
 	
+	@Autowired
+    private BCryptPasswordEncoder pwEncoder;
+	
 	//로그인 페이지 이동
 	@GetMapping("/login")
 	public void getLogin() {
@@ -45,23 +49,26 @@ public class MemberController {
 		log.info("회원가입 페이지 진입");
 	}
 	//회원가입
-	@RequestMapping(value="/join", method=RequestMethod.POST)
-	public String joinPOST(MemberVO member) throws Exception{
+	@PostMapping("/join")
+	public String postJoin(MemberVO member) throws Exception{
 		
-		log.info("join 진입");
-		
-		//회원가입 실행
-		memberservice.joinMember(member);
-		
-		log.info("join Service 성공");
+		String rawPw = "";
+        String encodePw = "";
+        
+        rawPw = member.getMemberPw();
+        encodePw = pwEncoder.encode(rawPw);
+        member.setMemberPw(encodePw);
+        
+        /* 회원가입 쿼리 실행 */
+        memberservice.joinMember(member);
 		
 		return "redirect:/mainhome";
 	}
 	
 	//아이디 중복 검사
-		@RequestMapping(value = "/memberIdChk", method = RequestMethod.POST)
+		@PostMapping("/memberIdChk")
 		@ResponseBody
-		public String memberIdChkPOST(String memberId) throws Exception{
+		public String postMemberIdChk(String memberId) throws Exception{
 			
 			log.info("memberIdChk() 진입");
 			
@@ -74,10 +81,10 @@ public class MemberController {
 				return "success";
 			}
 			
-		} // memberIdChkPOST() 종료	
+		} // postMemberIdChk() 종료	
 		
 		/* 이메일 인증 */
-	    @RequestMapping(value="/mailCheck", method=RequestMethod.GET)
+	    @GetMapping("/mailCheck")
 	    @ResponseBody
 	    public String getMailCheck(String email) throws Exception{
 	        
@@ -121,25 +128,53 @@ public class MemberController {
 	    
 	    }
 	    
-	    /* 로그인 */
-	    @RequestMapping(value="login", method=RequestMethod.POST)
-	    public String loginPOST(HttpServletRequest request, MemberVO member, RedirectAttributes rttr) throws Exception{
-	        
-	        //System.out.println("login 메서드 진입");
-	        //System.out.println("전달된 데이터 : " + member);
+	    //로그인
+	    @PostMapping("login")
+	    public String postLogin(HttpServletRequest request, MemberVO member, RedirectAttributes rttr) throws Exception{
 	        
 	    	HttpSession session = request.getSession();
-	    	MemberVO lvo = memberservice.loginMember(member);
-	    	
-	    	if(lvo == null) {
+	        String rawPw = "";
+	        String encodePw = "";
+	    
+	        MemberVO lvo = memberservice.loginMember(member); 
+	        
+	        if(lvo != null) {
 	            
-	            int result = 0;
-	            rttr.addFlashAttribute("result", result);
+	            rawPw = member.getMemberPw();
+	            encodePw = lvo.getMemberPw();
+	            
+	            if(true == pwEncoder.matches(rawPw, encodePw)) {
+	                
+	                lvo.setMemberPw("");
+	                session.setAttribute("member", lvo);
+	                return "redirect:/mainhome";
+	                
+	                
+	            } else {
+	 
+	                rttr.addFlashAttribute("result", 0);            
+	                return "redirect:/member/login";
+	                
+	            }
+	            
+	        } else {
+	            
+	            rttr.addFlashAttribute("result", 0);            
 	            return "redirect:/member/login";
 	            
 	        }
+	    	
+	    }
+	    
+	    /* 메인페이지 로그아웃 */
+	    @GetMapping("logout.do")
+	    public String getLogoutMain(HttpServletRequest request) throws Exception{
 	        
-	        session.setAttribute("member", lvo);
+	    	log.info("getLogoutMain메서드 진입");
+	        
+	        HttpSession session = request.getSession();
+	        
+	        session.invalidate();
 	        
 	        return "redirect:/mainhome";
 	    	
