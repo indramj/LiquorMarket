@@ -7,10 +7,9 @@
 <head>
 <meta charset="UTF-8">
 <title>술을 파는 사람들</title>
-<link rel="stylesheet" href="../resources/css/mainhome.css"> 
+<link rel="stylesheet" href="/resources/css/mainhome.css?after"> 
 </head>
 <body>
-<%--  --%>
 <div class="wrapper">
 	<div class="wrap">
 		<div class="top_gnb_area">
@@ -35,7 +34,8 @@
                 <c:if test="${ member != null }">
                     <div class="login_success_area">
                         <span>회원 : ${member.memberName}</span>
-                        <span>충전금액 : <fmt:formatNumber value="${member.money }" pattern="\#,###.##"/>
+                        <span>금액 : <fmt:formatNumber value="${member.money }" pattern="\#,###.##"/></span>
+                        <a href="/member/logout.do">로그아웃</a>
                     </div>
                 </c:if>
                 

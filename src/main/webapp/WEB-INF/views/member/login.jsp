@@ -10,7 +10,7 @@
   src="https://code.jquery.com/jquery-3.7.1.js"
   integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4="
   crossorigin="anonymous"></script>
-<link rel="stylesheet" href="/resources/css/member/login.css">
+<link rel="stylesheet" href="/resources/css/member/login.css?after">
 </head>
 <body>
 
@@ -33,7 +33,6 @@
 				<div class="login_button_wrap">
 					<input type="button" class="login_button" value="로그인">
 				</div>
-				<!-- 뭐 때문인지 얘 css 적용이 안됨.................. 추후 수정 !!!!!!!!!!!!!!!!!!!!! -->
 				<c:if test = "${result == 0 }">
                 	<div class = "login_warn">사용자 ID 또는 비밀번호를 잘못 입력하셨습니다.</div>
             	</c:if>

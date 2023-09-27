@@ -253,22 +253,6 @@
 	font-size:28px;
 }
 
-.address_input_3_wrap{
-	margin-top: 20px;
-}
-.address_input_3_box{
-	border: 1px solid black;
-	height:31px;
-	padding: 10px 14px;	
-	
-}
-.address_input_3{
-	width:100%;
-	height:100%;
-	border:none;
-	font-size:28px;
-}
-
 /* 가입하기 버튼 */
 .join_button_wrap{
 	margin-top: 40px;
