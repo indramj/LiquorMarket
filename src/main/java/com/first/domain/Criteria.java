@@ -10,6 +10,9 @@ import lombok.ToString;
 public class Criteria {
 	private int currentPage;
 	private int size;
+    private String type;
+    private String keyword;
+
 	
 	public Criteria()
 	{
@@ -17,14 +20,17 @@ public class Criteria {
 		this.size = 10;
 	}
 	
-	public Criteria(int page , int size,    int pageNum, int amount)
+	public String[] getTypeArr()
+	{
+		return type == null? new String[] {} : type.split("");
+	}
+	
+	public Criteria(int page , int size , String keyword , String type)
 	{
 		this.currentPage = page;
 		this.size = size;
-		
-		
-		this.pageNum = pageNum;
-		this.amount = amount;
+		this.keyword = keyword;
+		this.type = type;
 	}
 	
 	
@@ -38,13 +44,5 @@ public class Criteria {
 	}
 
 
-    /* 현재 페이지 번호 */
-    private int pageNum;
-    /* 페이지 표시 개수 */
-    private int amount;
-    /* 검색 타입 */
-    private String type;
-    /* 검색 키워드 */
-    private String keyword;
 	
 }

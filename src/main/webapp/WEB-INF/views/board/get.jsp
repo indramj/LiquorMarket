@@ -7,9 +7,11 @@
 <head>
 <meta charset="UTF-8">
 
+
 <title>Insert title here</title>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script type="text/javascript">
+
 	$(document).ready(function() {
 		var bno = '<c:out value="${board.bno}"/>';
 		
@@ -34,19 +36,27 @@
        }
 			
 
-				
+				//댓글 표시
 				function loadJSONData(){
 				$.getJSON('/replies/' + bno , function(arr){
 				    
 				    var str = "";
-					   
+				    
+				   
 				    $.each(arr , function(idx , reply){
+				    	  var replyDate = reply.regDate;
+						    var updateDate = reply.updateDate;
+						    if(updateDate > replyDate)
+						    	{
+						    		replyDate = updateDate;
+						    	}
+							   
 				        console.log(reply);
 				        console.log(reply.rno);
 				        str += '<div class = "list-body" >';
 				        str += '<input type = "text" data-rno = "'+reply.rno+'" value = "'+reply.replyer+'" readonly = "true">';
 				        str += '<textarea rows="1" cols="20" readonly = "true" data-rno = "'+reply.rno+'">'+reply.reply+ '</textarea>'; 
-				        str += ''+formatTime(reply.regDate)+'';
+				        str += ''+formatTime(replyDate)+'';
 				        str += '<button type = "button" class = "removeReply" data-rno = "'+reply.rno+'">삭제</button>';
 				        str += '<button type = "button" class = "modifyReply" data-rno = "'+reply.rno+'">수정</button>';
 				        str += '</div>'
@@ -55,10 +65,11 @@
 				    listGroup.html(str);
 				});
 			} 
-				
-			
+
 				loadJSONData();
 				
+				
+				//댓글 추가 버튼 클릭시
 				$(".addReply").on("click" , function(e){
 					var reply = {
 							bno : bno,
@@ -87,6 +98,7 @@
 				});	
 				
 				
+				// 댓글 삭제버튼 클릭시
 				$(".replyList").on("click", ".list-body .removeReply" , function(){
 					var rno = $(this).data('rno');
 					
@@ -106,14 +118,17 @@
 				
 				});
 				
+				
+				// 댓글 수정 버튼 누를 경우
 		 		$(".replyList").on("click" , ".list-body .modifyReply" , function(){
 		 			var rno = $(this).data('rno');
 		 			
-		 			$('textarea[data-rno = '+rno+']').removeAttr("readonly");
-		 			$(this).attr("class" , "submitReply");
+		 			$('textarea[data-rno = '+rno+']').removeAttr("readonly"); 
+		 			$('textarea[data-rno = '+rno+']').focus();
+		 			$(this).attr("class" , "submitReply");  //자신의클래스 이름만 변경
 				})
 				
-				
+				//댓글 내용 수정후 다시 버튼 클릭 할경우 처리
  				$(".replyList").on("click", ".list-body .submitReply" , function(){
 					var rno = $(this).data('rno');
 					console.log("modify rno : " +rno);
@@ -148,45 +163,50 @@
 </head>
 <body>
 
+<!--  글 상세 내용 -->
 <div>
-	제목
-	<input type = "text" name = "title" value = "${board.title}" readonly = "readonly">
-	<input type = "text" name = "bno" value = "${board.bno}" readonly = "readonly">
- </div>
-<div>
-내용
-	<textarea rows="20" cols="50" name = "content" readonly = "readonly" ><c:out value = "${board.content}"/></textarea>
-</div>
-<div>
-작성자
-	<input type = "text" name = "writer" readonly = "readonly" value = "${board.writer}">
-</div>	
-
-<button class = "btnModify">수정</button>
-<button class = "btnList" >목록으로</button>
-
-
-	<div class = replyList>
-	
+	<div>
+		제목
+		<input type = "text" name = "title" value = "${board.title}" readonly = "readonly">
+		<input type = "text" name = "bno" value = "${board.bno}" readonly = "readonly">
 	</div>
-	
-	
 	
 	<div>
-		<div>
-			작성자</b>
-			<input type = "text" size = "10" name = "replyer">
-		</div>
-		<div>
-			<textarea rows="3" cols="30" name = "reply"></textarea>
-		</div>
-		<div>
-			<button type = "button" class = "addReply">addReply</button>
-		</div>
+		내용
+		<textarea rows="20" cols="50" name = "content" readonly = "readonly" ><c:out value = "${board.content}"/></textarea>
 	</div>
 	
+	<div>
+		작성자
+		<input type = "text" name = "writer" readonly = "readonly" value = "${board.writer}">
+	</div>	
+	
+	<button class = "btnModify">수정</button>
+	<button class = "btnList" >목록으로</button>
 
-	<form id = "operForm" action = "/board/list" method = "get">
+</div>
+	<!--  //게시글 내용 -->
+	
+	<!--  댓글을 출력하기 위한 div -->
+<div class = replyList>
+
+</div>
+
+<div>
+	<div>
+		작성자</b>
+		<input type = "text" size = "10" name = "replyer">
+	</div>
+	<div>
+		<textarea rows="3" cols="30" name = "reply"></textarea>
+	</div>
+	<div>
+		<button type = "button" class = "addReply">addReply</button>
+	</div>
+</div>
+	
+
+<form id = "operForm" action = "/board/list" method = "get">
 	<input type = "hidden" name = "currentPage" value = "${cri.currentPage}">
 	<input type = "hidden" name = "bno" value = "${board.bno}">
 </form>
