@@ -17,7 +17,7 @@
   	</select>
   	
   	<!-- 상품 조회 페이지 -->
-	<select id="goodsGetDetail" resultType="com.first.domain.DrinkVO">
+	<select id="getGoodsDetail" resultType="com.first.domain.DrinkVO">
 	
 		select drinkId, drinkName, cateCode, drinkPrice, drinkIntro, cateName 
 		from table_drink where drinkId = #{drinkId}
@@ -36,13 +36,13 @@
   	
 	  	<![CDATA[
 		select * from(
-		    select /*+INDEX_DESC(table_drink SYS_IL0000020594C00006$$)*/ rownum as rn, drinkId, drinkName,
-		        (select cateName from table_drinkCate where table_drink.cateCode = table_drinkCate.cateCode) cateName
+		    select /*+INDEX_DESC(table_drink)*/
+		     rownum as rn, drinkId, drinkName, cateCode, cateName
 		    from table_drink 
 		    where 
 		]]>    
 		
-		    <if test="keyword != null">
+		   <if test="keyword != null">
 		    
 			    drinkName like '%' || #{keyword} || '%' and
 			    
@@ -52,9 +52,28 @@
 		    rownum <= #{pageNum} * #{amount} 
 		    )
 		where rn > (#{pageNum} -1) * #{amount}		  	
-  		]]>
+  		]]> 
   	
-  	</select>
+  	</select> 
+  	
+  	
+  	 <select id = "getList" resultType = "com.first.domain.DrinkVO">
+      select drinkId , drinkName , cateCode , cateName , drinkPrice , drinkIntro 
+      from table_drink
+   
+   </select>
+  	
+  	
+  	
+  	
+  	
+  	
+  	
+  	
+  	
+  	
+  	
+  	
   	
   	<!-- 상품 총 개수  -->
   	<select id="getGoodsTotal" resultType="int">

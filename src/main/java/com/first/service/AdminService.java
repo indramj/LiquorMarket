@@ -15,4 +15,6 @@ public interface AdminService {
 	
 	/* 상품 총 개수 */
 	public int getGoodsTotal(Criteria cri);
+	
+	public List<DrinkVO> getList();
 }
