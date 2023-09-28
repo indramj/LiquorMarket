@@ -20,6 +20,15 @@
 		  }
 		});
 	
+	function srch()
+	{
+		var search = $(".searchForm");
+
+		search.find("input[name='currentPage']").val("1");			
+		searchForm.submit();
+	}
+	
+	
 
 	$(document).ready(function(){
 		
@@ -34,14 +43,31 @@
 		});
 		
 		
-		$(".btnPage a").on("click" , function(){
-			e.preventDefault();
-			var num = $(this).data('num');
-			actionForm.find("input[name = currentPage]").val(num);
-			actionForm.submit();
+		
+	
+		
+		
+	
+			$(".btnPage a").click(function(e){
+				e.preventDefault();
+				var num = $(this).data('num');
+				actionForm.find("input[name = currentPage]").val(num);
+				actionForm.submit();
+			})
 			
+			$(".btnSearch").on("click" , function(e){
+				srch();
+				
+			});
 			
-		})
+/* 			var searchForm = $(".searchForm");
+			$(".btnSearch").on("click" , function(e){
+				e.preventDefault();
+				searchForm.find("input[name='currentPage']").val("1");			
+				searchForm.submit();
+			}) */
+		
+		
 
 	});
 	
@@ -94,8 +120,7 @@
 			<li class = "btnPage next"><a href = "/board/list?currentPage=<c:out value = '${pageDTO.endPage+1}'/>">next</a></li>
 		</c:if>
 	</ul>
-	<div>
-		<form id='searchForm' action="/board/list" method='get'>
+	<form class = "searchForm" action = "/board/list" method = "get" >
 		<select name = "type">
 			<option value = "" <c:out value = "${pageDTO.cri.type == null? 'selected' : ''}"/>>--</option>
 			<option value = "T" <c:out value = "${pageDTO.cri.type eq 'T'? 'selected' : ''}"/>>제목</option>
@@ -103,15 +128,14 @@
 			<option value = "W" <c:out value = "${pageDTO.cri.type eq 'W'? 'selected' : ''}"/>>작성자</option>
 			<option value ="TC" <c:out value = "${pageDTO.cri.type eq 'TC'? 'selected' : ''}"/>>제목 및 내용</option>
 		</select>
-		<input type = "text" name = "keyword" size = "30px" value = "${pageDTO.cri.keyword}">
-		<input type = "hidden" name = "currentPage" value = "${pageDTO.cri.currentPage}">
-		<input type = "hidden" name = "size" value = "${pageDTO.cri.size}">
-		<input type = "submit" class = "btnSearch" value = "검색"></Button>
-		</form>
-	</div>
+		<input type = "text" name = "keyword" size = "30px" onkeypress="if( event.keyCode == 13 ){srch();}" >
+		<Button type = "button" class = "btnSearch">검색</Button>
+		<input type = "hidden" name = "currentPage">
+	</form>
 	
 	<form id = "actionForm" action = "/board/list" method = "get">
 		<input type = "hidden" name = "currentPage" value = "${pageDTO.cri.currentPage}">
+		<input type = "hidden" name = "size" value = "${pageDTO.cri.size}">
 		<input type = "hidden" name = "type" value = "${pageDTO.cri.type}">
 		<input type = "hidden" name = "keyword" value = "${pageDTO.cri.keyword }">
 		
