@@ -21,6 +21,17 @@
 			});
 			
 			$(".btnList").on("click" , function(e){
+				var bno = operForm.find("#bno");
+				bno.remove();
+ 				var type = operForm.find("#type");
+				var keyword = operForm.find("#keyword");
+				if(type.val() === "")
+					type.remove();
+				if(keyword.val() === "")
+					keyword.remove(); 
+				
+				
+				
 				operForm.attr("action" , "/board/list").submit();
 			})
 			
@@ -208,7 +219,10 @@
 
 <form id = "operForm" action = "/board/list" method = "get">
 	<input type = "hidden" name = "currentPage" value = "${cri.currentPage}">
-	<input type = "hidden" name = "bno" value = "${board.bno}">
+	<input type = "hidden" id = "bno" name = "bno" value = "${board.bno}">
+	<input type = "hidden" id = "type" name = "type" value = "${cri.type}">
+	<input type = "hidden" id = "keyword" name = "keyword" value = "${cri.keyword}"> 
+	
 </form>
 
 </body>
