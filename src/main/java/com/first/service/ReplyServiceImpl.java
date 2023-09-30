@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.first.domain.ReplyVO;
 import com.first.mapper.BoardMapper;
@@ -20,6 +21,7 @@ public class ReplyServiceImpl implements ReplyService {
 	private final BoardMapper boardMapper;
 	
 	
+	@Transactional
 	@Override
 	public long register(ReplyVO replyVO)
 	{
@@ -34,12 +36,19 @@ public class ReplyServiceImpl implements ReplyService {
 		return replyMapper.getList(bno);
 	}
 	
+	@Transactional
 	@Override
 	public void remove(Long rno)
 	{
 		ReplyVO replyVO= replyMapper.read(rno);
 		replyMapper.remove(rno);
 		boardMapper.updateReplyCnt(replyVO.getBno());
+	}
+	
+	@Override
+	public void removeByBno(Long bno)
+	{
+		replyMapper.removeByBno(bno);
 	}
 	
 	@Override

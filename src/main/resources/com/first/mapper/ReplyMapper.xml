@@ -27,5 +27,9 @@
 	update table_reply set reply = #{reply} , updatedate = sysdate where rno = #{rno}
 </update>
 
+<delete id = "removeByBno">
+	delete from table_reply where bno = #{bno}
+</delete>
+
 
 </mapper>

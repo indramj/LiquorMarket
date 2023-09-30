@@ -16,11 +16,11 @@
 			operForm.submit();
 		});
 		
-		$(".btnRemove").on("click" , function(e){
+		$(".btnRemove").on("click" , function(){
 			operForm.attr("action" , "/board/remove" , "method" , "get");
 			operForm.submit();
 			
-		})
+		});
 		
 		
 	});

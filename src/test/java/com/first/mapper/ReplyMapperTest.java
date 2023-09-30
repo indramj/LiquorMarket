@@ -17,16 +17,19 @@ public class ReplyMapperTest {
 	@Autowired
 	ReplyMapper replyMapper;
 	
-//	@Test
-//	public void testInsertReply()
-//	{
-//		ReplyVO replyVO = new ReplyVO();
-//		replyVO.setBno(77L);
-//		replyVO.setReplyer("replyTestUser");
-//		replyVO.setReply("replyTest");
-//		replyMapper.register(replyVO);
-//		
-//	}
+	@Test
+	public void testInsertReply()
+	{
+		for ( int i = 1; i <= 500; i++)
+		{
+			ReplyVO replyVO = new ReplyVO();
+			replyVO.setBno((long)(Math.random() * 200) + 1);
+			replyVO.setReplyer("replyTestUser" + i);
+			replyVO.setReply("replyTest" + i);
+			replyMapper.register(replyVO);
+		}
+
+	}
 	
 //	@Test
 //	public void insertDummies()
@@ -49,17 +52,17 @@ public class ReplyMapperTest {
 //		replyMapper.remove(rno);
 //	}
 	
-	@Test
-	public void updateReplyTest()
-	{
-		ReplyVO vo = new ReplyVO();
-		vo.setRno(50L);
-		vo.setReply("수정 해 봅시다.");
-		replyMapper.updateReply(vo);
-		
-		log.info(replyMapper.read(50L));
-
-	}
+//	@Test
+//	public void updateReplyTest()
+//	{
+//		ReplyVO vo = new ReplyVO();
+//		vo.setRno(50L);
+//		vo.setReply("수정 해 봅시다.");
+//		replyMapper.updateReply(vo);
+//		
+//		log.info(replyMapper.read(50L));
+//
+//	}
 	
 
 }

@@ -46,6 +46,27 @@
                 date.getMinutes();
        }
 			
+			//댓글 제목 내용 작성자 체크
+			function checkReply()
+			{
+				
+				var regReply = $(".regReply");
+				
+				var replyer = regReply.find("input[name = replyer]").val();
+				var reply = regReply.find("textarea[name = reply]").val();
+				
+				if(replyer === null || replyer.length === 0)
+					{				
+						alert("닉네임을 입력하세요");						
+						return -1;
+					}
+				if(reply === null || reply.length === 0)
+				{	
+					alert("댓글을 입력하세요");
+					return -1;
+				}
+			}
+			
 
 				//댓글 표시
 				function loadJSONData(){
@@ -82,6 +103,12 @@
 				
 				//댓글 추가 버튼 클릭시
 				$(".addReply").on("click" , function(e){
+				
+					if (checkReply() === -1)
+					{
+						return;
+					}
+					
 					var reply = {
 							bno : bno,
 							reply : $('textarea[name = "reply"]').val(),
@@ -144,10 +171,19 @@
 					var rno = $(this).data('rno');
 					console.log("modify rno : " +rno);
 					
+					var reply = $('textarea[data-rno = '+rno+']').val();
+					if(reply === null || reply.length === 0)
+					{
+						alert("댓글을 입력하세요");
+						return;
+					}
+						
+					
+					
 					var reply = {
 							rno : rno,
 							bno : bno,
-							reply : $('textarea[data-rno = '+rno+']').val(),
+							reply : reply,
 							replyer : $('input[data-rno = '+rno+']').val()
 					}
 	
@@ -203,7 +239,7 @@
 
 </div>
 
-<div>
+<div class = "regReply">
 	<div>
 		작성자</b>
 		<input type = "text" size = "10" name = "replyer">

@@ -25,7 +25,7 @@
 		var search = $(".searchForm");
 
 		search.find("input[name='currentPage']").val("1");			
-		searchForm.submit();
+		search.submit();
 	}
 	
 	
@@ -42,36 +42,23 @@
 			actionForm.submit();
 		});
 		
-		
-		
-	
-		
-		
-	
-			$(".btnPage a").click(function(e){
-				e.preventDefault();
-				var num = $(this).data('num');
-				actionForm.find("input[name = currentPage]").val(num);
-				actionForm.submit();
-			})
-			
-			$(".btnSearch").on("click" , function(e){
-				srch();
-				
-			});
-			
-/* 			var searchForm = $(".searchForm");
-			$(".btnSearch").on("click" , function(e){
-				e.preventDefault();
-				searchForm.find("input[name='currentPage']").val("1");			
-				searchForm.submit();
-			}) */
-		
-		
 
-	});
+		$(".btnPage a").click(function(e){
+			e.preventDefault();
+		
+			actionForm.find("input[name = currentPage]").val($(this).attr("href"));
+			actionForm.submit();
+		})
+		
+		$(".btnList").click(function(e){
+			e.preventDefault();
+			actionForm.empty();
+			actionForm.attr("action" , "/board/list");	
+			actionForm.submit();
+			});
 	
-	
+});
+
 	</script>
 
 </head>
@@ -83,9 +70,8 @@
 </div>
 <div>
 	<input type = "submit" value = "글쓰기">
+	
 </div>
-
-
 
 </form>
 
@@ -111,13 +97,13 @@
 	<!--  페이징 -->
 	<ul class = "pageList">
 		<c:if test = "${pageDTO.prev}">
-			<li class = "btnPage prev"><a href = "/board/list?currentPage=<c:out value = '${pageDTO.startPage-1}'/>">prev</a></li>
+			<li class = "btnPage prev"><a href = "${pageDTO.startPage-1}">prev</a></li>
 		</c:if>
 		<c:forEach var = "num" begin = "${pageDTO.startPage}" end = "${pageDTO.endPage}">
 			<li class = btnPage><a href = "${num}" data-num = "${num}">${num}</a></li>
 		</c:forEach>
 		<c:if test = "${pageDTO.next}">
-			<li class = "btnPage next"><a href = "/board/list?currentPage=<c:out value = '${pageDTO.endPage+1}'/>">next</a></li>
+			<li class = "btnPage next"><a href = "${pageDTO.endPage+1}">next</a></li>
 		</c:if>
 	</ul>
 	<form class = "searchForm" action = "/board/list" method = "get" >
@@ -129,7 +115,8 @@
 			<option value ="TC" <c:out value = "${pageDTO.cri.type eq 'TC'? 'selected' : ''}"/>>제목 및 내용</option>
 		</select>
 		<input type = "text" name = "keyword" size = "30px" onkeypress="if( event.keyCode == 13 ){srch();}" >
-		<Button type = "button" class = "btnSearch">검색</Button>
+		<Button type = "button" class = "btnSearch" onclick = "srch();">검색</Button>
+		<button type = "button" class = "btnList">전체글</button>
 		<input type = "hidden" name = "currentPage">
 	</form>
 	
