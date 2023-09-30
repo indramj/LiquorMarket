@@ -1,19 +1,31 @@
 package com.first.controller;
 
-import lombok.extern.log4j.Log4j;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
+import java.util.List;
 
-@Log4j
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+
+import com.first.domain.LiquorVO;
+import com.first.service.LiquorService;
+
+
 @Controller
+@RequestMapping("/")
 public class MainController {
 	
-	//메인 페이지 이동
-	@GetMapping("/mainhome")
-	public void getMainHome() {
-			
-		log.info("메인 페이지 진입");
-		
-		}
-
+	@Autowired
+	LiquorService service;
+	
+	@GetMapping("")
+	public String main(Model model)	
+	{
+		List<LiquorVO> liquorList =	service.getLiquorList();
+		model.addAttribute("liquorList" , liquorList);
+		return "mainhome";
+	}
+	
 }

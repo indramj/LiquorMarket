@@ -4,12 +4,7 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
   <mapper namespace="com.first.mapper.AdminMapper">
 
-<!-- 주류 등록 -->
-<insert id="enrollDrink">
-  	
-  		insert into table_drink(drinkName, drinkId, cateCode, cateName, drinkPrice, drinkIntro)
-		values(#{drinkName},#{drinkId}, #{cateCode},#{cateName},#{drinkPrice},#{drinkIntro})
-  	</insert>
+
   	
   	<!-- 카테고리 리스트 -->
   	<select id="cateList" resultType="com.first.domain.CateVO">	
@@ -17,64 +12,13 @@
   	</select>
   	
   	<!-- 상품 조회 페이지 -->
-	<select id="getGoodsDetail" resultType="com.first.domain.DrinkVO">
+	<select id="getGoodsDetail" resultType="com.first.domain.LiquorVO">
 	
 		select drinkId, drinkName, cateCode, drinkPrice, drinkIntro, cateName 
 		from table_drink where drinkId = #{drinkId}
 	
 	</select>
-  	
-  	
-  	
-  	
-  	
-  	
-  	
-  	
-  	<!-- 상품 리스트 -->
-  	<select id="getGoodsList" resultType="com.first.domain.DrinkVO">
-  	
-	  	<![CDATA[
-		select * from(
-		    select /*+INDEX_DESC(table_drink)*/
-		     rownum as rn, drinkId, drinkName, cateCode, cateName
-		    from table_drink 
-		    where 
-		]]>    
-		
-		   <if test="keyword != null">
-		    
-			    drinkName like '%' || #{keyword} || '%' and
-			    
-		    </if>
-		     
-		<![CDATA[    
-		    rownum <= #{pageNum} * #{amount} 
-		    )
-		where rn > (#{pageNum} -1) * #{amount}		  	
-  		]]> 
-  	
-  	</select> 
-  	
-  	
-  	 <select id = "getList" resultType = "com.first.domain.DrinkVO">
-      select drinkId , drinkName , cateCode , cateName , drinkPrice , drinkIntro 
-      from table_drink
-   
-   </select>
-  	
-  	
-  	
-  	
-  	
-  	
-  	
-  	
-  	
-  	
-  	
-  	
-  	
+
   	<!-- 상품 총 개수  -->
   	<select id="getGoodsTotal" resultType="int">
   	

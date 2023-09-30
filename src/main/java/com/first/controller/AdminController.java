@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.first.domain.Criteria;
-import com.first.domain.DrinkVO;
+import com.first.domain.LiquorVO;
 import com.first.domain.PageDTO;
 import com.first.service.AdminService;
 
@@ -37,29 +37,24 @@ import com.first.service.AdminService;
 	    
 	    
 	    
-	  /*상품 리스트 데이터*/
-	    
-	    @GetMapping("/manageGoods")
-	    public void getManageGoods(Criteria cri, Model model) throws Exception{
-	    	
-	    	logger.info("상품 관리 (상품 목록) 페이지 접속");
-	    	
-	  
-	    	/* 상품 리스트 데이터 */
-	    List list = adminService.getGoodsList(cri);
-	   
-	    if(!list.isEmpty()) {
-	    	model.addAttribute("list", list);
-	    }else {
-	   	model.addAttribute("listCheck", "empty");
-	   	return;
-	   }
-	    
-	    
-	    /*페이지 인터페이스 데이터*/
-	   model.addAttribute("pageMaker", new PageDTO(cri, adminService.getGoodsTotal(cri)));
-	   }
-	    
+		/* 상품 리스트 데이터 */
+
+		@GetMapping("/manageGoods")
+		public void getManageGoods(Criteria cri, Model model) throws Exception {
+
+			logger.info("상품 관리 (상품 목록) 페이지 접속");
+
+			/* 상품 리스트 데이터 */
+			List<LiquorVO> liqourList = adminService.getListAll();
+
+			if (!liqourList.isEmpty()) {
+				model.addAttribute("liquorList", liqourList);
+			} else {
+				model.addAttribute("listCheck", "empty");
+				return;
+			}
+
+		}
  
 	
 		
@@ -77,13 +72,13 @@ import com.first.service.AdminService;
 	    
 	  //상품 등록 
 	    	@PostMapping("/enrollGoods")
-	    	public String enrollGoodsPOST(DrinkVO drink, RedirectAttributes rttr) {
+	    	public String enrollGoodsPOST(LiquorVO liqour, RedirectAttributes rttr) {
 	    		
-	    		logger.info("enrollGoodsPOST......" + drink);
+	    		logger.info("enrollGoodsPOST......" + liqour);
 	    		
-	    		adminService.enrollDrink(drink);
 	    		
-	    		rttr.addFlashAttribute("enroll_result", drink.getDrinkName());
+	    		
+	    		rttr.addFlashAttribute("enroll_result", liqour.getName());
 	    		
 	    		return "redirect:/admin/manageGoods";
 	    	}	
