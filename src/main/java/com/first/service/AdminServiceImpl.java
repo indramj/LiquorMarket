@@ -7,8 +7,9 @@ import org.springframework.stereotype.Service;
 
 import com.first.domain.CateVO;
 import com.first.domain.Criteria;
-import com.first.domain.DrinkVO;
+import com.first.domain.LiquorVO;
 import com.first.mapper.AdminMapper;
+import com.first.mapper.LiquorMapper;
 
 import lombok.Setter;
 import lombok.extern.log4j.Log4j;
@@ -19,14 +20,11 @@ public class AdminServiceImpl implements AdminService {
 
 	@Setter(onMethod_= @Autowired )
 	private AdminMapper adminMapper;
+	
+	@Setter(onMethod_= @Autowired )
+	private LiquorMapper liquorMapper;
 
-	// 주류 등록
-	@Override
-	public void enrollDrink(DrinkVO drink) {
-		log.info("(service)enrollDrink......");
 
-		adminMapper.enrollDrink(drink);
-	}
 
 	/* 카테고리 리스트 */
 	@Override
@@ -38,7 +36,7 @@ public class AdminServiceImpl implements AdminService {
 	}
 	/* 상품 리스트 */
 	@Override
-	public List<DrinkVO> getGoodsList(Criteria cri) {
+	public List<LiquorVO> getGoodsList(Criteria cri) {
 		log.info("getGoodsTotalList()..........");
 		return adminMapper.getGoodsList(cri);
 	}
@@ -50,12 +48,9 @@ public class AdminServiceImpl implements AdminService {
 	}
 	
 	
-	public List<DrinkVO> getList()
-	   {
-	      return adminMapper.getList();
-	   }
-	
-	
+	public List<LiquorVO> getListAll() {
+		return liquorMapper.getListAll();
+	}
 	
 //	/* 상품 조회 페이지 */
 //	@Override

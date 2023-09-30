@@ -43,10 +43,37 @@
 			<div class="clearfix"></div>			
 		</div>
 		<div class="navi_bar_area">
-			<h1>메뉴바</h1>
+			<ul>
+				<li><h1><a href = "../liquor/liquorList" >상품 리스트</a></h1></li>
+				<li><h1><a href = "../board/list">상품문의</a></h1></li>
+			</ul>
+			
+			
 		</div>
 		<div class="content_area">
 			<h1>대충 술 파는 사진들</h1>
+			<table class="goods_table">
+        <thead>
+           <tr>
+         		 <td class="th_column_1">주류 id</td>
+              <td class="th_column_2">주류 이름</td>
+              <td class="th_column_3">주류 소개</td>
+              <td class="th_column_4">카테고리 이름</td>
+              <td class="th_column_5">주류 가격</td>
+           </tr>
+        </thead>   
+        <c:forEach var="liquorList" begin = "0" end = "9" items="${liquorList}" >
+        <tr>
+           <td>${liquorList.lid}</td>
+      			<td><a href = "${liquorList.lid}">${liquorList.name}</a></td>
+      			<td>${liquorList.description}</td>
+           <td><c:out value="${liquorList.cateName}"></c:out></td>
+           <td>${liquorList.price}</td>
+           
+        </tr>
+        </c:forEach>
+     </table>
+			
 		</div>
 	</div>
 </div>

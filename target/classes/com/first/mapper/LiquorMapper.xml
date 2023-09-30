@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	
+<mapper namespace="com.first.mapper.LiquorMapper">
+
+<select id = "getListAll" resultType = "com.first.domain.LiquorVO">
+	select lid , name , description , cateName , price , stock 
+	from table_liquor
+</select>
+
+<insert id = "register">
+	insert into table_liquor ( lid , name , description , cateName , price , stock) 
+	values 
+	(seq_liquor.nextval , #{name} , #{description} , #{cateName} , #{price} , #{stock})	
+</insert>
+
+<select id="getLiquor" resultType = "com.first.domain.LiquorVO">
+	select lid , name , description , cateName , price , stock 
+	from table_liquor where lid = #{lid}
+</select>
+
+</mapper>

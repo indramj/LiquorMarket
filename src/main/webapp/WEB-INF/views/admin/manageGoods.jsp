@@ -49,22 +49,21 @@
                           <table class="goods_table">
                              <thead>
                                 <tr>
-                              <td class="th_column_1">주류 id</td>
+                              		 <td class="th_column_1">주류 id</td>
                                    <td class="th_column_2">주류 이름</td>
                                    <td class="th_column_3">주류 소개</td>
                                    <td class="th_column_4">카테고리 이름</td>
-                                   <td class="th_column_5">카테고리 번호</td>
-                                   <td class="th_column_6">주류 가격</td>
+                                   <td class="th_column_5">주류 가격</td>
                                 </tr>
                              </thead>   
-                             <c:forEach items="${list}" var="list">
+                             <c:forEach items="${liquorList}" var="liquorList">
                              <tr>
-                                <td><c:out value="${list.drinkId}"></c:out></td>
-                                <a class="move" href='<c:out value="${list.drinkId}"/>'>
-                           <c:out value="${list.drinkName}"></c:out>
-                           </a>
-                                <td><c:out value="${list.drinkName}"></c:out></td>
-                                <td><c:out value="${list.cateName}"></c:out></td>
+                                <td><c:out value="${liquorList.lid}"/></td>
+                                <%-- <a class="move" href='<c:out value="${drinkList.drinkId}"/>'> --%>
+                           			<td><c:out value="${liquorList.name}"/></td>
+                           			<td>${liquorList.description}</td>
+                                <td><c:out value="${liquorList.cateName}"></c:out></td>
+                                <td>${liquorList.price}</td>
                                 
                              </tr>
                              </c:forEach>
