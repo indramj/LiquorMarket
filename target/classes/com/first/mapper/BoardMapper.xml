@@ -57,7 +57,7 @@ insert into table_board(bno , title , content , writer )
 </update>
 
 <delete id = "delete">
-	delete from table_reply where rno = #{rno}
+	delete from table_board where bno = #{bno}
 </delete>
 
 <update id="updateReplyCnt">

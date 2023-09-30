@@ -4,10 +4,12 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.first.domain.BoardVO;
 import com.first.domain.Criteria;
 import com.first.mapper.BoardMapper;
+import com.first.mapper.ReplyMapper;
 
 import lombok.Setter;
 import lombok.extern.log4j.Log4j;
@@ -18,6 +20,8 @@ public class BoardServiceImpl implements BoardSerivce{
 	
 	@Setter(onMethod_=@Autowired)
 	BoardMapper mapper;
+	@Setter(onMethod_=@Autowired)
+	ReplyMapper replyMapper;
 	
 	@Override
 	public List<BoardVO> getList(Criteria cri)
@@ -53,9 +57,12 @@ public class BoardServiceImpl implements BoardSerivce{
 		return result;
 	}
 	
+	@Transactional
 	@Override
 	public boolean remove(Long bno)
 	{
+		
+		replyMapper.removeByBno(bno);
 		boolean result = mapper.delete(bno) == 1;
 		return result;
 	}
