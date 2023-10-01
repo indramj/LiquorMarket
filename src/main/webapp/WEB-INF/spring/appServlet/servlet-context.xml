@@ -27,6 +27,17 @@
 	
 	<context:component-scan base-package="com.first.controller" />
 	
+	
+	
 	<beans:bean id="bcryptPasswordEncoder" class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder"></beans:bean>
+	
+	<!--  인터셉터 적용  -->
+	<interceptors>
+		<interceptor>
+			<mapping path="/cart/**"/>
+			<exclude-mapping path="/cart/add"/>
+			<beans:bean id="CartIntreceptor" class="com.first.interceptor.CartInterceptor"></beans:bean>
+		</interceptor>
+	</interceptors>
 	
 </beans:beans>

@@ -41,7 +41,10 @@
 	<context:annotation-config></context:annotation-config>
 	
 	<context:component-scan base-package="com.first.service"></context:component-scan>
-		
+	
+	
+	
+	
    <!-- 이메일 인증 관련 빈 등록 -->
    <bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
       <property name="host" value="smtp.gmail.com" />

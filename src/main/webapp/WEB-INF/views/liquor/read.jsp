@@ -9,8 +9,6 @@
 <title>Insert title here</title>
 <link rel="stylesheet" href="../resources/css/admin/goodsDetail.css">
 <script src="http://code.jquery.com/jquery-3.4.1.js"></script>
-
-
 </head>
 <body>
 	<h1>상품 조회 페이지</h1>
@@ -82,7 +80,7 @@
 				<div class="btn_section">
 					<button id="cancelBtn" class="btn">상품 목록</button>
 					<button id="enrollBtn" class="btn enroll_btn">수정</button>
-					<button class = "btnToCart">장바구니</button>
+					<button id="cartBtn" class="btnToCart">장바구니</button>
 				</div>
 			</div>
 
@@ -94,5 +92,40 @@
 			</form>
 
 		</div>
+		<!--
+		<script>
+				
+		const form = {
+			memberId: '${member.memberId}',
+			drinkId: '${goodsInfo.drinkId}',
+			drinkCount: ''
+		};
+		
+		// 장바구니 추가 버튼
+		$("#btnTocart").on("click", function(e) {
+			form.drinkCount = $("#quantity_input").val();
+			$.ajax({
+				url: '/cart/add',
+				type: 'POST',
+				data: form,
+				success: function(result) {
+					cartAlert(result);
+				}
+			});
+		});
+
+		function cartAlert(result) {
+			if (result == '0') {
+				alert("장바구니에 추가를 하지 못하였습니다.");
+			} else if (result == '1') {
+				alert("장바구니에 추가되었습니다.");
+			} else if (result == '2') {
+				alert("장바구니에 이미 추가되어져 있습니다.");
+			} else if (result == '5') {
+				alert("로그인이 필요합니다.");
+			}
+		}
+		</script> -->
+		
 </body>
 </html>
