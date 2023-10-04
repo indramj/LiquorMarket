@@ -14,20 +14,20 @@
   	<!-- 상품 조회 페이지 -->
 	<select id="getGoodsDetail" resultType="com.first.domain.LiquorVO">
 	
-		select drinkId, drinkName, cateCode, drinkPrice, drinkIntro, cateName 
-		from table_drink where drinkId = #{drinkId}
+		select lId, name, price, description, cateName, stock 
+		from table_liquor where lId = #{lId}
 	
 	</select>
 
-  	<!-- 상품 총 개수  -->
+  	<!-- 상품 총 개수   -->
   	<select id="getGoodsTotal" resultType="int">
   	
-  		select count(*) from table_drink
+  		select count(*) from table_liquor
   		
   		<if test="keyword != null">
   		
-  			where drinkName like '%' || #{keyword} || '%'
+  			where Name like '%' || #{keyword} || '%'
   		</if>
   		
-  	</select> 
+  	</select>
   </mapper>

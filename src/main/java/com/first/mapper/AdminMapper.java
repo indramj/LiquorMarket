@@ -16,7 +16,7 @@ public interface AdminMapper {
 	
 	public int getGoodsTotal(Criteria cri);
 
-	public LiquorVO getGoodsDetail(int drinkId);
+	public LiquorVO getGoodsDetail(int lId);
 	
 	public List<LiquorVO>getList();
 }
