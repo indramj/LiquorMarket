@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ include file="../include/header.jsp" %>
 
 
 <!DOCTYPE html>
@@ -20,17 +21,20 @@
 		  }
 		});
 	
+	//엔터키로 검색시 생기는 문제 해결
 	function srch()
 	{
 		var search = $(".searchForm");
 
 		search.find("input[name='currentPage']").val("1");			
 		search.submit();
-	}
+	}		
+
 	
 	
 
 	$(document).ready(function(){
+		
 		
 		var actionForm = $("#actionForm");
 		
@@ -67,6 +71,7 @@
 
 <div>
 	<h2> List Page</h2>
+	<a href = "../"><button type = "button">첫화면으로</button></a>
 </div>
 <div>
 	<input type = "submit" value = "글쓰기">

@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
     	<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
     	<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ include file="include/header.jsp" %>    	
 <!DOCTYPE html>
 <html>
 <head>
@@ -12,9 +13,6 @@
 <body>
 <div class="wrapper">
 	<div class="wrap">
-		<div class="top_gnb_area">
-			<h1> 상단메뉴 </h1>
-		</div>
 		<div class="top_area">
 			<div class="logo_area">
 				<h1>홈페이지 로고</h1>
