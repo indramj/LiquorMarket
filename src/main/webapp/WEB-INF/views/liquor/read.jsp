@@ -78,14 +78,25 @@
 					</div>
 				</div>
 
-
+				 	
+					
 				<div class="btn_section">
 					<button id="cancelBtn" class="btn">상품 목록</button>
 					<button id="enrollBtn" class="btn enroll_btn">수정</button>
-					<button class = "btnToCart">장바구니</button>
+					<a href = "/cart">장바구니</a>
+					
+					<!-- <button id="cartBtn" class ="btn_cart">장바구니</button>
+					<a href="cart.jsp" id="cartPage" style="display: none;"></a>
+					
+					<script type="text/javascript">
+					// 버튼 클릭 이벤트 처리
+					document.getElementById('cartBtn').addEventListener('click',function() { 
+					// 타겟 페이지 링크 클릭
+					document.getElementById('cartPage').click(); });</script> --> 
 				</div>
+		
 			</div>
-
+	
 
 			<form id="moveForm" action="/admin/manageGoods" method="get">
 				<input type="hidden" name="pageNum" value="${pageMaker.cri.pageNum}">
