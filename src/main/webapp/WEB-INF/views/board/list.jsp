@@ -60,6 +60,13 @@
 			actionForm.attr("action" , "/board/list");	
 			actionForm.submit();
 			});
+		
+		$(".btnRegister").click(function(e){
+			e.preventDefault();
+			actionForm.empty();
+			actionForm.attr("action" , "/board/register")
+			actionForm.submit();
+		})
 	
 });
 
@@ -70,47 +77,52 @@
 <form method = "get" action = "/board/register">
 
 <div>
-	<h2> List Page</h2>
-	<a href = "../"><button type = "button">첫화면으로</button></a>
+	<h2>상품 문의 게시판</h2>
 </div>
 <div>
 	<input type = "submit" value = "글쓰기">
-	
 </div>
 
 </form>
 
 <div>
-	<table>
-		<tr>
-			<th>글번호</th>
-			<th>글제목</th>
-			<th>작성자</th>
-			<th>작성일</th>
-		</tr>
-		<c:forEach var="board" items = "${boardlist}" >
-		<tr>
-			<td>${board.bno}		
-			<td><a class = "read" href = "${board.bno}" data-bno = "${board.bno}" ><c:out value = "${board.title}"/>[
+
+	<table class="table table-hover">
+  <thead>
+    <tr>
+      <th scope="col">글번호</th>
+      <th scope="col">글제목</th>
+      <th scope="col">작성자</th>
+      <th scope="col">작성일</th>
+    </tr>
+  </thead>
+  <tbody>
+  	<c:forEach var="board" items = "${boardlist}" >
+    <tr>
+      <th scope="row">${board.bno}</th>
+      <td><a class = "read" href = "${board.bno}" data-bno = "${board.bno}" ><c:out value = "${board.title}"/>[
 			<c:out value = "${board.replyCnt}"/>]</a></td>
-			<td>${board.writer}</td>
-			<td><fmt:formatDate pattern="yyyy-MM-dd" value="${board.regDate}"/></td>
-		<tr>
-		</c:forEach>
-	</table>
-	
-	<!--  페이징 -->
-	<ul class = "pageList">
-		<c:if test = "${pageDTO.prev}">
-			<li class = "btnPage prev"><a href = "${pageDTO.startPage-1}">prev</a></li>
-		</c:if>
-		<c:forEach var = "num" begin = "${pageDTO.startPage}" end = "${pageDTO.endPage}">
-			<li class = btnPage><a href = "${num}" data-num = "${num}">${num}</a></li>
-		</c:forEach>
+      <td>${board.writer}</td>
+      <td><fmt:formatDate pattern="yyyy-MM-dd" value="${board.regDate}"/></td>
+    </tr>
+    </c:forEach>
+  </tbody>
+</table>
+
+<nav aria-label="Page navigation example">
+  <ul class="pagination pageList">
+  	<c:if test = "${pageDTO.prev}">
+    	<li class="page-item btnPage prev"><a class="page-link" href="${pageDTO.startPage-1}">Previous</a></li>
+    </c:if>
+    <c:forEach var = "num" begin = "${pageDTO.startPage}" end = "${pageDTO.endPage}">
+    	<li class="page-item btnPage"><a class="page-link" href="${num}" data-num = "${num}">${num}</a></li>
+    </c:forEach>
 		<c:if test = "${pageDTO.next}">
-			<li class = "btnPage next"><a href = "${pageDTO.endPage+1}">next</a></li>
-		</c:if>
-	</ul>
+    	<li class="page-item btnPage next"><a class="page-link" href="${pageDTO.endPage+1}">Next</a></li>
+    </c:if>
+  </ul>
+  <button type="button" class="btn btn-outline-primary btnRegister">글쓰기</button>
+</nav>
 	<form class = "searchForm" action = "/board/list" method = "get" >
 		<select name = "type">
 			<option value = "" <c:out value = "${pageDTO.cri.type == null? 'selected' : ''}"/>>--</option>
