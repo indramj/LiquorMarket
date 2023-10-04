@@ -41,7 +41,7 @@
 				</div>
 				
 				<div class="mainhome_wrap">
-					<span><a href="/mainhome">뒤로 가기</a></span>
+					<span><a href="../">뒤로 가기</a></span>
 				</div>			
 			</div>
 	    </form>
