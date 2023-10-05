@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.first.domain.LiquorVO;
@@ -24,12 +25,20 @@ public class LiquorController {
 		model.addAttribute("liquorList" , liquorList);
 	}
 	
-	@GetMapping("/liquor/read")
+	@GetMapping({"/liquor/read" , "/liquor/modify"})
 	public void read(@RequestParam("lid") int lid , Model model)
 	{
 		LiquorVO liquor = new LiquorVO();
 		liquor = liquorService.getLiquor(lid);
 		model.addAttribute("liquor" , liquor);
+	}
+	
+	@PostMapping("/remove")
+	public String remove(@RequestParam("lid") int lid)
+	{
+		liquorService.remove(lid);
+		
+		return "redirect:/liquor/liquorList";
 	}
 
 }

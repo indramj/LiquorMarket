@@ -12,6 +12,6 @@ public interface LiquorMapper {
 	
 	public LiquorVO getLiquor(int lid);
 	
-	
+	public int remove (int lid);
 
 }

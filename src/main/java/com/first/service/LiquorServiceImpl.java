@@ -32,5 +32,12 @@ public class LiquorServiceImpl implements LiquorService{
 	{
 		return mapper.getLiquor(lid);
 	}
+	
+	public void remove(int lid)
+	{
+		
+		boolean result = mapper.remove(lid) ==1;
+		return;
+	}
 
 }

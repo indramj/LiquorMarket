@@ -89,17 +89,17 @@
 
 
 				<div class="btn_section">
-					<button id="cancelBtn" class="btn">상품 목록</button>
-					<button id="enrollBtn" class="btn enroll_btn">수정</button>
+					<button class="btnList">상품 목록</button>
+					<a href = "/liquor/modify?lid=<c:out value = '${liquor.lid}'/>"><button class="btnModify">수정</button></a>
 					<button class = "btnToCart">장바구니</button>
 				</div>
 			</div>
 
 
-			<form id="moveForm" action="/admin/manageGoods" method="get">
-				<input type="hidden" name="pageNum" value="${pageMaker.cri.pageNum}">
+			<form class="moveForm" action="/liquor/liquorList" method="get">
+	<%-- 		<input type="hidden" name="pageNum" value="${pageMaker.cri.pageNum}">
 				<input type="hidden" name="amount" value="${pageMaker.cri.amount}">
-				<input type="hidden" name="keyword" value="${pageMaker.cri.keyword}">
+				<input type="hidden" name="keyword" value="${pageMaker.cri.keyword}"> --%>
 			</form>
 
 		</div>

@@ -18,5 +18,5 @@ public interface AdminService {
 	
 	public List<LiquorVO> getListAll();
 	
-	public LiquorVO getGoodsDetail(int lId);
+	public LiquorVO getGoodsDetail(int lid);
 }

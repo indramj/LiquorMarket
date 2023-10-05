@@ -51,6 +51,11 @@ public class AdminServiceImpl implements AdminService {
 	public List<LiquorVO> getListAll() {
 		return liquorMapper.getListAll();
 	}
+	@Override
+	public LiquorVO getGoodsDetail(int lid) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 	
 //	/* 상품 조회 페이지 */
 //	@Override
