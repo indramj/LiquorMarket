@@ -1,180 +1,184 @@
 @charset "UTF-8";
-*{
-	margin: 0;
-	padding:0;
-}
-a{
-	text-decoration: none;
-}
 
-ul{
-    list-style: none;
-}
-/* 화면 전체 렙 */
-.wrapper{
-	width: 100%;
-}
-/* content 랩 */
-.wrap{
-	width : 1080px;
-	margin: auto;
-}
+	 table{
+	 	border-collapse: collapse;
+	 	width: 100%;
+	 }
+	 .table_text_align_center{
+				text-align: center;
+	 }	
+	 caption{
+	    visibility: hidden;
+	    width: 0;
+	    height: 0;
+	    font-size: 0;
+	    line-height: 0;
+	    overflow: hidden; 
+	 }	  
 
+	 .content_subject{
+		height: 110px;
+	    line-height: 110px;
+	    background-color: #5080bd;
+	    margin-bottom: 60px; 
+	 
+	 }
+		 .content_subject span{ 
+		    padding-left: 30 px;
+		    display: inline-block;
+		    color: white;
+		    font-size: 50px;
+		    font-weight: bolder; 
+		 }
+	 
+	 .content_totalCount_section{
+	 	margin-bottom: 12px;
+	 }
+	 .content_btn_section{
+	 	margin-top: 20px;
+	 	text-align: right;
+	 }
+	 	.content_btn_section a{
+	    color: #fefeff;
+	    background-color: #365fdd;
+	    min-width: 125px;
+	    padding: 17px 25px;
+	    display: inline-block;
+	    height: 39px;
+	    font-size: 23px;
+	    font-weight: bold;
+	    text-align: center;
+	    margin-right: 14px;
+	    line-height: 39px; 	
+	 	}
+	 
 
-/* 관리제 페이지 상단 현페이지 정보 */
-.admin_top_wrap{
-    height:110px;
-    line-height: 110px;
-    background-color: #5080bd;
-    margin-bottom: 15px;
-}
-.admin_top_wrap>span{
-    margin-left: 30px;
-    display:inline-block;
-    color: white;
-    font-size: 50px;
-    font-weight: bolder;
-}
-/* 관리자 wrap(네비+컨텐츠) */
-.admin_wrap{
-    
-    
-}
+	 .subject_table{
+		font-size: 14px;
+	    line-height: 20px;
+	    width: 100%;
+	    text-align: center; 	
+	 }
 
-/* 관리자페이지 네비 영역 */
-.admin_navi_wrap{
-    width: 20%;
-    height: 300px;
-    float:left;
-    height: 100%;
-}
-.admin_navi_wrap li{
-    display: block;
-    height: 80px;
-    line-height: 80px;
-    text-align: center;
-}
-.admin_navi_wrap li a{
-    display: block;
-    height: 100%;
-    width: 95%;
-    margin: 0 auto;
-    cursor: pointer;
-    font-size: 30px;
-    font-weight: bolder;
-}
-.admin_navi_wrap li a:link {color: black;}
-.admin_navi_wrap li a:visited {color: black;}
-.admin_navi_wrap li a:active {color: black;}
-.admin_navi_wrap li a:hover {color: black;}
- 
-.admin_list_02{
-    background-color: #c8c8c8;
-} 
-
-
-/* 관리자페이지 컨텐츠 영역 */
-.admin_content_wrap{
-    width: 80%;
-    float:left;
-    min-height: 700px;
-}
-.admin_content_subject{	/* 관리자 컨텐츠 제목 영역 */
-    font-size: 40px;
-    font-weight: bolder;
-    padding-left: 15px;
-    background-color: #6AAFE6;
-    height: 80px;
-    line-height: 80px;
-    color: white;	
-}
-
-/* 관리자 컨텐츠 메인 영역 */
-.form_section{
-	width: 95%;
-    margin-left: 2%;
-    margin-top: 20px;
-    border: 1px solid #dbdde2;
-    background-color: #efefef;	
-}
-.form_section_title{
-	padding: 20px 35px;	
-}
-.form_section_title label{
-	display: block;
-    font-size: 20px;
-    font-weight: 800;
-}
-.form_section_content{
-	padding: 20px 35px;
-    border-top: 1px solid #dbdde2;	
-}
-.form_section_content input{
-	width: 98%;
-    height: 25px;
-    font-size: 20px;
-    padding: 5px 1%;
-}
-
-							
-.ui-datepicker-trigger {			/* 캘린더 css 설정 */
-    margin-left: 25px;
-    width: 14%;
-    height: 38px;
-    font-weight: 600;
-    background-color: #dfe8f5;
-    font-size: 15px;
-    cursor:pointer;
-}
-
-
-
-.ck-content {						/* ckeditor 높이 */
-    height: 170px;
-}
-
-/* 버튼 영역 */
-.btn_section{
-	text-align: center;
-	margin: 80px 0;
-}
-.btn{
-    min-width: 180px;
-    padding: 4px 30px;
-    font-size: 25px;
-    font-weight: 600;
-    line-height: 40px;
-}
-.enroll_btn{
-	background-color: #dbdde2;
-	margin-left:15px;
-}
-#enrollBtn:hover {
-    background-color: #c9cbd0;
-}
-
-.form_section_content select {		/* 카테고리 css 설정 */
-    width: 92%;
-    height: 35px;
-    font-size: 20px;
-    text-align-last: center;
-    margin-left: 5px;
-}
-.cate_wrap span {
-    font-weight: 600;
-}
-.cate_wrap:not(:first-child) {
-    margin-top: 20px;
-}
-
-
-
-
-
-
-
-
-/* float 속성 해제 */
-.clearfix{
-	clear: both;
-}
+		 th{
+		text-align: center;
+	    color: #333;
+	    border-bottom: 1px solid #e7e7e7;
+	    border-top: 1px solid #3084d9;
+	    background: #f4f9fd;
+	    padding: 2px 0;	 
+		 }
+		.td_width_1{
+			width: 5%;
+		}	 	 	 
+		.td_width_2{
+			width: 10%;
+		}	 	 
+		.td_width_3{
+			width: 25%;
+		}	 
+		.td_width_4{
+			width: 15%;
+		}	
+		.cart_table{
+			font-size: 14px;
+			line-height: 20px;
+		}  
+			.cart_table tr{
+				height: 110px;
+			}
+			.price_td{
+				padding-left: 5px;
+			}
+				.red_color{
+					color : red;
+				}
+				.green_color{
+					color : green;
+				}
+			.cart_table td{
+				border-bottom: 1px solid #e7e7e7;
+			}
+			.quantity_div{
+				position: relative;
+			    width: 42px;
+			    height: 25px;
+			    text-align: left;
+			    margin: 5px auto;		
+			}
+			.quantity_input{
+				position: absolute;
+				width: 27px;
+			    height: 23px;
+			    text-align: center;
+			    border: 1px solid #c6c6c6;
+			    border-right: 0px;
+			    line-height: 19px;
+			    font-size: 12px;
+			    color: #4c4848;	
+			    left: 0;
+			}
+			.quantity_btn{
+				position: absolute;
+			    border: 1px solid #aaa;
+			    color: #3a60df;
+			    width: 14px;
+			    height: 13px;
+			    padding: 0px;
+			    background-color: #fff;
+			    font-weight: bold;
+			    font-size: 7px;
+			    line-height: 6px;
+			    vertical-align: middle;	
+			}
+			.plus_btn{
+				top: 0;
+				right: 0
+			}
+			.minus_btn{
+				bottom: 0;
+				right: 0
+			}		
+			.quantity_modify_btn{
+				border: 1px solid #d0d0d0;
+			    height: 13px;
+			    line-height: 13px;
+			    background-color: #fff;
+			    text-align: center;
+			    width: 28px;
+			    display: inline-block;
+			    padding: 3px 6px 2px;
+			    margin-top: 3px;		
+			}
+			.table_text_align_center{
+				text-align: center;
+			}
+			.delete_btn{
+				width: 40px;		
+			}
+		
+	.content_total_section{
+		    background-color: rgb(227, 237, 247);
+	}		
+		.total_wrap{
+			width: 80%;
+		    margin: auto;
+		    padding: 10px 0 10px 0;	
+		}
+			.total_wrap td{
+				width : 50%;
+			}
+			.finalTotalPrice_span{
+				color: #854A72;
+				font-size: 17px;
+				font-weight: bold;
+			}
+			.totalPoint_span{
+				font-size: 17px;
+				font-weight: bold;		
+			}
+			.boundary_div{
+				font-size: 0;
+			    border: 1px dotted #d1c7c7;
+			    margin: 5px 0 5px 0;		
+			}
