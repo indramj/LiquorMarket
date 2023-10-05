@@ -9,7 +9,16 @@
 <title>Insert title here</title>
 <link rel="stylesheet" href="../resources/css/admin/goodsDetail.css">
 <script src="http://code.jquery.com/jquery-3.4.1.js"></script>
+<script type="text/javascript">
 
+	$(document).ready(function() {
+		var bno = '<c:out value="${board.bno}"/>';
+		
+		var operForm = $("#operForm");
+			$(".btnModify").on("click" , function(e){
+				operForm.attr("action" , "/liquor/modify").submit();
+			});
+</script>
 
 </head>
 <body>

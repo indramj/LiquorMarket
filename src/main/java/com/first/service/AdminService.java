@@ -17,4 +17,6 @@ public interface AdminService {
 	public int getGoodsTotal(Criteria cri);
 	
 	public List<LiquorVO> getListAll();
+	
+	public LiquorVO getGoodsDetail(int lId);
 }
