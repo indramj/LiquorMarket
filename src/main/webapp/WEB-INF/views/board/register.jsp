@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ include file="../include/header.jsp" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -10,11 +11,12 @@
 
 	$(document).ready(function(){
 		
-		$(".btnRegister").on("click" , function(){
+		$(".btnRegister").click(function(){
 			var operForm = $(".operForm");
-			var title = operForm.find("input[name = title]").val();
-			var writer = operForm.find("input[name = writer]").val();
-			var content = operForm.find("textarea[name = content]").val();
+			var register = $(".register");
+			var title = register.find("input[name = title]").val();
+			var writer = register.find("input[name = writer]").val();
+			var content = register.find("textarea[name = content]").val();
 			
 			if(title === null || title.length === 0)
 				{
@@ -31,6 +33,9 @@
 				alert("내용을 입력하세요");
 				return;
 			}
+			operForm.append('<input type = "hidden" name = "title" value = "'+title+'">')
+			operForm.append('<input type = "hidden" name = "writer" value = "'+writer+'">')
+			operForm.append('<input type = "hidden" name = "content" value = "'+content+'">')
 			
 			operForm.submit();
 						
@@ -44,21 +49,39 @@
 
 </head>
 <body>
+
+<div class = "register">
+	<div class="mb-3" >
+		<div class = "col-sm-5">
+	  <label for="exampleFormControlInput1" class="form-label">제목</label>
+	  <input class="form-control form-control-lg" type="text" name = "title" placeholder="제목" aria-label=".form-control-lg example">
+	  </div>
+	</div>
+	<div class="mb-3">
+		<div class = "col-sm-9">
+	  <label for="exampleFormControlTextarea1" class="form-label">내용</label>
+	  <textarea class="form-control" name = "content" id="exampleFormControlTextarea1" rows="10" style = "resize:none;"></textarea>
+	  </div>
+	</div>
+	<div class = "mb-3">
+		<div class = "col-sm-5">
+			<div class="input-group">	
+			  <span class="input-group-text">닉네임</span>
+			  <input type="text" name = "writer" aria-label="writer" class="form-control">
+			  
+			</div>
+		</div>
+	</div>
+	<div class = "mb-3">
+		<div class= "col-sm-3">
+			<button type="button" class="btn btn-secondary btnRegister">등록</button>
+			<button type="button" class="btn btn-secondary btnCancel" onclick = "window.location.href = '../board/list'">취소</button>
+		</div>
+	</div>
+</div>
+
+
 <form class = "operForm" method = "post" action = "/board/register">
-<div>
-	제목
-	<input type = "text" name = "title">
-</div>
-<div>
-내용
-	<textarea rows="20" cols="50" name = "content"></textarea>
-</div>
-<div>
-작성자
-	<input type = "text" name = "writer">
-</div>	
-	<button type = "button" class = "btnRegister">등록</button>
-	<button type = "button" class = "btnCancel">취소</button>
 </form>
 
 </body>
