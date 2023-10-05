@@ -62,7 +62,7 @@ public class MemberController {
         /* 회원가입 쿼리 실행 */
         memberservice.joinMember(member);
 		
-		return "redirect:/mainhome";
+		return "redirect:../";
 	}
 	
 	//아이디 중복 검사
@@ -147,7 +147,7 @@ public class MemberController {
 	                
 	                lvo.setMemberPw("");
 	                session.setAttribute("member", lvo);
-	                return "redirect:/mainhome";
+	                return "redirect:../";
 	                
 	                
 	            } else {
@@ -176,7 +176,15 @@ public class MemberController {
 	        
 	        session.invalidate();
 	        
-	        return "redirect:/mainhome";
+	        return "redirect:../";
 	    	
 	    }
+	    
+	    //마이페이지 이동
+	    @GetMapping("/mypage")
+		public void getMyPage() {
+		
+	    	log.info("마이페이지 진입");
+		}
+	    
 }
