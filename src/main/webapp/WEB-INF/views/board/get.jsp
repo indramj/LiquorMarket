@@ -1,6 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ include file="../include/header.jsp" %>
+
+
 
 <!DOCTYPE html>
 <html>
@@ -210,48 +213,56 @@
 </head>
 <body>
 
-<!--  글 상세 내용 -->
-<div>
-	<div>
-		제목
-		<input type = "text" name = "title" value = "${board.title}" readonly = "readonly">
-		<input type = "text" name = "bno" value = "${board.bno}" readonly = "readonly">
-	</div>
-	
-	<div>
-		내용
-		<textarea rows="20" cols="50" name = "content" readonly = "readonly" ><c:out value = "${board.content}"/></textarea>
-	</div>
-	
-	<div>
-		작성자
-		<input type = "text" name = "writer" readonly = "readonly" value = "${board.writer}">
-	</div>	
-	
-	<button class = "btnModify">수정</button>
-	<button class = "btnList" >목록으로</button>
 
+<div class = "register">
+	<div class="mb-3" >
+		<div class = "col-sm-5">
+	  <label for="exampleFormControlInput1" class="form-label">제목</label>
+	  <input class="form-control form-control-lg" type="text" name = "title" value = "${board.title}" aria-label=".form-control-lg example" readonly>
+	  </div>
+	</div>
+	<div class="mb-3">
+		<div class = "col-sm-9">
+	  <label for="exampleFormControlTextarea1" class="form-label">내용</label>
+	  <textarea class="form-control" name = "content" id="exampleFormControlTextarea1" rows="10" style = "resize:none;" readonly><c:out value = "${board.content}"/></textarea>
+	  </div>
+	</div>
+	<div class = "mb-3">
+		<div class = "col-sm-5">
+			<div class="input-group">	
+			  <span class="input-group-text">닉네임</span>
+			  <input type="text" name = "writer" readonly class="form-control-plaintext" id="staticEmail" value="${board.writer}">
+	    </div>
+		</div>
+	</div>
+	<div class = "mb-3">
+		<div class= "col-sm-3">
+			<button class = "btn btn-secondary btnModify">수정</button>
+			<button class = "btn btn-secondary btnList" >목록으로</button>
+		</div>
+	</div>
 </div>
-	<!--  //게시글 내용 -->
-	
+
 	<!--  댓글을 출력하기 위한 div -->
-<div class = replyList>
-
-</div>
-
-<div class = "regReply">
-	<div>
-		작성자</b>
-		<input type = "text" size = "10" name = "replyer">
-	</div>
-	<div>
-		<textarea rows="3" cols="30" name = "reply"></textarea>
-	</div>
-	<div>
-		<button type = "button" class = "addReply">addReply</button>
+<div class = "mb-3">
+	<div class = replyList>
 	</div>
 </div>
-	
+
+<div class = "mb-3">
+	<div class = "regReply">
+		<div>
+			작성자
+			<input type = "text" size = "10" name = "replyer">
+		</div>
+		<div>
+			<textarea rows="3" cols="30" name = "reply"></textarea>
+		</div>
+		<div>
+			<button type = "button" class = "addReply">addReply</button>
+		</div>
+	</div>
+</div>	
 
 <form id = "operForm" action = "/board/list" method = "get">
 	<input type = "hidden" name = "currentPage" value = "${cri.currentPage}">

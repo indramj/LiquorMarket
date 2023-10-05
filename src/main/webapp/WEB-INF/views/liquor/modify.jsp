@@ -45,7 +45,7 @@
 					<label>주류 이름</label>
 				</div>
 				<div class="form_section_content">
-					<input name="name" value="<c:out value="${liquor.name}"/>" disabled>
+					<input name="name" value="<c:out value="${liquor.name}"/>" >
 				</div>
 			</div>
 

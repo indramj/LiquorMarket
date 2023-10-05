@@ -24,7 +24,7 @@ public class LiquorController {
 		model.addAttribute("liquorList" , liquorList);
 	}
 	
-	@GetMapping("/liquor/read")
+	@GetMapping({"/liquor/read" , "/liquor/modify"})
 	public void read(@RequestParam("lid") int lid , Model model)
 	{
 		LiquorVO liquor = new LiquorVO();
