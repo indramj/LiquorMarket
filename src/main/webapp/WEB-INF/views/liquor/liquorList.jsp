@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ include file="../include/header.jsp" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -32,44 +33,39 @@ window.addEventListener('pageshow', function(event) {
 	
 	
 </script>
-
+<link rel="stylesheet" href="/resources/css/liquor/liquorlist.css">
 </head>
 <body>
-	<div class="admin_content_wrap">
-		<div class="admin_content_subject">
-			<span>상품 관리</span>
-		</div>
-		<div class="goods_table_wrap">
-			<!-- 상품 리스트 O -->
-			<c:if test="${listcheck != 'empty'}">
-			<form class = "move" action = "/liquor/read/" method = "get">
-				<table class="goods_table">
-					<thead>
-						<tr>
-							<td class="th_column_1">주류 id</td>
-							<td class="th_column_2">주류 이름</td>
-							<td class="th_column_3">주류 소개</td>
-							<td class="th_column_4">카테고리 이름</td>
-							<td class="th_column_5">주류 가격</td>
-						</tr>
-					</thead>
-					<c:forEach items="${liquorList}" var="liquorList">
-						<tr>
-							<td><c:out value="${liquorList.lid}" /></td>
-							<td><a data-lid ='<c:out value = "${liquorList.lid}"/>' href = "">${liquorList.name}</a></td>
-							<td>${liquorList.description}</td>
-							<td><c:out value="${liquorList.cateName}"></c:out></td>
-							<td>${liquorList.price}</td>
-
-						</tr>
-					</c:forEach>
-				</table>
-				</form>
-			</c:if>
-			<!-- 상품 리스트 X -->
-			<c:if test="${listCheck == 'empty'}">
-				<div class="table_empty">등록된 상품이 없습니다.</div>
-			</c:if>
+	<div class="liquor_list_container">
+		<div class="admin_content_wrap">
+			<div class="admin_content_subject">
+				<span>Liquorlist</span>
+			</div>
+			<div class="goods_table_wrap">
+				<!-- 상품 리스트 O -->
+				<c:if test="${listcheck != 'empty'}">
+				<form class = "move" action = "/liquor/read/" method = "get">
+					<table class="goods_table">
+						<c:forEach items="${liquorList}" var="liquorList">
+							<tr>
+								<td>
+									<img class="liquor_img_s" src="/resources/images/liquor/liquor1.jpg" alt="상품 이미지">
+								</td>
+								<td><a data-lid ='<c:out value = "${liquorList.lid}"/>' href = "">${liquorList.name}</a></td>
+								<td>${liquorList.description}</td>
+								<td><c:out value="${liquorList.cateName}"></c:out></td>
+								<td>${liquorList.price}</td>
+	
+							</tr>
+						</c:forEach>
+					</table>
+					</form>
+				</c:if>
+				<!-- 상품 리스트 X -->
+				<c:if test="${listCheck == 'empty'}">
+					<div class="table_empty">등록된 상품이 없습니다.</div>
+				</c:if>
+			</div>
 		</div>
 	</div>
 </body>
