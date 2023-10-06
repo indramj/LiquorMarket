@@ -1,11 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    	<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>회원가입</title>
-<link rel="stylesheet" href="/resources/css/member/join.css">
+<title>마이페이지</title>
+<link rel="stylesheet" href="/resources/css/member/mypage.css?after">
 <script
   src="https://code.jquery.com/jquery-3.7.1.js"
   integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4="
@@ -14,54 +15,47 @@
 <body>
 
 <div class="wrapper">
-	<form id="join_form" method="post">
+	<form id="modify_form" method="post">
 	<div class="wrap">
 			<div class="subjecet">
-				<span>회원가입</span>
+				<span>회원정보수정</span>
 			</div>
 			<div class="id_wrap">
 				<div class="id_name">아이디</div>
 				<div class="id_input_box">
-					<input class="id_input" name="memberId">
+					<input class="id_input" name="memberId" value="${member.memberId}" disabled="disabled">
 				</div>
-				<span class="id_input_re_1">사용 가능한 아이디입니다.</span>
-				<span class="id_input_re_2">이미 사용되고 있는 아이디입니다.</span>
-				<span class="final_id_ck">아이디를 입력해주세요.</span>
-			</div>
 			<div class="pw_wrap">
 				<div class="pw_name">비밀번호</div>
 				<div class="pw_input_box">
 					<input class="pw_input" name="memberPw">
 				</div>
-				<span class="final_pw_ck">비밀번호를 입력해주세요.</span>
 			</div>
 			<div class="pwck_wrap">
 				<div class="pwck_name">비밀번호 확인</div>
 				<div class="pwck_input_box">
 					<input class="pwck_input">
 				</div>
-				<span class="final_pwck_ck">비밀번호 확인을 입력해주세요.</span>
 				<span class="pwck_input_re_1">비밀번호가 일치합니다.</span>
                 <span class="pwck_input_re_2">비밀번호가 일치하지 않습니다.</span>
 			</div>
 			<div class="user_wrap">
 				<div class="user_name">이름</div>
-				<div class="user_input_box">
-					<input class="user_input" name="memberName">
+				<div class="name_input_box">
+					<input class="name_input" name="memberName" value="${member.memberName}" disabled="disabled">
 				</div>
-				<span class="final_name_ck">이름을 입력해주세요.</span>
 			</div>
 			<div class="phone_wrap">
 				<div class="phone_name">연락처</div>
 				<div class="phone_input_box">
-					<input class="phone_input" name="memberPhone">
+					<input class="phone_input" name="memberPhone" value="${member.memberPhone}">
 				</div>
 				<span class="final_phone_ck">연락처를 입력해주세요.</span>
 			</div>
 			<div class="mail_wrap">
 				<div class="mail_name">이메일</div> 
 				<div class="mail_input_box">
-					<input class="mail_input" name="memberEmail">
+					<input class="mail_input" name="memberEmail" value="${member.memberEmail}">
 				</div>
 				<span class="final_mail_ck">이메일을 입력해주세요.</span>
 				<sapn class="mail_input_box_warn"></sapn>
@@ -80,7 +74,7 @@
 				<div class="address_name">주소</div>
 				<div class="address_input_1_wrap">
 					<div class="address_input_1_box">
-						<input class="address_input_1" name="memberAddress1" readonly="readonly">
+						<input class="address_input_1" name="memberAddress1" value="${member.memberAddress1}" readonly="readonly">
 					</div>
 					<div class="address_button" onclick="execution_daum_address()">
 						<span>주소 찾기</span>
@@ -89,13 +83,13 @@
 				</div>
 				<div class ="address_input_2_wrap">
 					<div class="address_input_2_box">
-						<input class="address_input_2" name="memberAddress2" readonly="readonly">
+						<input class="address_input_2" name="memberAddress2" value="${member.memberAddress2}" readonly="readonly">
 					</div>
 					<span class="final_addr_ck">주소를 입력해주세요.</span>
 				</div>
 			</div>
-			<div class="join_button_wrap">
-				<input type="button" class="join_button" value="가입하기">
+			<div class="modify_button_wrap">
+				<input type="button" class="modify_button" value="수정하기">
 			</div>
 			<div class="mainhome_wrap">
 				<span><a href="../">뒤로 가기</a></span>
@@ -110,59 +104,30 @@
 var code = "";
 
 /* 유효성 검사 통과유무 변수 */
-var idCheck = false;
-var idckCheck = false;
 var pwCheck = false;
 var pwckCheck = false;
 var pwckcorCheck = false;
-var nameCheck = false;
+var phoneCheck = false;
 var mailCheck = false;
 var mailnumCheck = false;
 var addressCheck = false;
 
 $(document).ready(function(){
-	//회원가입 버튼 기능 작동
-	$(".join_button").click(function(){
-		 // 입력값 변수
-        var id = $('.id_input').val();
+	//수정하기 버튼 기능 작동
+	$(".modify_button").click(function(){
         var pw = $('.pw_input').val();
         var pwck = $('.pwck_input').val();
-        var name = $('.user_input').val();
         var phone = $('.phone_input').val();
         var mail = $('.mail_input').val();
         var addr = $('.address_input_2').val();
         
-        // 유효성검사
-        if(id == ""){
-            $('.final_id_ck').css({'display':'block', 'color':'red'});
-            idCheck = false;
-        }else{
-            $('.final_id_ck').css('display', 'none');
-            idCheck = true;
-        }
-        
-        if(pw == ""){
-            $('.final_pw_ck').css({'display':'block', 'color':'red'});
-            pwCheck = false;
-        }else{
-            $('.final_pw_ck').css('display', 'none');
-            pwCheck = true;
-        }
-        
+        //유효성검사
         if(pwck == ""){
             $('.final_pwck_ck').css({'display':'block', 'color':'red'});
             pwckCheck = false;
         }else{
             $('.final_pwck_ck').css('display', 'none');
             pwckCheck = true;
-        }
-        
-        if(name == ""){
-            $('.final_name_ck').css({'display':'block', 'color':'red'});
-            nameCheck = false;
-        }else{
-            $('.final_name_ck').css('display', 'none');
-            nameCheck = true;
         }
         
         if(phone == ""){
@@ -190,39 +155,15 @@ $(document).ready(function(){
         }
         
         // 최종 유효성 검사
-        if(idCheck&&idckCheck&&pwCheck&&pwckCheck&&pwckcorCheck&&nameCheck&&phoneCheck&&mailCheck&&mailnumCheck&&addressCheck ){
+        if(pwCheck&&pwckCheck&&pwckcorCheck&&phoneCheck&&mailCheck&&mailnumCheck&&addressCheck ){
  
-        	$("#join_form").attr("action", "/member/join");
-    		$("#join_form").submit();
+        	$("#modify_form").attr("action", "/member/mypage");
+    		$("#modify_form").submit();
         }
         
         return false;
 		
 	});
-});
-
-//아이디 중복검사
-$('.id_input').on("propertychange change keyup paste input", function(){	
-
-	var memberId = $('.id_input').val();
-	var data = {memberId : memberId}
-	
-	$.ajax({
-		type : "post",
-		url : "/member/memberIdChk",
-		data : data,
-		success : function(result){
-			if(result != 'fail'){
-				$('.id_input_re_1').css("display","inline-block");
-				$('.id_input_re_2').css("display", "none");
-				idckCheck = true;
-			} else {
-				$('.id_input_re_2').css("display","inline-block");
-				$('.id_input_re_1').css("display", "none");
-				idckCheck = false;
-			}
-		}
-	}); // ajax 종료	
 });
 
 /* 인증번호 이메일 전송 */
@@ -231,9 +172,8 @@ $(".mail_check_button").click(function(){
 	var email = $(".mail_input").val();
 	var ceBox = $(".mail_check_input");
     var boxWrap = $(".mail_check_input_box");
-    var warnMsg = $(".mail_input_box_warn");		//메일 입력 경고글
+    var warnMsg = $(".mail_input_box_warn");
 	
-    /* 이메일 형식 유효성 검사 */
     if(checkMailForm(email)){
         warnMsg.html("확인 이메일이 전송되었습니다. 이메일을 확인해주세요.");
         warnMsg.css("display", "inline-block");

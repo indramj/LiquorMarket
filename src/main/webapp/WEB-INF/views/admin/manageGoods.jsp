@@ -59,8 +59,13 @@
                              <c:forEach items="${liquorList}" var="liquorList">
                              <tr>
                                 <td><c:out value="${liquorList.lid}"/></td>
-                                <%-- <a class="move" href='<c:out value="${drinkList.drinkId}"/>'> --%>
-                           			<td><c:out value="${liquorList.name}"/></td>
+                                
+                              <td>
+                              <a class="move" href='<c:out value="${liquorList.lid}"/>'>
+                           			<c:out value="${liquorList.name}"/>
+                           			</a>
+                           			</td>
+                           			
                            			<td>${liquorList.description}</td>
                                 <td><c:out value="${liquorList.cateName}"></c:out></td>
                                 <td>${liquorList.price}</td>
@@ -77,7 +82,7 @@
                       </c:if> 
                    </div>
                    
-                   <%-- <!-- 검색 영역 -->
+                    <!-- 검색 영역 -->
                    <div class="search_wrap">
                       <form id="searchForm" action="/admin/goodsManage" method="get">
                          <div class="search_input">
@@ -88,9 +93,9 @@
                              <button class='btn search_btn'>검 색</button>                            
                          </div>
                       </form>
-                   </div> --%>
+                   </div> 
                    
-<%--                    <!-- 페이지 이름 인터페이스 영역 -->
+                   <!-- 페이지 이름 인터페이스 영역 -->
                    <div class="pageMaker_wrap">
                       <ul class="pageMaker">
                          
@@ -115,12 +120,12 @@
                              </li>
                           </c:if>
                        </ul>
-                   </div> --%>
+                   </div> 
                    
-<%--                    <form id="moveForm" action="/admin/goodsManage" method="get" >
+                   <form id="moveForm" action="/admin/goodsManage" method="get" >
                    <input type="hidden" name="pageNum" value="${pageMaker.cri.pageNum}">
                   <input type="hidden" name="amount" value="${pageMaker.cri.amount}">
-                  <input type="hidden" name="keyword" value="${pageMaker.cri.keyword}"> --%>
+                  <input type="hidden" name="keyword" value="${pageMaker.cri.keyword}"> 
                    </form>
                 </div>
                 <div class="clearfix"></div>
@@ -168,21 +173,21 @@ $("#searchForm button").on("click", function(e){
 
 
 /* 페이지 이동 버튼 */
-//$(".pageMaker_btn a").on("click", function(e){
+$(".pageMaker_btn a").on("click", function(e){
    
- //  e.preventDefault();
+   e.preventDefault();
    
- //  moveForm.find("input[name='pageNum']").val($(this).attr("href"));
+   moveForm.find("input[name='pageNum']").val($(this).attr("href"));
    
- //  moveForm.submit();
+   moveForm.submit();
    
-//});
+});
 /* 상품 조회 페이지 */
-//$(".move").on("click", function(e){
+$(".move").on("click", function(e){
    
- //  e.preventDefault();
+   e.preventDefault();
    
-   moveForm.append("<input type='hidden' name='drinkId' value='"+$(this).attr("href") + "'>");
+   moveForm.append("<input type='hidden' name='lId' value='"+$(this).attr("href") + "'>");
    moveForm.attr("action", "/admin/goodsDetail");
    moveForm.submit();
    

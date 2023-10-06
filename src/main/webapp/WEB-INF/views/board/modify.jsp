@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ include file="../include/header.jsp" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -10,17 +11,29 @@
 <script type="text/javascript">
 	
 	$(document).ready(function(){
-		
+		var bno = <c:out value = "${board.bno}"/>;
 		var operForm = $("#operForm")
 		$(".btnModify").on("click" , function(e){
+			operForm.append("<input type = 'hidden' name = 'bno' value = '"+bno+"'>");
 			operForm.submit();
 		});
 		
 		$(".btnRemove").on("click" , function(){
-			operForm.attr("action" , "/board/remove" , "method" , "get");
+			operForm.attr("action" , "/board/remove");
+			operForm.append("<input type = 'hidden' name = 'bno' value = '"+bno+"'>");
 			operForm.submit();
 			
 		});
+		
+		$(".btnList").on("click" , function(e){
+			operForm.empty();
+			operForm.attr("action" , "/board/get");
+			operForm.attr("method" , "get");
+			operForm.append("<input type = 'hidden' name = 'bno' value = '"+bno+"'>");
+			operForm.submit();
+			/* window.history.back(); */
+	
+		})
 		
 		
 	});
@@ -30,27 +43,37 @@
 </head>
 <body>
 <form id = "operForm" action = "/board/modify" method = "post">
-	<input type='hidden' name='currentPage' value='<c:out value="${cri.currentPage}"/>'>
-	<div>
-		제목 <input type="text" name="title" value="${board.title}">
-		<input type = "text" name = "bno" value = "${board.bno}" readonly = "readonly">
-	</div>
-	<div>
-		내용
-		<textarea rows="20" cols="50" name="content"><c:out value = "${board.content}"/></textarea>
-	</div>
-	<div>
-		작성자 <input type="text" name="writer" value="${board.writer}" readonly = "readonly">
-	</div>
-	
-	<button class = "btnModify" type ="button">수정</button>
-	<button class = "btnRemove" type = "button">삭제</button>
 
-	<a href="/board/list?currentPage=<c:out value = '${cri.currentPage}'/>"><button
-			class="btnList">취소</button></a>
+<div class = "register">
+	<div class="mb-3" >
+		<div class = "col-sm-5">
+	  <label for="exampleFormControlInput1" class="form-label">제목</label>
+	  <input class="form-control form-control-lg" type="text" name = "title" value="${board.title}" aria-label=".form-control-lg example">
+	  </div>
+	</div>
+	<div class="mb-3">
+		<div class = "col-sm-9">
+	  <label for="exampleFormControlTextarea1" class="form-label">내용</label>
+	  <textarea class="form-control" name = "content" id="exampleFormControlTextarea1" rows="10" style = "resize:none;"><c:out value = "${board.content}"/></textarea>
+	  </div>
+	</div>
+	<div class = "mb-3">
+		<div class = "col-sm-5">
+			<div class="input-group">	
+			  <span class="input-group-text">닉네임</span>
+			  <input type="text" name = "writer" readonly class="form-control-plaintext" id="staticEmail" value="${board.writer}">
+			</div>
+		</div>
+	</div>
+	<div class = "mb-3">
+		<div class= "col-sm-3">
+			<button type="button" class="btn btn-secondary btnModify">등록</button>
+			<button type="button" class="btn btn-secondary btnRemove">삭제</button>
+			<button type="button" class="btn btn-secondary btnList">취소</button>
+		</div>
+	</div>
+</div>
 
-
-	
 </form>			
 
  

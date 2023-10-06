@@ -85,15 +85,15 @@ import com.first.service.AdminService;
 	    	
 	    	/* 상품 조회 페이지 */
 	    	@GetMapping("/goodsDetail")
-	    	public void getGoodsInfo(int drinkId, Criteria cri, Model model) {
+	    	public void getGoodsInfo(int lId, Criteria cri, Model model) {
 	    		
-	    		logger.info("getGoodsInfo()........." + drinkId);
+	    		logger.info("getGoodsInfo()........." + lId);
 	    		
 	    		/* 목록 페이지 조건 정보 */
 	    		model.addAttribute("cri", cri);
 	    		
-//	    		/* 조회 페이지 정보 */
-//	    		model.addAttribute("goodsInfo", adminService.getGoodsDetail(drinkId));
-//	    		
+	    		/* 조회 페이지 정보 */
+	    		model.addAttribute("goodsInfo", adminService.getGoodsDetail(lId));
+	    		
 	    	}
 	    }

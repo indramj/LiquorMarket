@@ -20,7 +20,7 @@
   <!-- 로그인 -->
   	<select id="loginMember" resultType="com.first.domain.MemberVO">
       
-  	select memberId, memberPw, memberName, adminCk, money from table_member where memberId = #{memberId}
+  	select memberId, memberPw, memberName, memberPhone, memberEmail, memberAddress1, memberAddress2, adminCk, money from table_member where memberId = #{memberId}
       
 	</select>
   	
