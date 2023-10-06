@@ -88,13 +88,22 @@
 							   
 				        console.log(reply);
 				        console.log(reply.rno);
-				        str += '<div class = "list-body" >';
-				        str += '<input type = "text" data-rno = "'+reply.rno+'" value = "'+reply.replyer+'" readonly = "true">';
-				        str += '<textarea rows="1" cols="20" readonly = "true" data-rno = "'+reply.rno+'">'+reply.reply+ '</textarea>'; 
-				        str += ''+formatTime(replyDate)+'';
+ 				        /* str += '<div class = "list-body" >'; */
+				        /* str += '<input type = "text" data-rno = "'+reply.rno+'" value = "'+reply.replyer+'" readonly = "true">'; */
+				        /* str += '<textarea rows="1" cols="20" readonly = "true" data-rno = "'+reply.rno+'">'+reply.reply+ '</textarea>'; */ 
+				        /*str += ''+formatTime(replyDate)+'';
 				        str += '<button type = "button" class = "removeReply" data-rno = "'+reply.rno+'">삭제</button>';
-				        str += '<button type = "button" class = "modifyReply" data-rno = "'+reply.rno+'">수정</button>';
-				        str += '</div>'
+				        str += '<button type = "button" class = "modifyReply" data-rno = "'+reply.rno+'">수정</button>'; */
+				        
+				      
+	 			        str += '<tr><td data-rno = "'+reply.rno+'">'+reply.replyer+'</td>';
+	 			        str += '<td>'+formatTime(replyDate)+'</td></tr>';
+	 			        str += '<tr><td colspan = "2"><textarea class = "form-control" rows="5" data-rno = "'+reply.rno+'" style = "resize:none;" readonly>'+reply.reply+ '</textarea></td></tr>'; 
+	 			        str += '<tr class = "list-body"><td><button type = "button" class = "btn btn-success modifyReply" data-rno = "'+reply.rno+'">수정</button></td>';
+	 			        str += '<td><button type = "button" class = "btn btn-danger removeReply" data-rno = "'+reply.rno+'">삭제</button></td></tr>';
+	 			       
+	 			        
+	 			        
 				        
 				    })
 				    listGroup.html(str);
@@ -141,6 +150,7 @@
 				
 				// 댓글 삭제버튼 클릭시
 				$(".replyList").on("click", ".list-body .removeReply" , function(){
+									
 					var rno = $(this).data('rno');
 					
 					console.log("remove rno : " +rno);
@@ -166,7 +176,7 @@
 		 			
 		 			$('textarea[data-rno = '+rno+']').removeAttr("readonly"); 
 		 			$('textarea[data-rno = '+rno+']').focus();
-		 			$(this).attr("class" , "submitReply");  //자신의클래스 이름만 변경
+		 			$(this).attr("class" , "btn btn-success submitReply");  //자신의클래스 이름만 변경
 				})
 				
 				//댓글 내용 수정후 다시 버튼 클릭 할경우 처리
@@ -217,14 +227,14 @@
 <div class = "register">
 	<div class="mb-3" >
 		<div class = "col-sm-5">
-	  <label for="exampleFormControlInput1" class="form-label">제목</label>
-	  <input class="form-control form-control-lg" type="text" name = "title" value = "${board.title}" aria-label=".form-control-lg example" readonly>
+	  <label for="boardTitle" class="form-label">제목</label>
+	  <input class="form-control form-control-lg" id = "boardTitle" type="text" name = "title" value = "${board.title}" aria-label=".form-control-lg example" readonly>
 	  </div>
 	</div>
 	<div class="mb-3">
-		<div class = "col-sm-9">
-	  <label for="exampleFormControlTextarea1" class="form-label">내용</label>
-	  <textarea class="form-control" name = "content" id="exampleFormControlTextarea1" rows="10" style = "resize:none;" readonly><c:out value = "${board.content}"/></textarea>
+		<div class = "col-sm-7">
+	  <label for="boardcontent" class="form-label">내용</label>
+	  <textarea class="form-control" name = "content" id="boardcontent" rows="15" style = "resize:none;" readonly><c:out value = "${board.content}"/></textarea>
 	  </div>
 	</div>
 	<div class = "mb-3">
@@ -245,32 +255,53 @@
 
 	<!--  댓글을 출력하기 위한 div -->
 <div class = "mb-3">
-	<div class = replyList>
-	</div>
+	<table class = "table col-sm-7" >
+		<tbody class = "replyList">
+			
+		</tbody>
+	</table>
 </div>
 
-<div class = "mb-3">
-	<div class = "regReply">
-		<div>
-			작성자
-			<input type = "text" size = "10" name = "replyer">
-		</div>
-		<div>
-			<textarea rows="3" cols="30" name = "reply"></textarea>
-		</div>
-		<div>
-			<button type = "button" class = "addReply">addReply</button>
-		</div>
+
+<div class = "regReply">
+	<div class="col-sm-5">
+	  <input type="text" class="form-control" name = "replyer" id="exampleFormControlInput1" placeholder="닉네임">
 	</div>
-</div>	
+	<div class="mb-3 col-sm-7">
+	  <label for="exampleFormControlTextarea1" class="form-label">내용</label>
+	  <textarea class="form-control" name = "reply" id="exampleFormControlTextarea1" rows="3" style = "resize:none;"></textarea>
+	  <button type = "button" class = "btn btn-primary addReply">등록</button>
+	</div>
+	
+</div>
 
 <form id = "operForm" action = "/board/list" method = "get">
 	<input type = "hidden" name = "currentPage" value = "${cri.currentPage}">
 	<input type = "hidden" id = "bno" name = "bno" value = "${board.bno}">
 	<input type = "hidden" id = "type" name = "type" value = "${cri.type}">
 	<input type = "hidden" id = "keyword" name = "keyword" value = "${cri.keyword}"> 
-	
 </form>
+
+<div class="modal fade" id = "removeModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5">Modal title</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        삭제 하시겠습니까?
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">아니요</button>
+        <button type="button" class="btn btn-primary">네</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
 
 </body>
 </html>

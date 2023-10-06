@@ -3,6 +3,27 @@
 <!DOCTYPE html>
 <html>
   <head><script src="/resources/docs/5.3/assets/js/color-modes.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script type="text/javascript">
+  
+  
+  
+	$(document).ready(function(){
+		
+		var path = window.location.pathname;
+		if(path === "/board/list")
+			$("#board").addClass("active");
+		if(path === "/")
+			$("#home").addClass("active");
+			
+
+	})
+	   
+
+
+  
+  	
+  </script>
 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -129,24 +150,7 @@
 
     
 <header data-bs-theme="dark">
-  <div class="collapse text-bg-dark" id="navbarHeader">
-    <div class="container">
-      <div class="row">
-        <div class="col-sm-8 col-md-7 py-4">
-          <h4>About</h4>
-          <p class="text-body-secondary">Add some information about the album below, the author, or any other background context. Make it a few sentences long so folks can pick up some informative tidbits. Then, link them off to some social networking sites or contact information.</p>
-        </div>
-        <div class="col-sm-4 offset-md-1 py-4">
-          <h4>Contact</h4>
-          <ul class="list-unstyled">
-            <li><a href="#" class="text-white">Follow on Twitter</a></li>
-            <li><a href="#" class="text-white">Like on Facebook</a></li>
-            <li><a href="#" class="text-white">Email me</a></li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  </div>
+
   <div class="navbar navbar-dark bg-dark shadow-sm">
     <div class="container">
       <a href = "../" class="navbar-brand d-flex align-items-center">
@@ -155,13 +159,15 @@
     </div> 
   </div>
 </header>
-<div class="container">
+<div class = "mb-3">
+	<div class="container">
     <header class="d-flex justify-content-center py-3">
       <ul class="nav nav-pills">
-        <li class="nav-item"><a href="../" class="nav-link active" aria-current="page">Home</a></li>
+        <li class="nav-item"><a href="../" class="nav-link" id = "home" aria-current="page">Home</a></li>
         <li class="nav-item"><a href="/liquor/liquorList" class="nav-link">주류 리스트</a></li>
-        <li class="nav-item"><a href="/board/list" class="nav-link">상품 문의</a></li>
+        <li class="nav-item"><a href="/board/list" class="nav-link" id = "board">상품 문의</a></li>
         <li class="nav-item"><a href="/cart" class="nav-link">장바구니</a></li>
       </ul>
     </header>
   </div>
+ </div>
