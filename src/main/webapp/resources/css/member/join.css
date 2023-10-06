@@ -11,7 +11,7 @@
 
 /* content 랩 */
 .wrap{
-	width : 800px;
+	width : 700px;
 	margin: auto;
 }
 /* 페이지 제목 */
@@ -201,13 +201,13 @@
 }
 .mail_check_button{
     border: 1px solid #c0c0c0;
-    height: 50px;
+    height: 46px;
     width: 20%;
     float: right;
-    line-height: 50px;
+    line-height: 46px;
     text-align: center;
-    font-size: 25px;
-    font-weight: 500;
+    font-size: 20px;
+    font-weight: 300;
     background-color: #333333;
     color: white;
     cursor: pointer;
@@ -238,13 +238,13 @@
 }
 .address_button{
     border: 1px solid #c0c0c0;
-    height: 50px;
+    height: 46px;
     width: 20%;
     float: right;
-    line-height: 50px;
+    line-height: 46px;
     text-align: center;
-    font-size: 25px;
-    font-weight: 500;
+    font-size: 20px;
+    font-weight: 300;
     background-color: #333333;
     color: white;
     cursor: pointer;	
@@ -275,7 +275,7 @@
 	border: none;	
 	width: 20%;
     height: 45px;
-    font-size: 15px;
+    font-size: 18px;
     font-weight: 500;
     background-color: #333333;
     color: white;
@@ -286,7 +286,7 @@
 	margin-left: 10px;
 	width: 20%;
     height: 45px;
-    font-size: 15px;
+    font-size: 18px;
     font-weight: 500;
     background-color: #F8F8F8;
     color: black;

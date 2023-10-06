@@ -84,7 +84,7 @@
 						<input class="address_input_1" name="memberAddress1" readonly="readonly">
 					</div>
 					<div class="address_button" onclick="execution_daum_address()">
-						<span>주소 찾기</span>
+						<span>검색</span>
 					</div>
 					<div class="clearfix"></div>
 				</div>
