@@ -2,6 +2,7 @@ package com.first.service;
 
 import java.util.List;
 
+import com.first.domain.BoardVO;
 import com.first.domain.LiquorVO;
 
 public interface LiquorService {
@@ -12,5 +13,5 @@ public interface LiquorService {
 	
 	public int register(LiquorVO liquorVO);
 	
-
+	public boolean modify(LiquorVO liquorVO);
 }

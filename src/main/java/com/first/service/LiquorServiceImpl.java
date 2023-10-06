@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.first.domain.BoardVO;
 import com.first.domain.LiquorVO;
 import com.first.mapper.LiquorMapper;
 
@@ -31,6 +32,13 @@ public class LiquorServiceImpl implements LiquorService{
 	public LiquorVO getLiquor(int lid)
 	{
 		return mapper.getLiquor(lid);
+	}
+	
+	@Override
+	public boolean modify(LiquorVO liquorVO)
+	{
+		boolean result =  mapper.updateLiquor(liquorVO) == 1;
+		return result;
 	}
 
 }

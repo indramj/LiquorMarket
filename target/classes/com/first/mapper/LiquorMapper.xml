@@ -21,4 +21,15 @@
 	from table_liquor where lid = #{lid}
 </select>
 
+<update id="updateLiquor">
+	update table_liquor set
+		lid = #{lid},
+		name = #{name},
+		description = #{description},
+		cateName = #{cateName},
+		price = #{price},
+		stock = #{stock},
+		updateDate = sysdate
+	where lid = #{lid}
+</update>
 </mapper>

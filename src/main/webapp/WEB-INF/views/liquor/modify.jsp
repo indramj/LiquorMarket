@@ -12,21 +12,46 @@
 
 <script type="text/javascript">
 	
-	$(document).ready(function(){
-		
-		var operForm = $("#operForm")
-		$(".btnModify").on("click" , function(e){
-			operForm.submit();
-		});
-		
-		$(".btnRemove").on("click" , function(){
-			operForm.attr("action" , "/liquor/remove" , "method" , "get");
-			operForm.submit();
-			
-		});
-		
+	
+	
+	
+	
+	
+	
+	
+	
+
+$(document).ready(function(){
+	var lid = <c:out value = "${liquor.lid}"/>;
+	var operForm = $("#operForm")
+	$(".btnModify").on("click" , function(e){
+
+		operForm.append("<input type = 'hidden' name = 'lid' value = '"+lid+"'>");
+		operForm.submit();
+	});
+	
+/* 	$(".btnRemove").on("click" , function(){
+		operForm.attr("action" , "/liquor/remove");
+		operForm.append("<input type = 'hidden' name = 'lid' value = '"+lid+"'>");
+		operForm.submit();
 		
 	});
+	
+$(".btnList").on("click" , function(e){
+	operForm.empty();
+	operForm.attr("action" , "/liquor/read");
+	operForm.attr("method" , "get");
+	operForm.append("<input type = 'hidden' name = 'lid' value = '"+lid+"'>");
+	operForm.submit();
+	/* window.history.back(); */
+
+})
+
+
+});         
+
+	
+
 
 </script>
 </head>
@@ -52,7 +77,7 @@
 			<div class="form_section">
 				<div class="form_section_title">
 					<label>주류 카테고리</label>
-					<input name="cateName" value="<c:out value="${liquor.cateName}"/>" disabled>
+					<input name="cateName" value="<c:out value="${liquor.cateName}"/>">
 				</div>
 <!-- 
 
@@ -70,7 +95,7 @@
 						<label>주류 가격</label>
 					</div>
 					<div class="form_section_content">
-						<input name="price" value="<c:out value="${liquor.price}"/>" disabled>
+						<input name="price" value="<c:out value="${liquor.price}"/>">
 					</div>
 				</div>
 
@@ -80,7 +105,7 @@
 						<label>상품 재고</label>
 					</div>
 					<div class="form_section_content">
-						<input name="stock" value="<c:out value="${liquor.stock}"/>" disabled>
+						<input name="stock" value="<c:out value="${liquor.stock}"/>">
 					</div>
 				</div>
 
@@ -92,25 +117,27 @@
 						<label>주류 소개</label>
 					</div>
 					<div class="form_section_content bit">
-						<textarea name="description" id="description_textarea" disabled>${liquor.description}</textarea>
+						<textarea name="description" id="description_textarea">${liquor.description}</textarea>
 					</div>
 				</div>
 
 
-				<div class="btn_section">
-					<button id="cancelBtn" class="btn">상품 목록</button>
-					<button id="enrollBtn" class="btn enroll_btn">수정</button>
-					<button class = "btnToCart">장바구니</button>
-				</div>
+				<div class = "mb-3">
+		<div class= "col-sm-3">
+			<button type="button" class="btn btn-secondary btnModify">등록</button>
+			<button type="button" class="btn btn-secondary btnRemove">삭제</button>
+			<button type="button" class="btn btn-secondary btnList">취소</button>
+		</div>
+	</div>
 			</div>
 
 
-			<form id="moveForm" action="/admin/manageGoods" method="get">
+		<!--  	<form id="moveForm" action="/admin/manageGoods" method="get">
 				<input type="hidden" name="pageNum" value="${pageMaker.cri.pageNum}">
 				<input type="hidden" name="amount" value="${pageMaker.cri.amount}">
 				<input type="hidden" name="keyword" value="${pageMaker.cri.keyword}">
 			</form>
-
+-->
 		</div>
 </body>
 </html>
