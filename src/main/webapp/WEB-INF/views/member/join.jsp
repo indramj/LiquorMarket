@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ include file="../include/header.jsp" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -17,7 +18,7 @@
 	<form id="join_form" method="post">
 	<div class="wrap">
 			<div class="subjecet">
-				<span>회원가입</span>
+				<span>CREATE ACCOUNT</span>
 			</div>
 			<div class="id_wrap">
 				<div class="id_name">아이디</div>
@@ -70,7 +71,7 @@
 						<input class="mail_check_input" disabled="disabled">
 					</div>
 					<div class="mail_check_button">
-						<span>인증번호 전송</span>
+						<span>인증번호</span>
 					</div>
 					<div class="clearfix"></div>
 					<span id="mail_check_input_box_warn"></span>
@@ -95,16 +96,15 @@
 				</div>
 			</div>
 			<div class="join_button_wrap">
-				<input type="button" class="join_button" value="가입하기">
-			</div>
-			<div class="mainhome_wrap">
-				<span><a href="../">뒤로 가기</a></span>
+				<input type="button" class="join_button" value="가입">
+				<input type="button" class="mainhome_button" onclick="location.href='../'" value="취소">
 			</div>
 		</div>
 	</form>
 </div>
 
 <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+
 <script>
 
 var code = "";

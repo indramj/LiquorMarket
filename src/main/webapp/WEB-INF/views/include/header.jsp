@@ -18,7 +18,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@docsearch/css@3">
 
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-
+<link rel="stylesheet" href="/resources/css/headerplus.css">
     <!-- Favicons -->
 <link rel="apple-touch-icon" href="/docs/5.3/assets/img/favicons/apple-touch-icon.png" sizes="180x180">
 <link rel="icon" href="/resources/docs/5.3/assets/img/favicons/favicon-32x32.png" sizes="32x32" type="image/png">
@@ -185,7 +185,7 @@
     <div class="container">
       <a href = "../" class="navbar-brand d-flex align-items-center">
         <strong>술 파는 사람들</strong></a>  
-      <button class = "btn btn-sm btn-outline-secondary" type = "button">login</button>
+      <button class = "btn btn-sm btn-outline-secondary" type = "button" onclick = "location.href='/member/login'">Login</button>
     </div> 
   </div>
 </header>
