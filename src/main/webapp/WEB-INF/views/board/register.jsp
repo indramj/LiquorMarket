@@ -58,9 +58,9 @@
 	  </div>
 	</div>
 	<div class="mb-3">
-		<div class = "col-sm-9">
+		<div class = "col-sm-7">
 	  <label for="exampleFormControlTextarea1" class="form-label">내용</label>
-	  <textarea class="form-control" name = "content" id="exampleFormControlTextarea1" rows="10" style = "resize:none;"></textarea>
+	  <textarea class="form-control" name = "content" id="exampleFormControlTextarea1" rows="15" style = "resize:none;"></textarea>
 	  </div>
 	</div>
 	<div class = "mb-3">
