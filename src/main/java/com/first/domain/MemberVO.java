@@ -28,7 +28,6 @@ public class MemberVO {
 	
 	private Date updateDate;
 	
-	private int money;
 	
 	
 }

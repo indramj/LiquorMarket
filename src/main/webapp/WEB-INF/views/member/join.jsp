@@ -98,6 +98,7 @@
 			<div class="join_button_wrap">
 				<input type="button" class="join_button" value="가입">
 				<input type="button" class="mainhome_button" onclick="location.href='../'" value="취소">
+				<input type = "button" class = "test" value = "테스트">
 			</div>
 		</div>
 	</form>
@@ -105,7 +106,7 @@
 
 <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 
-<script>
+<script type="text/javascript">
 
 var code = "";
 
@@ -121,7 +122,17 @@ var mailnumCheck = false;
 var addressCheck = false;
 
 $(document).ready(function(){
+	
+
+	
 	//회원가입 버튼 기능 작동
+	var joinForm = $("#join_form");
+	
+	$(".test").click(function(){
+		joinForm.attr("action" , "/member/test");
+		joinForm.submit();
+	})
+	
 	$(".join_button").click(function(){
 		 // 입력값 변수
         var id = $('.id_input').val();
@@ -190,10 +201,10 @@ $(document).ready(function(){
         }
         
         // 최종 유효성 검사
-        if(idCheck&&idckCheck&&pwCheck&&pwckCheck&&pwckcorCheck&&nameCheck&&phoneCheck&&mailCheck&&mailnumCheck&&addressCheck ){
+        if(idCheck && idckCheck && pwCheck && pwckCheck && pwckcorCheck && nameCheck && phoneCheck && mailCheck && mailnumCheck && addressCheck ){
  
         	$("#join_form").attr("action", "/member/join");
-    		$("#join_form").submit();
+    			$("#join_form").submit();
         }
         
         return false;
@@ -202,7 +213,7 @@ $(document).ready(function(){
 });
 
 //아이디 중복검사
-$('.id_input').on("propertychange change keyup paste input", function(){	
+$('.id_input').blur(function(){	
 
 	var memberId = $('.id_input').val();
 	var data = {memberId : memberId}

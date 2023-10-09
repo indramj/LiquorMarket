@@ -11,6 +11,22 @@
   src="https://code.jquery.com/jquery-3.7.1.js"
   integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4="
   crossorigin="anonymous"></script>
+  
+<script type="text/javascript">
+
+$(document).ready(function(){
+    /* 로그인 버튼 클릭 메서드 */
+    $(".login_button").click(function(){       
+    	/* 로그인 메서드 서버 요청 */
+        $("#login_form").attr("action", "/member/login");
+        $("#login_form").submit();      
+    });
+
+	
+})
+
+
+</script>
 <link rel="stylesheet" href="/resources/css/member/login.css?after">
 </head>
 <body>
@@ -23,6 +39,7 @@
 				<div class="logo_wrap">
 					<span>LOGIN</span>
 				</div>
+				
 				<div class="id_wrap">
 					<div class="id_input_box">
 						<input class="id_input" name="memberId" placeholder="아이디">
@@ -51,18 +68,6 @@
 
 </div>
 
-<script>
- 
-    /* 로그인 버튼 클릭 메서드 */
-    $(".login_button").click(function(){
-        
-    	/* 로그인 메서드 서버 요청 */
-        $("#login_form").attr("action", "/member/login");
-        $("#login_form").submit();
-        
-    });
- 
-</script>
 
 </body>
 </html>
