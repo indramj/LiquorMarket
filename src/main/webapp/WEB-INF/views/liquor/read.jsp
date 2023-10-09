@@ -91,7 +91,7 @@
 					
 				<div class="btn_section">
 					<button class="btnList">상품 목록</button>
-<<<<<<< HEAD
+
 					<button class="btnModify">수정</button>
 					<a href = "/cart">장바구니</a>
 					
@@ -103,29 +103,20 @@
 					document.getElementById('cartBtn').addEventListener('click',function() { 
 					// 타겟 페이지 링크 클릭
 					document.getElementById('cartPage').click(); });</script> --> 
-=======
+
 					<a href = "/liquor/modify?lid=<c:out value ='${liquor.lid}'/>"><button class="btnModify">수정</button></a>
 					<button class = "btnToCart">장바구니</button>
->>>>>>> branch 'develop' of https://github.com/indramj/LiquorMarket.git
+
 				</div>
 		
 			</div>
-	
 
-<<<<<<< HEAD
 			<form id="moveForm" action="/admin/manageGoods" method="get">
-				<!-- <input type="hidden" name="pageNum" value="${pageMaker.cri.pageNum}">
-=======
-			<form class="moveForm" action="/liquor/liquorList" method="get">
-<%-- 				<input type="hidden" name="pageNum" value="${pageMaker.cri.pageNum}">
->>>>>>> branch 'develop' of https://github.com/indramj/LiquorMarket.git
+ 				<input type="hidden" name="pageNum" value="${pageMaker.cri.pageNum}">
 				<input type="hidden" name="amount" value="${pageMaker.cri.amount}">
-<<<<<<< HEAD
-				<input type="hidden" name="keyword" value="${pageMaker.cri.keyword}"> -->
-=======
-				<input type="hidden" name="keyword" value="${pageMaker.cri.keyword}"> --%>
->>>>>>> branch 'develop' of https://github.com/indramj/LiquorMarket.git
-			</form>
+				<input type="hidden" name="keyword" value="${pageMaker.cri.keyword}"> 
+				<input type="hidden" name="keyword" value="${pageMaker.cri.keyword}"> 
+			</form> 
 
 		</div>
 </body>

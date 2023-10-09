@@ -41,25 +41,23 @@
 	<context:annotation-config></context:annotation-config>
 	
 	<context:component-scan base-package="com.first.service"></context:component-scan>
-		
-   <!-- 이메일 인증 관련 빈 등록 -->
-   <bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
-      <property name="host" value="smtp.gmail.com" />
-      <property name="port" value="587" />
-      <property name="username" value="shleeeeeee2" />
-      <property name="password" value="afbm gxca bjqq sigb" />
-      <property name="javaMailProperties">
-         <props>
-                <prop key="mail.transport.protocol">smtp</prop>
-                <prop key="mail.smtp.auth">true</prop>
-                <prop key="mail.smtp.socketFactory.class">javax.net.ssl.SSLSocketFactory</prop>
-                <prop key="mail.smtp.starttls.enable">true</prop>
-                <prop key="mail.debug">true</prop>
-                <prop key="mail.smtp.ssl.trust">smtp.gmail.com</prop>
+	
+	<!-- JavaMailSenderImpl 객체 -->
+	<bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
+		<property name="host" value="smtp.gmail.com" />
+		<property name="port" value="587" />
+		<property name="username" value="indramj7@gmail.com" /> <!-- // 개인 수신 가능한 메일 주소 작성 -->
+		<property name="password" value="kagqxjipnwjbvzma" />    <!-- // 생성된 앱 비밀번호 입력 -->
+		<property name="javaMailProperties">
+			<props>
+				<prop key="mail.smtp.auth">true</prop>
+				<prop key="mail.smtp.starttls.enable">true</prop>
+				<prop key="mail.smtp.ssl.trust">smtp.gmail.com</prop>
 				<prop key="mail.smtp.ssl.protocols">TLSv1.2</prop>
-            </props>
-      </property>
-      
-   </bean>
+			</props>
+		</property>
+	</bean>
+		
+
 		
 </beans>
