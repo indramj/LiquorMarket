@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
 <!DOCTYPE html>
 <html>
   <head><script src="/resources/docs/5.3/assets/js/color-modes.js"></script>
@@ -40,13 +41,8 @@
 
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 <link rel="stylesheet" href="/resources/css/headerplus.css">
-    <!-- Favicons -->
-<link rel="apple-touch-icon" href="/docs/5.3/assets/img/favicons/apple-touch-icon.png" sizes="180x180">
-<link rel="icon" href="/resources/docs/5.3/assets/img/favicons/favicon-32x32.png" sizes="32x32" type="image/png">
-<link rel="icon" href="/resources/docs/5.3/assets/img/favicons/favicon-16x16.png" sizes="16x16" type="image/png">
-<link rel="manifest" href="/resources/docs/5.3/assets/img/favicons/manifest.json">
-<link rel="mask-icon" href="/resources/docs/5.3/assets/img/favicons/safari-pinned-tab.svg" color="#712cf9">
-<link rel="icon" href="/resources/docs/5.3/assets/img/favicons/favicon.ico">
+
+
 <meta name="theme-color" content="#712cf9">
 
 
@@ -153,9 +149,14 @@
 
   <div class="navbar navbar-dark bg-dark shadow-sm">
     <div class="container">
-      <a href = "../" class="navbar-brand d-flex align-items-center">
+      <a href = "../" class="navbar-brand d-flex align-items-right">
         <strong>술 파는 사람들</strong></a>  
-      <button class = "btn btn-sm btn-outline-secondary" type = "button" onclick = "location.href='/member/login'">Login</button>
+      <sec:authorize access="!isAuthenticated()">
+      	<button class = "btn btn-sm btn-outline-secondary" type = "button" onclick = "location.href='/login'">Login</button>
+      </sec:authorize>
+      <sec:authorize access="isAuthenticated()">
+ 				<button class='btn btn-sm btn-outline-secondary' type = "button" onclick = "location.href='/customLogout'">LogOut</button>
+ 			</sec:authorize>
     </div> 
   </div>
 </header>
