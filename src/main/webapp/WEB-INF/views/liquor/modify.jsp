@@ -30,7 +30,7 @@ $(document).ready(function(){
 		operForm.submit();
 	});
 	
-/* 	$(".btnRemove").on("click" , function(){
+ 	$(".btnRemove").on("click" , function(){
 		operForm.attr("action" , "/liquor/remove");
 		operForm.append("<input type = 'hidden' name = 'lid' value = '"+lid+"'>");
 		operForm.submit();
