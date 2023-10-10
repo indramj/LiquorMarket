@@ -40,9 +40,9 @@ public class MemberServiceImpl implements MemberService{
 	}
 
 	@Override
-    public MemberVO loginMember(MemberVO member) throws Exception {
+	public MemberVO getMember(String memberId) {
         
-        return membermapper.loginMember(member);
+        return membermapper.getMember(memberId);
     }
 	
 	@Override

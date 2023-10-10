@@ -99,42 +99,38 @@ public class MemberController {
 	    
 	    } 
 	    //로그인
-	    @PostMapping("login")
-	    public String postLogin(HttpServletRequest request, MemberVO member, RedirectAttributes rttr) throws Exception{
-	        
-	    	HttpSession session = request.getSession();
-	        String rawPw = "";
-	        String encodePw = "";
-	    
-	        MemberVO lvo = memberservice.loginMember(member); 
-	        
-	        if(lvo != null) {
-	            
-	            rawPw = member.getMemberPw();
-	            encodePw = lvo.getMemberPw();
-	            
-	            if(true == pwEncoder.matches(rawPw, encodePw)) {
-	                
-	                lvo.setMemberPw("");
-	                session.setAttribute("member", lvo);
-	                return "redirect:../";
-	                
-	                
-	            } else {
-	 
-	                rttr.addFlashAttribute("result", 0);            
-	                return "redirect:/member/login";
-	                
-	            }
-	            
-	        } else {
-	            
-	            rttr.addFlashAttribute("result", 0);            
-	            return "redirect:/member/login";
-	            
-	        }
-	    	
-	    }
+//	    @PostMapping("login")
+//	    public String postLogin(HttpServletRequest request, MemberVO member, RedirectAttributes rttr) throws Exception{
+//	        
+//	    	HttpSession session = request.getSession();
+//	        String rawPw = "";
+//	        String encodePw = "";
+//	    
+//	        MemberVO lvo = memberservice.getMember(member.getMemberId()); 
+//	        
+//	        if(lvo != null) {
+//	            
+//	            rawPw = member.getMemberPw();
+//	            encodePw = lvo.getMemberPw();
+//	            
+//	            if(true == pwEncoder.matches(rawPw, encodePw)) {
+//	                
+//	                lvo.setMemberPw("");
+//	                session.setAttribute("member", lvo);
+//	                return "redirect:../";
+//	                             
+//	            } 
+//	            else {	 
+//	                rttr.addFlashAttribute("result", 0);            
+//	                return "redirect:/member/login";                
+//	            }
+//	            
+//	        } 
+//	        else {	            
+//	            rttr.addFlashAttribute("result", 0);            
+//	            return "redirect:/member/login";           
+//	        }    	
+//	    }
 	    
 	    /* 메인페이지 로그아웃 */
 	    @GetMapping("logout.do")
