@@ -15,7 +15,7 @@ public interface MemberService {
 		
 
 	//로그인
-	public MemberVO loginMember(MemberVO member) throws Exception;
+	public MemberVO getMember(String memberId);
 	
 	public String checkEmail(String email);
 

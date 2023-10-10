@@ -5,8 +5,8 @@
 	<mapper namespace="com.first.mapper.MemberMapper">
 	
 <insert id="joinMember" >
-  	insert into table_member (memberId, memberPw, memberName, memberPhone, memberEmail, memberAddress1, memberAddress2, adminCk, regDate, updateDate, money)
-  	values (#{memberId}, #{memberPw}, #{memberName}, #{memberPhone}, #{memberEmail}, #{memberAddress1}, #{memberAddress2}, 0,  SYSDATE, SYSDATE, 0)
+  	insert into table_member (memberId, memberPw, memberName, memberPhone, memberEmail, memberAddress1, memberAddress2, regDate, updateDate)
+  	values (#{memberId}, #{memberPw}, #{memberName}, #{memberPhone}, #{memberEmail}, #{memberAddress1}, #{memberAddress2}, SYSDATE, SYSDATE)
 
   </insert>
   
@@ -18,9 +18,9 @@
   	</select>
   	
   <!-- 로그인 -->
-  	<select id="loginMember" resultType="com.first.domain.MemberVO">
+  	<select id="getMember" resultType="com.first.domain.MemberVO">
       
-  	select memberId, memberPw, memberName, memberPhone, memberEmail, memberAddress1, memberAddress2, adminCk, money from table_member where memberId = #{memberId}
+  	select memberId, memberPw, memberName, memberPhone, memberEmail, memberAddress1, memberAddress2 from table_member where memberId = #{memberId}
       
 	</select>
   	

@@ -1,6 +1,7 @@
 package com.first.domain;
 
 import java.util.Date;
+import java.util.List;
 
 import lombok.Data;
 
@@ -20,9 +21,10 @@ public class MemberVO {
 	private String memberAddress1;
 	
 	private String memberAddress2;
+
 	
 	// 관리자 구분(0:일반사용자, 1:관리자)
-	private int adminCk;
+	List<AuthVO> authList;
 	
 	private Date regDate;
 	
