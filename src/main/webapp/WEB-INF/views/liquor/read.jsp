@@ -1,23 +1,43 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ include file="../include/header.jsp" %>
+
+
+
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
+
 <title>Insert title here</title>
 <link rel="stylesheet" href="../resources/css/admin/goodsDetail.css">
 <script src="http://code.jquery.com/jquery-3.4.1.js"></script>
 <script type="text/javascript">
 
 	$(document).ready(function() {
-		var bno = '<c:out value="${board.bno}"/>';
+		var lid = '<c:out value="${liquor.lid}"/>';
 		
 		var operForm = $("#operForm");
 			$(".btnModify").on("click" , function(e){
 				operForm.attr("action" , "/liquor/modify").submit();
 			});
+			
+			$(".btnList").on("click" , function(e){
+				var lid = operForm.find("#lid");
+				lid.remove();
+ 				var type = operForm.find("#type");
+				var keyword = operForm.find("#keyword");
+				if(type.val() === "")
+					type.remove();
+				if(keyword.val() === "")
+					keyword.remove(); 
+				
+				
+				
+				operForm.attr("action" , "/liquor/liquorList").submit();
+			})
+			
 </script>
 
 </head>
@@ -90,9 +110,7 @@
 				 	
 					
 				<div class="btn_section">
-					<button class="btnList">상품 목록</button>
 
-					<button class="btnModify">수정</button>
 					<a href = "/cart">장바구니</a>
 					
 					<!-- <button id="cartBtn" class ="btn_cart">장바구니</button>
@@ -105,7 +123,6 @@
 					document.getElementById('cartPage').click(); });</script> --> 
 
 					<a href = "/liquor/modify?lid=<c:out value ='${liquor.lid}'/>"><button class="btnModify">수정</button></a>
-					<button class = "btnToCart">장바구니</button>
 
 				</div>
 		
