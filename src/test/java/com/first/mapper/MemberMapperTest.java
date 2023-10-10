@@ -8,7 +8,10 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.first.domain.MemberVO;
 
+import lombok.extern.log4j.Log4j;
+
 @RunWith(SpringJUnit4ClassRunner.class)
+@Log4j
 @ContextConfiguration("file:src/main/webapp/WEB-INF/spring/root-context.xml")
 public class MemberMapperTest {
 
@@ -66,4 +69,12 @@ public class MemberMapperTest {
         System.out.println("결과 값 : " + membermapper.loginMember(member));
     }
 	*/
+	
+	@Test
+	public void getMemberById()
+	{
+		
+		log.info(membermapper.getMember("kmm"));
+	}
+	
 }

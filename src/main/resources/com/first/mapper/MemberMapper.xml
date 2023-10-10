@@ -18,10 +18,30 @@
   	</select>
   	
   <!-- 로그인 -->
-  	<select id="getMember" resultType="com.first.domain.MemberVO">
+<select id="getMember" resultMap = "memberMap">
+
+		select mem.memberid, memberpw, membername, memberphone , memberemail , memberaddress1 , memberaddress2 , regdate, updatedate, auth
+		from
+			table_member mem LEFT OUTER JOIN table_auth auth on mem.memberid= auth.memberid
+			where mem.memberid = #{memberid}
+	</select>	
+
+	<resultMap type = "com.first.domain.MemberVO" id="memberMap">
+		<result property="memberId" column="memberid"/>
+		<result property="memberPw" column="memberpw"/>
+		<result property="memberName" column="membername"/>
+		<result property="memberPhone" column="memberphone"/>
+		<result property="memberEmail" column="memberemail"/>
+		<result property="memberAddress1" column="memberaddress1"/>
+		<result property="memberAddress2" column="memberaddress2"/>
+		<result property="regDate" column="regdate"/>
+		<result property="updateDate" column="updatedate"/>		
+		<collection property="authList" resultMap="authMap"/>
+	</resultMap>
+	
+	<resultMap type = "com.first.domain.AuthVO" id="authMap">
+		<result property="memberId" column="memberid"/>
+		<result property="auth" column="auth"/>
+	</resultMap>
       
-  	select memberId, memberPw, memberName, memberPhone, memberEmail, memberAddress1, memberAddress2 from table_member where memberId = #{memberId}
-      
-	</select>
-  	
 </mapper>

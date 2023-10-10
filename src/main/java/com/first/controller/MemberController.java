@@ -11,8 +11,10 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -34,12 +36,10 @@ public class MemberController {
 	@Autowired
     private BCryptPasswordEncoder pwEncoder;
 	
-	//로그인 페이지 이동
-	@GetMapping("/login")
-	public void getLogin() {
-		
-		log.info("로그인 페이지 진입");
-	}
+
+	
+	
+	
 	//회원가입 페이지 이동
 	@GetMapping("/join")
 	public void getJoin() {
@@ -63,15 +63,7 @@ public class MemberController {
         return "redirect:../";
 
 	}
-	
-	@PostMapping("/test")
-	public String returnHome()
-	{
-		return "redirect:../";
-	}
-	
 
-	
 	//아이디 중복 검사
 		@PostMapping("/memberIdChk")
 		@ResponseBody
