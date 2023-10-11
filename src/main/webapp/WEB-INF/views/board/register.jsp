@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ include file="../include/header.jsp" %>
 <!DOCTYPE html>
 <html>
@@ -51,9 +52,16 @@
 <body>
 
 <div class = "register">
+<div class = "mb-3">
+		<div class = "col-sm-3">
+			<div class="input-group">	
+			  <span class="input-group-text">닉네임</span>
+			  <input type="text" name = "writer" aria-label="writer" class="form-control" value = "<sec:authentication property="principal.username"/>" readonly/>
+			</div>
+		</div>
+	</div>
 	<div class="mb-3" >
 		<div class = "col-sm-5">
-	  <label for="exampleFormControlInput1" class="form-label">제목</label>
 	  <input class="form-control form-control-lg" type="text" name = "title" placeholder="제목" aria-label=".form-control-lg example">
 	  </div>
 	</div>
@@ -62,15 +70,6 @@
 	  <label for="exampleFormControlTextarea1" class="form-label">내용</label>
 	  <textarea class="form-control" name = "content" id="exampleFormControlTextarea1" rows="15" style = "resize:none;"></textarea>
 	  </div>
-	</div>
-	<div class = "mb-3">
-		<div class = "col-sm-5">
-			<div class="input-group">	
-			  <span class="input-group-text">닉네임</span>
-			  <input type="text" name = "writer" aria-label="writer" class="form-control">
-			  
-			</div>
-		</div>
 	</div>
 	<div class = "mb-3">
 		<div class= "col-sm-3">
@@ -82,6 +81,7 @@
 
 
 <form class = "operForm" method = "post" action = "/board/register">
+<input type = "hidden" name = "${_csrf.parameterName}" value = "${_csrf.token}">
 </form>
 
 </body>

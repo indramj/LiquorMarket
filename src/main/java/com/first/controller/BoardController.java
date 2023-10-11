@@ -70,12 +70,20 @@ public class BoardController {
 		
 	}
 	
-	@GetMapping({"/get" , "/modify"})
+	@GetMapping("/get" )
 	public void getBoard(@RequestParam("bno") Long bno, @ModelAttribute("cri") Criteria cri, Model model)
 	{
 		model.addAttribute("board" , service.getBoard(bno));
 	}
 	
+	
+	@GetMapping("/modify")
+	public void modify(@RequestParam("bno") Long bno, @ModelAttribute("cri") Criteria cri, Model model)
+	{
+		model.addAttribute("board" , service.getBoard(bno));
+	}
+	
+	@PreAuthorize("principal.username == #boardVO.writer")
 	@PostMapping("/modify")
 	public String modify( BoardVO boardVO , @ModelAttribute("cri") Criteria cri, Model model , RedirectAttributes rttr)
 	{
@@ -85,9 +93,9 @@ public class BoardController {
 		return "redirect:/board/get";
 		
 	}
-	
+	@PreAuthorize("principal.username == #writer")
 	@PostMapping("/remove")
-	public String remove(@RequestParam("bno") Long bno)
+	public String remove(@RequestParam("bno") Long bno , String writer)
 	{
 		service.remove(bno);
 		
