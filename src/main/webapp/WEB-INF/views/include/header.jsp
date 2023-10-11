@@ -16,7 +16,10 @@
 			$("#board").addClass("active");
 		if(path === "/")
 			$("#home").addClass("active");
-			
+		if(path === "/liquor/liquorList")
+			$("#liquor").addClass("active");
+		if(path === "/cart")
+			$("#cart").addClass("active");
 
 	})
 	   
@@ -165,9 +168,9 @@
     <header class="d-flex justify-content-center py-3">
       <ul class="nav nav-pills">
         <li class="nav-item"><a href="../" class="nav-link" id = "home" aria-current="page">Home</a></li>
-        <li class="nav-item"><a href="/liquor/liquorList" class="nav-link">주류 리스트</a></li>
+        <li class="nav-item"><a href="/liquor/liquorList" class="nav-link" id = "liquor">주류 리스트</a></li>
         <li class="nav-item"><a href="/board/list" class="nav-link" id = "board">상품 문의</a></li>
-        <li class="nav-item"><a href="/cart" class="nav-link">장바구니</a></li>
+        <li class="nav-item"><a href="/cart" class="nav-link" id = "cart">장바구니</a></li>
       </ul>
     </header>
   </div>

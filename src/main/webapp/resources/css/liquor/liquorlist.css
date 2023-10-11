@@ -23,8 +23,9 @@
     margin-top: 20px;
 }
 .goods_table li{
-	width: 24%;
+	width: 22%;
 	margin-top: 20px;
+	margin-left: 20px;
 	display: inline-block;
 }
 .liquor_img_s{

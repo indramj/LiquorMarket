@@ -48,7 +48,9 @@ window.addEventListener('pageshow', function(event) {
 						<c:forEach items="${liquorList}" var="liquorList">
 							<li>
 								<div class="goods_images">
-									<img class="liquor_img_s" src="/resources/images/liquor/liquor1.jpg" alt="상품 이미지">
+									<a data-lid ='<c:out value = "${liquorList.lid}"/>' href = "">
+										<img class="liquor_img_s" src="/resources/images/liquor/liquor1.jpg" alt="상품 이미지">
+									</a>
 								</div>
 								<div class="goods-detail">
 									<div><a data-lid ='<c:out value = "${liquorList.lid}"/>' href = "">${liquorList.name}</a></div>
