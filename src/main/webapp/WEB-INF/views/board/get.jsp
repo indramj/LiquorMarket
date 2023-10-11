@@ -77,6 +77,10 @@
 				$.getJSON('/replies/' + bno , function(arr){
 				    
 				    var str = "";
+						var loginedUser = null;
+						<sec:authorize access="isAuthenticated()">		
+							loginedUser = '<sec:authentication property="principal.username"/>';
+						</sec:authorize>
 				    
 				   
 				    $.each(arr , function(idx , reply){
@@ -97,15 +101,16 @@
 				        str += '<button type = "button" class = "modifyReply" data-rno = "'+reply.rno+'">수정</button>'; */
 				        
 				      
-	 			        str += '<tr><td data-rno = "'+reply.rno+'">'+reply.replyer+'</td>';
+	 			        str += '<tr><td><input type = "text" class = "form-control" name = "replyer" data-rno = "'+reply.rno+'" value = "'+reply.replyer+'" readonly></td>';
 	 			        str += '<td>'+formatTime(replyDate)+'</td></tr>';
-	 			        str += '<tr><td colspan = "2"><textarea class = "form-control" rows="5" data-rno = "'+reply.rno+'" style = "resize:none;" readonly>'+reply.reply+ '</textarea></td></tr>'; 
-	 			        str += '<tr class = "list-body"><td><button type = "button" class = "btn btn-success modifyReply" data-rno = "'+reply.rno+'">수정</button></td>';
-	 			        str += '<td><button type = "button" class = "btn btn-danger removeReply" data-rno = "'+reply.rno+'">삭제</button></td></tr>';
-	 			       
-	 			        
-	 			        
-				        
+	 			        str += '<tr><td colspan = "2"><textarea class = "form-control" rows="3" data-rno = "'+reply.rno+'" style = "resize:none;" readonly>'+reply.reply+ '</textarea></td></tr>';
+								
+	 			        if ( loginedUser === reply.replyer)
+	 			        	{
+	 			        	str += '<tr class = "list-body"><td><button type = "button" class = "btn btn-success modifyReply" data-rno = "'+reply.rno+'">수정</button></td>';
+		 			        str += '<td><button type = "button" class = "btn btn-danger removeReply" data-rno = "'+reply.rno+'">삭제</button></td></tr>';	
+	 			        	}
+	
 				    })
 				    listGroup.html(str);
 				});
@@ -113,9 +118,19 @@
 
 				loadJSONData();
 				
+				var csrfHeaderName = "${_csrf.headerName}";
+				var csrfTokenValue = "${_csrf.token}";
+				
+				$(document).ajaxSend(function(e, xhr, options) { 
+				    xhr.setRequestHeader(csrfHeaderName, csrfTokenValue); 
+				  });
 				
 				//댓글 추가 버튼 클릭시
 				$(".addReply").on("click" , function(e){
+					
+					<sec:authorize access="isAuthenticated()">		
+						loginedUser = '<sec:authentication property="principal.username"/>';
+					</sec:authorize>
 				
 					if (checkReply() === -1)
 					{
@@ -125,11 +140,11 @@
 					var reply = {
 							bno : bno,
 							reply : $('textarea[name = "reply"]').val(),
-							replyer : $('input[name = "replyer"]').val(),
+							replyer : loginedUser
 						
 					}
 					console.log(reply);
-					
+
 					$.ajax({
 						url : '/replies/',
 						type : 'post',
@@ -140,7 +155,6 @@
 							console.log(data);
 							var newRno = parseInt(data);
 							$('textarea[name = "reply"]').val("");
-							$('input[name = "replyer"]').val("");
 							alert(newRno + "댓글 등록");
 							
 							loadJSONData();
@@ -153,11 +167,12 @@
 				$(".replyList").on("click", ".list-body .removeReply" , function(){
 									
 					var rno = $(this).data('rno');
+					var thisReplyer = $('input[data-rno = '+rno+']').val();
 					
 					console.log("remove rno : " +rno);
 	
 						$.ajax({
-	             url : '/replies/'+rno,
+	             url : '/replies/'+rno+'?replyer='+thisReplyer,
 	             type : 'DELETE' ,
 	             contentType : 'application/json; charset=utf-8',
 	             dataType : 'text',
@@ -191,9 +206,7 @@
 						alert("댓글을 입력하세요");
 						return;
 					}
-						
-					
-					
+	
 					var reply = {
 							rno : rno,
 							bno : bno,
@@ -248,11 +261,11 @@
 	</div>
 	<div class = "mb-3">
 		<div class= "col-sm-3">
-		<sec:authentication property="principal" var="logined"/>
 		<sec:authorize access = "isAuthenticated()">
-		<c:if test = "${logined.username eq board.writer}"> 
-			<button class = "btn btn-secondary btnModify">수정</button>
-		</c:if>
+		<sec:authentication property="principal" var="logined"/>
+			<c:if test = "${logined.username eq board.writer}"> 
+				<button class = "btn btn-secondary btnModify">수정</button>
+			</c:if>
 		</sec:authorize>
 			<button class = "btn btn-secondary btnList" >목록으로</button>
 		</div>
@@ -268,19 +281,18 @@
 	</table>
 </div>
 
-
+<sec:authorize access = "isAuthenticated()">
 <div class = "regReply">
 	<div class="col-sm-5">
-	  <input type="text" class="form-control" name = "replyer" id="exampleFormControlInput1" placeholder="닉네임">
+	  <input type="text" class="form-control" name = "replyer" id="exampleFormControlInput1" value = "<sec:authentication property="principal.username"/>" readonly>
 	</div>
 	<div class="mb-3 col-sm-7">
 	  <label for="exampleFormControlTextarea1" class="form-label">내용</label>
 	  <textarea class="form-control" name = "reply" id="exampleFormControlTextarea1" rows="3" style = "resize:none;"></textarea>
 	  <button type = "button" class = "btn btn-primary addReply">등록</button>
 	</div>
-	
 </div>
-
+</sec:authorize>
 <form id = "operForm" action = "/board/list" method = "get">
 	<input type = "hidden" name = "currentPage" value = "${cri.currentPage}">
 	<input type = "hidden" id = "bno" name = "bno" value = "${board.bno}">
