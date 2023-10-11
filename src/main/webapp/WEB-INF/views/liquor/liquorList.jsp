@@ -36,9 +36,34 @@ window.addEventListener('pageshow', function(event) {
 <link rel="stylesheet" href="/resources/css/liquor/liquorlist.css">
 </head>
 <body>
+	<div class="goods_category_wrap">
+		<div class="categoryName">
+			<span>All</span>
+		</div>
+		<div class="categoryList">
+			<ul>
+				<li class="cate_all">
+					<a href="/liquor/liquorList">All</a>
+				</li>
+				<li class="cate_wine">
+					<a href="/liquor/liquorList/Wine">Wine</a>
+				</li>
+				<li class="cate_whiskey">
+					<a href="/liquor/liquorList/Whiskey">Whiskey</a>
+				</li>
+				<li class="cate_soju">
+					<a href="/liquor/liquorList/Soju">Soju</a>
+				</li>
+				<li class="cate_beer">
+					<a href="/liquor/liquorList/Beer">Beer</a>
+				</li>
+			</ul>
+		</div>
+	</div>
 	<div class="admin_content_wrap">
+		<div></div>
 		<div class="admin_content_subject">
-			<span>Liquorlist</span>
+			<span>추천 상품</span>
 		</div>
 		<div class="goods_table_wrap">
 			<!-- 상품 리스트 O -->
