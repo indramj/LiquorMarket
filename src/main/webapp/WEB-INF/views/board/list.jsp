@@ -86,7 +86,7 @@
       <th scope="col">글제목</th>
       <th scope="col">작성자</th>
       <th scope="col">작성일</th>
-      <th class = "col-sm-1" scope= "col">조회수</th>
+
     </tr>
   </thead>
   <tbody>
@@ -129,7 +129,9 @@
 	  	<button class="btn btn-outline-secondary btnSearch" type="button" onclick = "srch();">검색</button>
 		</div>
 		<div class = "mb-3">
-			<button type="button" class="btn btn-outline-primary btnRegister">글쓰기</button>
+			<sec:authorize access = "isAuthenticated()">
+				<button type="button" class="btn btn-outline-primary btnRegister">글쓰기</button>
+			</sec:authorize>
 			<button type = "button" class = "btn btn-outline-primary btnList">전체글</button>
 			<input type = "hidden" name = "currentPage">
 		</div>
