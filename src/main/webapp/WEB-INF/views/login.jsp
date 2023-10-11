@@ -32,6 +32,7 @@ $(document).ready(function(){
 	
 	<div class="wrap">
 		<form role = "form" method="post" action = "/login">
+		<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
 			<div class="login_wrap">
 				<div class="logo_wrap">
 					<span>LOGIN</span>
@@ -50,7 +51,7 @@ $(document).ready(function(){
 				
 				<div class="login_button_wrap">
 					<input type="submit" class="login_button" value="로그인">
-					<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+					
 					<c:if test="${param.error eq 'true'}">
           <div class="login_warn">
               아이디나 비밀번호가 잘못되었습니다.

@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
 <%@ include file="../include/header.jsp" %>
 
 
@@ -247,7 +248,12 @@
 	</div>
 	<div class = "mb-3">
 		<div class= "col-sm-3">
+		<sec:authentication property="principal" var="logined"/>
+		<sec:authorize access = "isAuthenticated()">
+		<c:if test = "${logined.username eq board.writer}"> 
 			<button class = "btn btn-secondary btnModify">수정</button>
+		</c:if>
+		</sec:authorize>
 			<button class = "btn btn-secondary btnList" >목록으로</button>
 		</div>
 	</div>
@@ -280,6 +286,7 @@
 	<input type = "hidden" id = "bno" name = "bno" value = "${board.bno}">
 	<input type = "hidden" id = "type" name = "type" value = "${cri.type}">
 	<input type = "hidden" id = "keyword" name = "keyword" value = "${cri.keyword}"> 
+	<input type = "hidden" name = "${_csrf.parameterName}" value = "${_csrf.token}">
 </form>
 
 <div class="modal fade" id = "removeModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">

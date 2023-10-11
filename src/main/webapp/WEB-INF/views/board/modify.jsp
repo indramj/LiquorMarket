@@ -43,7 +43,7 @@
 </head>
 <body>
 <form id = "operForm" action = "/board/modify" method = "post">
-
+<input type = "hidden" name = "${_csrf.parameterName}" value = "${_csrf.token}">
 <div class = "register">
 	<div class="mb-3" >
 		<div class = "col-sm-5">
