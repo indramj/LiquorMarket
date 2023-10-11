@@ -60,6 +60,13 @@
 				</div>
 			</div>
 
+<form id = "operForm" action = "/liquor/liquorList" method = "get">
+	<input type = "hidden" name = "currentPage" value = "${cri.currentPage}">
+	<input type = "hidden" id = "lid" name = "lid" value = "${liquor.lid}">
+	<input type = "hidden" id = "type" name = "type" value = "${cri.type}">
+	<input type = "hidden" id = "keyword" name = "keyword" value = "${cri.keyword}"> 
+</form>
+
 			<div class="form_section">
 				<div class="form_section_title">
 					<label>주류 카테고리</label>
@@ -128,7 +135,7 @@
 		
 			</div>
 
-			<form id="moveForm" action="/admin/manageGoods" method="get">
+			<form id="moveForm" action="/liquor/liquorList" method="get">
  				<input type="hidden" name="pageNum" value="${pageMaker.cri.pageNum}">
 				<input type="hidden" name="amount" value="${pageMaker.cri.amount}">
 				<input type="hidden" name="keyword" value="${pageMaker.cri.keyword}"> 

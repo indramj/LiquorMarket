@@ -57,7 +57,7 @@ $(".btnList").on("click" , function(e){
 </head>
 <body>
 	<h1>상품 조회 페이지</h1>
-
+<form id = "operForm" action = "/liquor/modify" method = "post">
 	<div class="admin_content_wrap">
 		<div class="admin_content_subject">
 			<span>상품 상세</span>
