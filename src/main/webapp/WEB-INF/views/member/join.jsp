@@ -16,6 +16,7 @@
 
 <div class="wrapper">
 	<form id="join_form" method="post">
+	<input type = "hidden" name = "${_csrf.parameterName}" value = "${_csrf.token}">
 	<div class="wrap">
 			<div class="subjecet">
 				<span>CREATE ACCOUNT</span>
@@ -122,9 +123,7 @@ var mailnumCheck = false;
 var addressCheck = false;
 
 $(document).ready(function(){
-	
 
-	
 	//회원가입 버튼 기능 작동
 	var joinForm = $("#join_form");
 	
@@ -210,6 +209,14 @@ $(document).ready(function(){
         return false;
 		
 	});
+});
+
+
+var csrfHeaderName = "${_csrf.headerName}";
+var csrfTokenValue = "${_csrf.token}";
+
+$(document).ajaxSend(function(e, xhr , options){
+	xhr.setRequestHeader(csrfHeaderName , csrfTokenValue);
 });
 
 //아이디 중복검사

@@ -11,6 +11,7 @@ import org.springframework.mail.javamail.MimeMessagePreparator;
 import org.springframework.stereotype.Service;
 
 import com.first.domain.MemberVO;
+import com.first.mapper.AuthMapper;
 import com.first.mapper.MemberMapper;
 
 import lombok.extern.log4j.Log4j;
@@ -23,13 +24,19 @@ public class MemberServiceImpl implements MemberService{
 	MemberMapper membermapper;
 	
 	@Autowired
+	AuthMapper authMapper;
+	
+	@Autowired
 	JavaMailSender mailSender;
+	
+	
 	
 
 	@Override
 	public void joinMember(MemberVO member) throws Exception {
 		
 		membermapper.joinMember(member);
+		authMapper.join(member.getMemberId());
 	}
 
 

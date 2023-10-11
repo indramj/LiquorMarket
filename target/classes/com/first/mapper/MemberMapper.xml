@@ -5,8 +5,8 @@
 	<mapper namespace="com.first.mapper.MemberMapper">
 	
 <insert id="joinMember" >
-  	insert into table_member (memberId, memberPw, memberName, memberPhone, memberEmail, memberAddress1, memberAddress2, regDate, updateDate)
-  	values (#{memberId}, #{memberPw}, #{memberName}, #{memberPhone}, #{memberEmail}, #{memberAddress1}, #{memberAddress2}, SYSDATE, SYSDATE)
+  	insert into table_member (memberId, memberPw, memberName, memberPhone, memberEmail, memberAddress1, memberAddress2 )
+  	values (#{memberId}, #{memberPw}, #{memberName}, #{memberPhone}, #{memberEmail}, #{memberAddress1}, #{memberAddress2})
 
   </insert>
   
