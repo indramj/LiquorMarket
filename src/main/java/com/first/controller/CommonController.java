@@ -31,12 +31,12 @@ public class CommonController {
 		}
 	}
 
-	@GetMapping("/customLogout")
+	@GetMapping("/logout")
 	public void logoutGet() {
 		log.info("custom logout");
 	}
 	
-	@PostMapping("/customLogout")
+	@PostMapping("/logout")
 	public void logoutPost() {
 		log.info("post custom logout");
 	}

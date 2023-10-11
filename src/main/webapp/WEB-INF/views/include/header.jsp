@@ -155,8 +155,8 @@
       	<button class = "btn btn-sm btn-outline-secondary" type = "button" onclick = "location.href='/login'">Login</button>
       </sec:authorize>
       <sec:authorize access="isAuthenticated()">
- 				<button class='btn btn-sm btn-outline-secondary' type = "button" onclick = "location.href='/customLogout'">LogOut</button>
- 			</sec:authorize>
+ 				<button class='btn btn-sm btn-outline-secondary' type = "button" onclick = "location.href='/logout'">LogOut</button>
+ 			</sec:authorize> 			
     </div> 
   </div>
 </header>
@@ -168,6 +168,9 @@
         <li class="nav-item"><a href="/liquor/liquorList" class="nav-link">주류 리스트</a></li>
         <li class="nav-item"><a href="/board/list" class="nav-link" id = "board">상품 문의</a></li>
         <li class="nav-item"><a href="/cart" class="nav-link">장바구니</a></li>
+        <sec:authorize access="hasRole('ROLE_ADMIN')">
+        	<li class="nav-item"><a href="/admin/main" class="nav-link">회원관리</a></li>
+        </sec:authorize>
       </ul>
     </header>
   </div>

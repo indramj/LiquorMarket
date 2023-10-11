@@ -46,10 +46,12 @@ public class MemberController {
 		
 		log.info("회원가입 페이지 진입");
 	}
+	
 	//회원가입
 	@PostMapping("/join")
 	public String postJoin(MemberVO member) throws Exception{
 		
+		log.info("회원가입 실행");
 		String rawPw = "";
         String encodePw = "";
         
