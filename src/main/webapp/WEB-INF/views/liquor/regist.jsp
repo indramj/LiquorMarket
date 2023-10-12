@@ -9,6 +9,8 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link rel="stylesheet" href="../resources/css/admin/goodsDetail.css">
+
+
 <script src="http://code.jquery.com/jquery-3.4.1.js"></script>
 
 <script type="text/javascript">
@@ -44,21 +46,26 @@ $(document).ready(function(){
 		return true;
 	}	
 	
-	$(".image-input").on("change" , function(){
-		 var fileName = $(this).val().split("\\").pop();
-		 var formData = new FormData();
-		 var inputFile = $(this);
-		 var files = inputFile[0].files;
-		 
-		 for(var i=0; i<files.length; i++){
-				if(!checkExtension(files[i].name, files[i].size)){
-					return false;
-				}
-				formData.append("uploadFile", files[i]);
+	$("#uploadFile").on("change" , function(e){
+		
+		var formData = new FormData();
+		var inputFile = $("input[name='uploadFile']");
+		
+		var files = inputFile[0].files;
+		
+		console.log(files);
+		
+		for ( var i = 0; i < files.length; i++){
+			if(!checkExtension(files[i].name , files[i].size)){
+				return false;
 			}
-		 
-		 for(var value of formData.values()){console.log(value);}
-		 
+				
+			formData.append("uploadFile" , files[i]);
+		}
+		
+		var csrfHeaderName = "${_csrf.headerName}";
+		var csrfTokenValue = "${_csrf.token}";
+		
 		 $.ajax({
              url: '/uploadAjax',
              processData: false,
@@ -70,24 +77,33 @@ $(document).ready(function(){
              dataType: 'json',
              success: function(result){
                  console.log(result);
-                 showResult(result);
+                 showUploadedfile(result);
              },
              error: function(jqXHR, textStatus, errorThrown){
                  console.log(textStatus);
              }
-         });
-		 
-		 
-	})
+         }); //$.ajax
+	}); //#uploadFile
 	
-
-
-
-});         
-
 	
-
-
+	function showUploadedfile(uploadResultArr){
+		
+		var str = "";
+		
+		$(uploadResultArr).each(function(i , obj){
+			
+			var fileCallPath = encodeURIComponent( obj.uploadPath + "/s_" + obj.uuid + "_" + obj.fileName);
+			
+			str += "<li><img src ='/display?fileName="+fileCallPath+"'></li>"
+			
+		});
+		$(".uploadResult").append(str);
+	}
+	
+	
+		
+}); 	
+		
 </script>
 </head>
 <body>
@@ -148,13 +164,14 @@ $(document).ready(function(){
 				
 				<div class="panel-body">
   				<div class="form-group uploadDiv">
-  					<input type="file" class = "image-input" name='uploadFile' multiple>
+  					<input type="file" id = "uploadFile" name='uploadFile' multiple>
   				</div>
   				
   				<div class='uploadResult'>
   					<ul>
-  					
+  						
   					</ul>
+  				
   				</div>
   			</div>
 				
