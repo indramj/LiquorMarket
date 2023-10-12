@@ -20,12 +20,18 @@ window.addEventListener('pageshow', function(event) {
 	});
 	
 	$(document).ready(function(){
+		var moveForm = $(".move");
 		
 		$(".move a").click(function(e){
-			var moveForm = $(".move");
 			e.preventDefault();
 			var lid = $(this).data('lid');
 			moveForm.append("<input type ='hidden' name = 'lid' value = '"+lid+"' >");
+			moveForm.submit();
+		});
+		
+		$(".btnRegist").on("click" , function(e){
+			e.preventDefault();
+			moveForm.attr("action" , "/liquor/regist")
 			moveForm.submit();
 		});
 		
@@ -67,6 +73,7 @@ window.addEventListener('pageshow', function(event) {
 		</div>
 		<div class="goods_table_wrap">
 			<!-- 상품 리스트 O -->
+			<button type ="button" class = "btnRegist">등록</button>
 			<c:if test="${listcheck != 'empty'}">
 				<form class = "move" action = "/liquor/read/" method = "get">
 					<ul class="goods_table">

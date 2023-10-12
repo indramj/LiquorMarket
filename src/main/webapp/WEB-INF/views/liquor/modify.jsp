@@ -11,15 +11,6 @@
 <script src="http://code.jquery.com/jquery-3.4.1.js"></script>
 
 <script type="text/javascript">
-	
-	
-	
-	
-	
-	
-	
-	
-	
 
 $(document).ready(function(){
 	var lid = <c:out value = "${liquor.lid}"/>;
