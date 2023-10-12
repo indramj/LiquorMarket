@@ -3,7 +3,7 @@ package com.first.domain;
 import lombok.Data;
 
 @Data
-public class ImageFileDTO {
+public class AttachFileDTO {
 	
 	private String uuid;
 	
@@ -11,9 +11,4 @@ public class ImageFileDTO {
 	
 	private String fileName;
 	
-	private boolean fileType;
-	
-	private int lid;
-	
-
 }
