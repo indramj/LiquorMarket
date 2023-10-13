@@ -45,6 +45,7 @@ public class LiquorController {
 	{	
 		log.info("Post liquor regist");
 		liquorService.register(liquorVO);
+
 		rttr.addFlashAttribute("liquor", liquorVO);
 		return "redirect:/liquor/liquorList";
 	}

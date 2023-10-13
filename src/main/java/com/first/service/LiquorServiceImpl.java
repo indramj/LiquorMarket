@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.first.domain.BoardVO;
 import com.first.domain.LiquorVO;
+import com.first.mapper.ImageFileMapper;
 import com.first.mapper.LiquorMapper;
 
 
@@ -16,6 +17,9 @@ public class LiquorServiceImpl implements LiquorService{
 	@Autowired
 	LiquorMapper mapper;
 	
+	@Autowired
+	ImageFileMapper imageMapper;
+	
 	@Override
 	public List<LiquorVO> getLiquorList()
 	{
@@ -23,9 +27,17 @@ public class LiquorServiceImpl implements LiquorService{
 	}
 	
 	@Override
-	public int register(LiquorVO liquorVO)
+	public void register(LiquorVO liquorVO)
 	{
-		return mapper.register(liquorVO);
+		if(liquorVO.getImageList() == null || liquorVO.getImageList().size() == 0) {
+			return;
+		}
+		
+		liquorVO.getImageList().forEach(image -> {
+			image.setLid(liquorVO.getLid());
+			imageMapper.regist(image);
+		});
+		
 	}
 	
 	@Override

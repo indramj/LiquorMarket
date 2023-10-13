@@ -11,7 +11,7 @@ public interface LiquorService {
 	
 	public LiquorVO getLiquor(int lid);
 	
-	public int register(LiquorVO liquorVO);
+	public void register(LiquorVO liquorVO);
 	
 	public boolean modify(LiquorVO liquorVO);
 }
