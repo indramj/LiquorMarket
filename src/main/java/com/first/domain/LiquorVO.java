@@ -1,6 +1,7 @@
 package com.first.domain;
 
 import java.util.Date;
+import java.util.List;
 
 import lombok.Data;
 
@@ -14,6 +15,8 @@ public class LiquorVO {
 	private String cateName;
 	private int price;
 	private int stock;
+	
+	private List<ImageFileVO> imageList;
 	
 
 }

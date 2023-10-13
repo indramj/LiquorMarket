@@ -17,11 +17,21 @@
 
 
 $(document).ready(function(){
-	var operForm = $("#operForm");	
-
-	$(".btnRegist").click(function(e){
+	var operForm = $("#operForm");
+	$("#Register").on("click" , function(e){
 		e.preventDefault();
-		operForm.submit();
+		
+		var str = "";
+		$(".uploadResult ul li").each(function(i, obj){
+			var jobj = $(obj);
+			console.dir(jobj);
+			str += "<input type='hidden' name='imageList["+i+"].fileName' value='"+jobj.data("filename")+"'>";
+			str += "<input type='hidden' name='imageList["+i+"].uuid' value='"+jobj.data("uuid")+"'>";
+			str += "<input type='hidden' name='imageList["+i+"].uploadPath' value='"+jobj.data("path")+"'>";
+		});
+		operForm.append(str).submit();
+		
+		;
 	})
 	
 	
@@ -89,15 +99,16 @@ $(document).ready(function(){
 	function showUploadedfile(uploadResultArr){
 		
 		var str = "";
-		
+		var uploadUL = $(".uploadResult ul");
 		$(uploadResultArr).each(function(i , obj){
 			
 			var fileCallPath = encodeURIComponent( obj.uploadPath + "/s_" + obj.uuid + "_" + obj.fileName);
 			
-			str += "<li><img src ='/display?fileName="+fileCallPath+"'></li>"
+			str += "<li data-path='"+obj.uploadPath+"' data-uuid='"+obj.uuid+"' data-filename='"+obj.fileName+"'>";
+			str += "<img src ='/display?fileName="+fileCallPath+"'></li>";
 			
 		});
-		$(".uploadResult").append(str);
+		uploadUL.append(str);
 	}
 	
 	
@@ -177,7 +188,7 @@ $(document).ready(function(){
 				
 		<div class = "mb-3">
 		<div class= "col-sm-3">
-			<button type="button" class="btn btn-secondary btnRegist">등록</button>
+			<button type="button" class="btn btn-secondary" id = "Register">등록</button>
 			<button type="button" class="btn btn-secondary btnCancel">취소</button>
 			<input type = "hidden" name = "${_csrf.parameterName}" value = "${_csrf.token}">
 		</div>
