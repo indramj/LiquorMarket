@@ -32,21 +32,41 @@
 					type.remove();
 				if(keyword.val() === "")
 					keyword.remove(); 
-				
-				
-				
+
 				operForm.attr("action" , "/liquor/liquorList").submit();
-			})
+			});
+			
+			
+			(function(){
+				var lid = '<c:out value="${liquor.lid}"/>';
+				$.getJSON("/liquor/getAttachList", {lid: lid}, function(arr){
+					console.log(arr);
+					var str = "";
+					$(arr).each(function(i , obj){
+
+						
+						var fileCallPath = encodeURIComponent( obj.uploadPath + "/" + obj.uuid + "_" + obj.fileName);
+						str += "<li data-path='"+obj.uploadPath+"' data-uuid='"+obj.uuid+"' data-filename='"+obj.fileName+"'><div>";
+						str += "<img src='/display?fileName="+fileCallPath+"'>";
+						str += "</div></li>";
+					});
+					$(".uploadResult ul").html(str);
+			})			
+		})();
+	});
 			
 </script>
 
 </head>
 <body>
-	<h1>상품 조회 페이지</h1>
-
 	<div class="admin_content_wrap">
 		<div class="admin_content_subject">
 			<span>상품 상세</span>
+		</div>
+		<div class = "uploadResult">
+			<ul>
+
+			</ul>
 		</div>
 
 		<div class="admin_content_main">

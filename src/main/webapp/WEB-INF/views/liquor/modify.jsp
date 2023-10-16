@@ -49,6 +49,7 @@ $(".btnList").on("click" , function(e){
 <body>
 	<h1>상품 조회 페이지</h1>
 <form id = "operForm" action = "/liquor/modify" method = "post">
+<input type = "hidden" name = "${_csrf.parameterName}" value = "${_csrf.token}">
 	<div class="admin_content_wrap">
 		<div class="admin_content_subject">
 			<span>상품 상세</span>

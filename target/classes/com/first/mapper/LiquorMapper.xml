@@ -16,6 +16,14 @@
 	(seq_liquor.nextval , #{name} , #{description} , #{cateName} , #{price} , #{stock})	
 </insert>
 
+<insert id="registSelectKey">
+	<selectKey keyProperty="lid" order="BEFORE" resultType="int">
+		select seq_liquor.nextval from dual
+	</selectKey>
+
+	insert into table_liquor (lid, name, description, cateName , price , stock ) values (#{lid}, #{name}, #{description}, #{cateName} , #{price} , #{stock})
+</insert>
+
 <select id="getLiquor" resultType = "com.first.domain.LiquorVO">
 	select lid , name , description , cateName , price , stock 
 	from table_liquor where lid = #{lid}
@@ -32,4 +40,10 @@
 		updateDate = sysdate
 	where lid = #{lid}
 </update>
+
+<delete id = "remove">
+	delete from table_liquor where lid = #{lid}
+</delete>
+
+
 </mapper>

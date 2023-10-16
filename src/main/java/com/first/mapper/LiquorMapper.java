@@ -11,8 +11,12 @@ public interface LiquorMapper {
 	
 	public int register(LiquorVO liquorVO);
 	
+	public void registSelectKey(LiquorVO liquorVO);
+	
 	public LiquorVO getLiquor(int lid);
 	
 	public int updateLiquor(LiquorVO liquorVO);
+	
+	public void remove(int lid);
 
 }
