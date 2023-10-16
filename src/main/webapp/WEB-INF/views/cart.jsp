@@ -30,7 +30,10 @@
 </svg>
 <span class="cart_text">&nbsp;장바구니</span> 
 </div>
-	<!-- 장바구니 리스트 -->
+
+${cartInfo}
+
+<%-- 	<!-- 장바구니 리스트 -->
 			<div class="content_middle_section"></div>
 			
 			
@@ -77,7 +80,7 @@
 				
 			</tr>
 		</tbody>
-	</table>
+	</table>  --%>
 </body>
 </html>
 

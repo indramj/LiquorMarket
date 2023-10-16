@@ -15,42 +15,27 @@ import com.first.domain.CartDTO;
 import com.first.domain.MemberVO;
 import com.first.service.CartService;
 
+import oracle.jdbc.proxy.annotation.Post;
+
 @Controller
 public class CartController {
 	
-	@GetMapping("/cart")
-	public String cartPageGET(Model model) {
+	@Autowired
+	private CartService cartService;
+	
+	@PostMapping("/cart/{lib}")
+	@ResponseBody
+	public String addCartPOST(CartDTO cart) {
+		int result = cartService.addCart(cart);
+		
+		return result + "";
+	}
+	
+	@GetMapping("/cart/{lib}")
+	public String cartPageGET(@PathVariable("lib") String lib, Model model) {
+		
+		model.addAttribute("cartInfo", cartService.getCartList(lib));
 		
 		return "/cart";
 	}
-	
-//	@Autowired
-//	private CartService cartService;
-//	
-//	@PostMapping("/cart/add")
-//	@ResponseBody
-//	public int addCartPOST(CartDTO cart, HttpServletRequest request) {
-//		
-//		/* 뷰는 숫자를 반환받도록 한다. (0: 등록 실패 / 1 : 등록 성공 / 2 : 등록된 데이터 존재 5: 로그인 필요) */
-//		
-//		// 로그인 체크
-//		HttpSession session = request.getSession();
-//		MemberVO mvo = (MemberVO)session.getAttribute("member");
-//		if(mvo == null) {
-//			return "5";
-//		}
-//		
-//		// 카트 등록
-//	
-//		int result = cartService.addCart(cart);
-//		
-//		return result + "";
-//	}
-//
-//	@GetMapping("/cart/{memberId}")
-//	public String cartPageGET(@PathVariable("memberId") String memberId, Model model) {
-//
-//		
-//		return "/cart";
-//	}
 }

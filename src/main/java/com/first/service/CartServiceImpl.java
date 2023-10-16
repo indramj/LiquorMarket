@@ -4,6 +4,9 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 
 import com.first.domain.CartDTO;
 import com.first.mapper.CartMapper;
@@ -15,8 +18,7 @@ public class CartServiceImpl implements CartService {
 	private CartMapper cartMapper;
 	
 	@Override
-	public int addCart(CartDTO cart) {
-		
+	public int addCart(CartDTO cart) {	
 		// 장바구니 데이터 체크
 				CartDTO checkCart = cartMapper.checkCart(cart);
 				
@@ -30,11 +32,11 @@ public class CartServiceImpl implements CartService {
 				} catch (Exception e) {
 					return 0;
 				}
-	}
+	} 
 	
 	@Override
-	public List<CartDTO> getCartList(String memberId) {
-		List<CartDTO> cart = cartMapper.getCart(memberId);
+	public List<CartDTO> getCartList(String lib) {
+		List<CartDTO> cart = cartMapper.getCart(lib);
 		
 		for(CartDTO dto : cart) {
 			dto.initSaleTotal();
