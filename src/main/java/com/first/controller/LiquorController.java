@@ -3,6 +3,8 @@ package com.first.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -10,10 +12,12 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.first.domain.BoardVO;
 import com.first.domain.Criteria;
+import com.first.domain.ImageFileVO;
 import com.first.domain.LiquorVO;
 import com.first.service.LiquorService;
 
@@ -67,4 +71,19 @@ public class LiquorController {
 		return "redirect:/liquor/read";
 		
 	}
+	
+	@PostMapping("/remove")
+	public String remove(@RequestParam("lid") int lid)
+	{
+		liquorService.remove(lid);
+		return "redirect:/liquor/liquorList";
+	}
+	
+	@GetMapping("/getAttachList")
+	@ResponseBody
+	public ResponseEntity<List<ImageFileVO>> getAttachList(int lid){
+		log.info("getAttachList " + lid);
+		return new ResponseEntity<>(liquorService.getAttachList(lid), HttpStatus.OK);
+	}
+	
 }
