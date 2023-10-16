@@ -9,7 +9,7 @@ public interface CartService {
 	public int addCart(CartDTO cart);
 	
 	
-	public List<CartDTO> getCartList(String memberId);
+	public List<CartDTO> getCartList(String lib);
 	
 	
 }
