@@ -44,36 +44,37 @@ window.addEventListener('pageshow', function(event) {
 <body>
 	<div class="goods_category_wrap">
 		<div class="categoryName">
-			<span>All</span>
+			<span>전체</span>
 		</div>
 		<div class="categoryList">
 			<ul>
 				<li class="cate_all">
-					<a href="/liquor/liquorList">All</a>
+					<a href="/liquor/liquorList">전체</a>
 				</li>
 				<li class="cate_wine">
-					<a href="/liquor/liquorList/Wine">Wine</a>
+					<a href="/liquor/liquorList/Wine">와인</a>
 				</li>
 				<li class="cate_whiskey">
-					<a href="/liquor/liquorList/Whiskey">Whiskey</a>
+					<a href="/liquor/liquorList/Whiskey">위스키</a>
 				</li>
 				<li class="cate_soju">
-					<a href="/liquor/liquorList/Soju">Soju</a>
+					<a href="/liquor/liquorList/Soju">소주</a>
 				</li>
 				<li class="cate_beer">
-					<a href="/liquor/liquorList/Beer">Beer</a>
+					<a href="/liquor/liquorList/Beer">맥주</a>
 				</li>
 			</ul>
 		</div>
 	</div>
 	<div class="admin_content_wrap">
-		<div></div>
-		<div class="admin_content_subject">
-			<span>추천 상품</span>
-		</div>
 		<div class="goods_table_wrap">
 			<!-- 상품 리스트 O -->
-			<button type ="button" class = "btnRegist">등록</button>
+			<div class="admin_content_subject">
+				<span>추천 상품</span>
+			</div>
+			<div class="add_menu">    <!-- 나중에 아래로 옮기기 -->
+				<button type ="button" class = "btnRegist">등록</button> 	
+			</div>
 			<c:if test="${listcheck != 'empty'}">
 				<form class = "move" action = "/liquor/read/" method = "get">
 					<ul class="goods_table">
@@ -101,5 +102,10 @@ window.addEventListener('pageshow', function(event) {
 			</c:if>
 		</div>
 	</div>
+	<footer class="footer">
+		<div id="footer_container">
+			<p> &copy; 술 파는 사람들 CO., LTD. </p>
+		</div>
+	</footer>
 </body>
 </html>
