@@ -73,77 +73,80 @@
 });
 
 	</script>
-
+<link rel="stylesheet" href="../resources/css/board/list.css">
 </head>
 <body>
-
-<div class = "m-5">
-	<h3> 상품 문의 게시판</h3>
-	<table class="table table-hover">
-  <thead>
-    <tr>
-      <th class = "col-sm-1" scope="col">글번호</th>
-      <th scope="col">글제목</th>
-      <th scope="col">작성자</th>
-      <th scope="col">작성일</th>
-
-    </tr>
-  </thead>
-  <tbody>
-  	<c:forEach var="board" items = "${boardlist}" >
-    <tr>
-      <th scope="row">${board.bno}</th>
-      <td><a class = "read" href = "${board.bno}" data-bno = "${board.bno}" ><c:out value = "${board.title}"/>[
-			<c:out value = "${board.replyCnt}"/>]</a></td>
-      <td>${board.writer}</td>
-      <td><fmt:formatDate pattern="yyyy-MM-dd" value="${board.regDate}"/></td>
-    </tr>
-    </c:forEach>
-  </tbody>
-</table>
-
-<nav aria-label="Page navigation example">
-  <ul class="pagination pageList">
-  	<c:if test = "${pageDTO.prev}">
-    	<li class="page-item btnPage prev"><a class="page-link" href="${pageDTO.startPage-1}">Previous</a></li>
-    </c:if>
-    <c:forEach var = "num" begin = "${pageDTO.startPage}" end = "${pageDTO.endPage}">
-    	<li class="page-item btnPage ${pageDTO.cri.currentPage == num? "active" : ""}"><a class="page-link" href="${num}" data-num = "${num}">${num}</a></li>
-    </c:forEach>
-		<c:if test = "${pageDTO.next}">
-    	<li class="page-item btnPage next"><a class="page-link" href="${pageDTO.endPage+1}">Next</a></li>
-    </c:if>
-  </ul>
-</nav>
-<div class = "mb-3">
-	<form class = "searchForm" action = "/board/list" method = "get" >
-		<div class="input-group mb-3">
-		  <select class="form-select" id="inputGroupSelect04" aria-label="Example select with button addon" name = "type">
-		    <option value = "" <c:out value = "${pageDTO.cri.type == null? 'selected' : ''}"/> >...</option>
-		    <option value="T" <c:out value = "${pageDTO.cri.type eq 'T'? 'selected' : ''}"/>>제목</option>
-		    <option value="C" <c:out value = "${pageDTO.cri.type eq 'C'? 'selected' : ''}"/>>내용</option>
-		    <option value="W" <c:out value = "${pageDTO.cri.type eq 'W'? 'selected' : ''}"/>>작성자</option>
-		    <option value="TC" <c:out value = "${pageDTO.cri.type eq 'TC'? 'selected' : ''}"/>>제목+내용</option>
-		  </select>
-	 		<input class = "col-sm-3" type = "text" name = "keyword" onkeypress="if( event.keyCode == 13 ){srch();}">
-	  	<button class="btn btn-outline-secondary btnSearch" type="button" onclick = "srch();">검색</button>
+<div class="board_list_wrap">
+	<div class = "m-5">
+		<h3> 상품 문의 게시판</h3>
+		<table class="table table-hover">
+	  <thead>
+	    <tr>
+	      <th class = "col-sm-1" scope="col">글번호</th>
+	      <th scope="col">글제목</th>
+	      <th scope="col">작성자</th>
+	      <th scope="col">작성일</th>
+	
+	    </tr>
+	  </thead>
+	  <tbody>
+	  	<c:forEach var="board" items = "${boardlist}" >
+	    <tr>
+	      <th scope="row">${board.bno}</th>
+	      <td><a class = "read" href = "${board.bno}" data-bno = "${board.bno}" ><c:out value = "${board.title}"/>[
+				<c:out value = "${board.replyCnt}"/>]</a></td>
+	      <td>${board.writer}</td>
+	      <td><fmt:formatDate pattern="yyyy-MM-dd" value="${board.regDate}"/></td>
+	    </tr>
+	    </c:forEach>
+	  </tbody>
+	</table>
+	
+	<nav aria-label="Page navigation example">
+		<div class="page-list">
+		  <ul class="pagination pageList page-list-1">
+		  	<c:if test = "${pageDTO.prev}">
+		    	<li class="page-item btnPage prev"><a class="page-link" href="${pageDTO.startPage-1}">Previous</a></li>
+		    </c:if>
+		    <c:forEach var = "num" begin = "${pageDTO.startPage}" end = "${pageDTO.endPage}">
+		    	<li class="page-item btnPage ${pageDTO.cri.currentPage == num? "active" : ""}"><a class="page-link" href="${num}" data-num = "${num}">${num}</a></li>
+		    </c:forEach>
+				<c:if test = "${pageDTO.next}">
+		    	<li class="page-item btnPage next"><a class="page-link" href="${pageDTO.endPage+1}">Next</a></li>
+		    </c:if>
+		  </ul>
 		</div>
-		<div class = "mb-3">
-			<sec:authorize access = "isAuthenticated()">
-				<button type="button" class="btn btn-outline-primary btnRegister">글쓰기</button>
-			</sec:authorize>
-			<button type = "button" class = "btn btn-outline-primary btnList">전체글</button>
-			<input type = "hidden" name = "currentPage">
-		</div>
-	</form>
-</div>
-	<form id = "actionForm" action = "/board/list" method = "get">
-		<input type = "hidden" name = "currentPage" value = "${pageDTO.cri.currentPage}">
-		<input type = "hidden" name = "size" value = "${pageDTO.cri.size}">
-		<input type = "hidden" name = "type" value = "${pageDTO.cri.type}">
-		<input type = "hidden" name = "keyword" value = "${pageDTO.cri.keyword }">
-	</form>
-
-</div>
+	</nav>
+	<div class = "mb-3 board_list_search">
+		<form class = "searchForm" action = "/board/list" method = "get" >
+			<div class="input-group mb-3 search-2">
+			  <select class="form-select" id="inputGroupSelect04" aria-label="Example select with button addon" name = "type">
+			    <option value = "" <c:out value = "${pageDTO.cri.type == null? 'selected' : ''}"/> >...</option>
+			    <option value="T" <c:out value = "${pageDTO.cri.type eq 'T'? 'selected' : ''}"/>>제목</option>
+			    <option value="C" <c:out value = "${pageDTO.cri.type eq 'C'? 'selected' : ''}"/>>내용</option>
+			    <option value="W" <c:out value = "${pageDTO.cri.type eq 'W'? 'selected' : ''}"/>>작성자</option>
+			    <option value="TC" <c:out value = "${pageDTO.cri.type eq 'TC'? 'selected' : ''}"/>>제목+내용</option>
+			  </select>
+		 		<input class = "col-sm-3" type = "text" name = "keyword" onkeypress="if( event.keyCode == 13 ){srch();}">
+		  	<button class="btn btn-outline-secondary btnSearch" type="button" onclick = "srch();">검색</button>
+			</div>
+			<div class = "mb-3">
+				<sec:authorize access = "isAuthenticated()">
+					<button type="button" class="btn btn-outline-primary btnRegister">글쓰기</button>
+				</sec:authorize>
+				<button type = "button" class = "btn btn-outline-primary btnList">전체글</button>
+				<input type = "hidden" name = "currentPage">
+			</div>
+		</form>
+	</div>
+		<form id = "actionForm" action = "/board/list" method = "get">
+			<input type = "hidden" name = "currentPage" value = "${pageDTO.cri.currentPage}">
+			<input type = "hidden" name = "size" value = "${pageDTO.cri.size}">
+			<input type = "hidden" name = "type" value = "${pageDTO.cri.type}">
+			<input type = "hidden" name = "keyword" value = "${pageDTO.cri.keyword }">
+		</form>
+	
+	</div>
+	</div>
 </body>
 </html>

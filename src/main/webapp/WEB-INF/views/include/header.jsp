@@ -163,7 +163,7 @@
     </div> 
   </div>
 </header>
-<div class = "mb-3">
+<div class = "mb-3 headerPlus">
 	<div class="container">
     <header class="d-flex justify-content-center py-3">
       <ul class="nav nav-pills">
