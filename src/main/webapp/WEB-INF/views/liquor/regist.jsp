@@ -8,7 +8,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" href="../resources/css/admin/goodsDetail.css">
+<link rel="stylesheet" href="../resources/css/liquor/regist.css">
 
 
 <script src="http://code.jquery.com/jquery-3.4.1.js"></script>
@@ -134,6 +134,7 @@ $(document).ready(function(){
 			    <option value="맥주" >맥주</option>
 		 		</select>
 				</div>
+			</div>
 
 				<div class="form_section">
 					<div class="form_section_title">
@@ -160,7 +161,6 @@ $(document).ready(function(){
 					<div class="form_section_content bit">
 						<textarea name="description" id="description_textarea">${liquor.description}</textarea>
 					</div>
-				</div>
 				
 				<div class="panel-body">
   				<div class="form-group uploadDiv">
@@ -171,20 +171,24 @@ $(document).ready(function(){
   					<ul>
   						
   					</ul>
-  				
   				</div>
-  			</div>
+  				</div>
 				
-		<div class = "mb-3">
+		<div class = "regist-mb-3">
 		<div class= "col-sm-3">
 			<button type="button" class="btn btn-secondary btnRegist">등록</button>
 			<button type="button" class="btn btn-secondary btnCancel">취소</button>
 			<input type = "hidden" name = "${_csrf.parameterName}" value = "${_csrf.token}">
 		</div>
+		</div>
 	</div>
 </div>
 </div>
-</div>
+	<footer class="footer">
+		<div id="footer_container">
+			<p> &copy; 술 파는 사람들 CO., LTD. </p>
+		</div>
+	</footer>
 </form>
 
 
