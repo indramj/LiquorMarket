@@ -23,12 +23,12 @@ public class MemberVO {
 	private String memberAddress2;
 
 	
-	// 관리자 구분(0:일반사용자, 1:관리자)
-	List<AuthVO> authList;
-	
 	private Date regDate;
 	
 	private Date updateDate;
+	
+	List<AuthVO> authList;
+	
 	
 	
 	

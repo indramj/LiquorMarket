@@ -9,19 +9,31 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.first.domain.CartDTO;
+import com.first.domain.LiquorVO;
 import com.first.domain.MemberVO;
 import com.first.service.CartService;
+import com.first.service.LiquorService;
+
+import lombok.extern.log4j.Log4j;
 
 @Controller
+@Log4j
+@RequestMapping("/cart")
 public class CartController {
 	
-	@GetMapping("/cart")
-	public String cartPageGET(Model model) {
+	@Autowired
+	LiquorService liquorService;
+	
+	@GetMapping("")
+	public void cartPageGET(@RequestParam("lid") int lid , Model model) {
 		
-		return "/cart";
+		log.info("cart/lid");
+		LiquorVO liquorVO = liquorService.getLiquor(lid);
+		model.addAttribute("liquor" , liquorVO);
 	}
 	
 //	@Autowired
