@@ -139,6 +139,22 @@
 				
 				
 				</div>
+
+				<div class="btn_section">
+
+					<a href = "/cart?lid=<c:out value = '${liquor.lid}'/>">장바구니</a>
+					
+					<!-- <button id="cartBtn" class ="btn_cart">장바구니</button>
+					<a href="cart.jsp" id="cartPage" style="display: none;"></a>
+					
+					<script type="text/javascript">
+					// 버튼 클릭 이벤트 처리
+					document.getElementById('cartBtn').addEventListener('click',function() { 
+					// 타겟 페이지 링크 클릭
+					document.getElementById('cartPage').click(); });</script> --> 
+
+					<a href = "/liquor/modify?lid=<c:out value ='${liquor.lid}'/>"><button class="btnModify">수정</button></a>
+
 				</div>
 
 			<form id="moveForm" action="/liquor/liquorList" method="get">
