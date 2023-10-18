@@ -1,5 +1,7 @@
 package com.first.controller;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -13,6 +15,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.first.domain.CartItemDTO;
+import com.first.domain.CartItemVO;
 import com.first.domain.LiquorVO;
 import com.first.domain.MemberVO;
 import com.first.service.CartService;
@@ -26,14 +30,14 @@ import lombok.extern.log4j.Log4j;
 public class CartController {
 	
 	@Autowired
-	LiquorService liquorService;
+	CartService cartService;
 	
 	@GetMapping("")
-	public void cartPageGET(@RequestParam("lid") int lid , Model model) {
+	public void cartPageGET(@RequestParam("memberId") String memberId , Model model) {
 		
-		log.info("cart/lid");
-		LiquorVO liquorVO = liquorService.getLiquor(lid);
-		model.addAttribute("liquor" , liquorVO);
+		log.info("cart/memberId");
+		List<CartItemDTO> cartList = cartService.getCartList(memberId);
+		model.addAttribute("cartList" , cartList);
 	}
 	
 //	@Autowired
