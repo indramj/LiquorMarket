@@ -106,13 +106,13 @@
 						<div class="form_section">
 							<div class="form_section_content">
 								<label>가격</label>
-								<input id="input_width" name="price" value="<c:out value="${liquor.price}"/>" disabled><span>원</span>
+								<input id="input_width" name="price" value="<c:out value="${liquor.price}"/>" disabled>
 							</div>
 						</div>
 						<div class="form_section">
 							<div class="form_section_content">
 								<label>상품 재고</label>
-								<input id="input_width" name="stock" value="<c:out value="${liquor.stock}"/>" disabled><span>개</span>
+								<input id="input_width" name="stock" value="<c:out value="${liquor.stock}"/>" disabled>
 							</div>
 						</div>
 						<div class="btn_section">
