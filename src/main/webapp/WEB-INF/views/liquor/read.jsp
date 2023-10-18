@@ -104,24 +104,19 @@
 					</div>
 -->
 						<div class="form_section">
-							<div class="form_section_title">
-								<label>가격</label>
-							</div>
 							<div class="form_section_content">
-								<input id="input_width" name="price" value="<c:out value="${liquor.price}"/>" disabled>원
+								<label>가격</label>
+								<input id="input_width" name="price" value="<c:out value="${liquor.price}"/>" disabled><span>원</span>
 							</div>
 						</div>
 						<div class="form_section">
-							<div class="form_section_title">
-								<label>상품 재고</label>
-							</div>
 							<div class="form_section_content">
-								<input id="input_width" name="stock" value="<c:out value="${liquor.stock}"/>" disabled>개
+								<label>상품 재고</label>
+								<input id="input_width" name="stock" value="<c:out value="${liquor.stock}"/>" disabled><span>개</span>
 							</div>
 						</div>
 						<div class="btn_section">
-
-						<a class="cart" href = "/cart"><button class="cartBtn">장바구니</button></a>
+						<a href = "/cart?lid=<c:out value = '${liquor.lid}'/>"><button class="cartBtn">장바구니</button></a>
 						
 						<!-- <button id="cartBtn" class ="btn_cart">장바구니</button>
 						<a href="cart.jsp" id="cartPage" style="display: none;"></a>
@@ -139,22 +134,6 @@
 				
 				
 				</div>
-
-				<div class="btn_section">
-
-					<a href = "/cart?lid=<c:out value = '${liquor.lid}'/>">장바구니</a>
-					
-					<!-- <button id="cartBtn" class ="btn_cart">장바구니</button>
-					<a href="cart.jsp" id="cartPage" style="display: none;"></a>
-					
-					<script type="text/javascript">
-					// 버튼 클릭 이벤트 처리
-					document.getElementById('cartBtn').addEventListener('click',function() { 
-					// 타겟 페이지 링크 클릭
-					document.getElementById('cartPage').click(); });</script> --> 
-
-					<a href = "/liquor/modify?lid=<c:out value ='${liquor.lid}'/>"><button class="btnModify">수정</button></a>
-
 				</div>
 
 			<form id="moveForm" action="/liquor/liquorList" method="get">
