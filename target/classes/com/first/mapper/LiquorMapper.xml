@@ -7,7 +7,7 @@
 
 <select id = "getListAll" resultType = "com.first.domain.LiquorVO">
 	select lid , name , description , cateName , price , stock 
-	from table_liquor
+	from table_liquor order by lid desc
 </select>
 
 <insert id = "register">

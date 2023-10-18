@@ -5,7 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.first.domain.CateVO;
+
 import com.first.domain.Criteria;
 import com.first.domain.LiquorVO;
 import com.first.mapper.AdminMapper;
@@ -26,14 +26,6 @@ public class AdminServiceImpl implements AdminService {
 
 
 
-	/* 카테고리 리스트 */
-	@Override
-	public List<CateVO> cateList() {
-		
-		log.info("(service)cateList........");
-		
-		return adminMapper.cateList();
-	}
 	/* 상품 리스트 */
 	@Override
 	public List<LiquorVO> getGoodsList(Criteria cri) {

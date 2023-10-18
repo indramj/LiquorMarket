@@ -25,8 +25,14 @@
 </head>
 <body>
 	<h1> 장바구니 </h1>
-	<input type = "text" name = "name" value = "${liquor.name}">
-	<input type = "text" name = "price" value = "${liquor.price}">
+	<c:forEach var="cartItem" items = "${cartList}" >
+		<h4>주류 이름 :${cartItem.liquor.name}</h4>
+		<h4>카테고리 : ${cartItem.liquor.cateName}</h4>
+		<h4>가격 : ${cartItem.price}</h4>
+		<h4>${cartItem.quantity } 개 </h4>
+		
+	</c:forEach>
+	
 
 </body>
 </html>

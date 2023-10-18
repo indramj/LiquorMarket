@@ -2,10 +2,14 @@ package com.first.mapper;
 
 import java.util.List;
 
+import com.first.domain.CartItemVO;
+
 
 public interface CartMapper {
 	
-//	public int addCart(CartDTO cart) throws Exception;
+	public List<CartItemVO> getCartList(String memberId);
+	
+//	public void addCart(CartDTO cart);
 //	
 //	
 //	public int deleteCart(int cartId);

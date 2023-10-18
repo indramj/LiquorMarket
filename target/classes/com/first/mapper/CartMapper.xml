@@ -4,6 +4,10 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 	<mapper namespace="com.first.mapper.CartMapper">
 	
+<select id = "getCartList" resultType = "com.first.domain.CartItemVO">
+	select * from table_cartitem where memberid = #{memberId}
+</select>
+	
 	<!-- 카트 추가 -->
 	<insert id="addCart">
 
@@ -29,20 +33,4 @@
 	</update>
 
 
-	<!-- 카트 목록 -->
-	<select id="getCart" resultType="com.first.domain.CartDTO">
-
-		select a.cartId, a.memberId, a.drinkId, a.drinkCount, b.drinkName, b.drinkPrice,
-		from table_cart a left outer join table_drink b on a.drinkId = b.drinkId
-		where memberId = #{memberId}
-
-	</select>
-
-	<!-- 카트 확인 -->
-	<select id="checkCart" resultType="com.first.domain.CartDTO">
-
-		select * from table_cart
-		where memberId = #{memberId} and drinkId = #{drinkId}
-
-	</select>
 </mapper>
