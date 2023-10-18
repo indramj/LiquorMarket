@@ -82,6 +82,11 @@
 	width: 80px;
 	font-weight: 100;
 }
+.form_section_content label{
+	width: 100px;
+	font-size: 16px;
+	font-weight: 100;
+}
 .form_section_title{
 	font-size: 20px;
 	font-weight: 100;
