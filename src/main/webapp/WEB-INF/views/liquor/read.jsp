@@ -138,7 +138,7 @@
 					
 				<div class="btn_section">
 
-					<a href = "/cart">장바구니</a>
+					<a href = "/cart?lid=<c:out value = '${liquor.lid}'/>">장바구니</a>
 					
 					<!-- <button id="cartBtn" class ="btn_cart">장바구니</button>
 					<a href="cart.jsp" id="cartPage" style="display: none;"></a>
