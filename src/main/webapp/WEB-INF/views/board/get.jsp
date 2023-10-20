@@ -93,14 +93,6 @@
 							   
 				        console.log(reply);
 				        console.log(reply.rno);
- 				        /* str += '<div class = "list-body" >'; */
-				        /* str += '<input type = "text" data-rno = "'+reply.rno+'" value = "'+reply.replyer+'" readonly = "true">'; */
-				        /* str += '<textarea rows="1" cols="20" readonly = "true" data-rno = "'+reply.rno+'">'+reply.reply+ '</textarea>'; */ 
-				        /*str += ''+formatTime(replyDate)+'';
-				        str += '<button type = "button" class = "removeReply" data-rno = "'+reply.rno+'">삭제</button>';
-				        str += '<button type = "button" class = "modifyReply" data-rno = "'+reply.rno+'">수정</button>'; */
-				        
-				      
 	 			        str += '<tr><td><input type = "text" class = "form-control" name = "replyer" data-rno = "'+reply.rno+'" value = "'+reply.replyer+'" readonly></td>';
 	 			        str += '<td>'+formatTime(replyDate)+'</td></tr>';
 	 			        str += '<tr><td colspan = "2"><textarea class = "form-control" rows="3" data-rno = "'+reply.rno+'" style = "resize:none;" readonly>'+reply.reply+ '</textarea></td></tr>';
