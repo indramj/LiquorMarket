@@ -58,30 +58,6 @@ function srch()
 <link rel="stylesheet" href="/resources/css/liquor/liquorlist.css">
 </head>
 <body>
-	<div class="goods_category_wrap">
-		<div class="categoryName">
-			<span>전체</span>
-		</div>
-		<div class="categoryList">
-			<ul>
-				<li class="cate_all">
-					<a href="/liquor/liquorList">전체</a>
-				</li>
-				<li class="cate_wine">
-					<a href="/liquor/liquorList/Wine">와인</a>
-				</li>
-				<li class="cate_whiskey">
-					<a href="/liquor/liquorList/Whiskey">위스키</a>
-				</li>
-				<li class="cate_soju">
-					<a href="/liquor/liquorList/Soju">소주</a>
-				</li>
-				<li class="cate_beer">
-					<a href="/liquor/liquorList/Beer">맥주</a>
-				</li>
-			</ul>
-		</div>
-	</div>
 	<div class="admin_content_wrap">
 		<div class="goods_table_wrap">
 			<!-- 상품 리스트 O -->

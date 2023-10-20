@@ -3,12 +3,11 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ include file="include/header.jsp" %>
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="/resources/css/mainhome.css">
 
 <main>
 
-<<<<<<< HEAD
+
 <script src="http://code.jquery.com/jquery-3.4.1.js"></script>
 <script type="text/javascript">
 $(document).ready(function(){
@@ -16,14 +15,13 @@ $(document).ready(function(){
 	<c:forEach begin = "0"  end = "5" items="${liquorList}" var="liquor">
 		var lid = ${liquor.lid};
 		
-
 			$.getJSON("/liquor/getAttachList", {lid: lid}, function(arr){
 				console.log(arr);
 				var str = "";
 				$(arr).each(function(i , obj){
 					var fileCallPath = encodeURIComponent( obj.uploadPath + "/s_" + obj.uuid + "_" + obj.fileName);
 					console.log(fileCallPath);
-					var arr=$('img')
+					var arr=$('img').not('.w-100')
 					arr.attr("src" , "/display?fileName="+fileCallPath+"");
 					
 					
@@ -40,28 +38,34 @@ $(document).ready(function(){
 
 </script>
 
-<div id="carouselExample" class="carousel slide">
+<div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+  <ol class="carousel-indicators">
+    <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+    <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+    <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+  </ol>
   <div class="carousel-inner">
-    <div class="carousel-item active">
-      <!-- <img src="..." class="d-block w-100" alt="아무이미지"> -->
-
+    <div class="carousel-item active" data-bs-interval="4000">
+      <img src="/resources/images/main/main1.jpg" class="d-block w-100" alt="...">
     </div>
-    <div class="carousel-item">
-      <!-- <img src="..." class="d-block w-100" alt="이미지2"> -->
+    <div class="carousel-item" data-bs-interval="4000">
+      <img src="/resources/images/main/main2.jpg" class="d-block w-100" alt="...">
     </div>
-    <div class="carousel-item">
-      <!-- <img src="..." class="d-block w-100" alt="이미지3"> -->
+    <div class="carousel-item" data-bs-interval="4000">
+      <img src="/resources/images/main/main3.jpg" class="d-block w-100" alt="...">
     </div>
   </div>
-  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
+  <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
     <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-    <span class="visually-hidden">Previous</span>
-  </button>
-  <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
+    <span class="sr-only">Previous</span>
+  </a>
+  <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
     <span class="carousel-control-next-icon" aria-hidden="true"></span>
-    <span class="visually-hidden">Next</span>
-  </button>
+    <span class="sr-only">Next</span>
+  </a>
 </div>
+
+
 
   <div class="album py-5 bg-body-tertiary">
     <div class="container">

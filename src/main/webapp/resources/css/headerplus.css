@@ -2,8 +2,9 @@
 a.nav-link{
 	color: #000000;
 }
-.headerPlus{
-	background: #cccccc;
+.mb-3.headerPlus{
+	background: white;
 	margin-bottom: 0!important;
-	min-width: 600px;
+	min-width: 100%;
+	
 }
