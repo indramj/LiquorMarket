@@ -10,6 +10,34 @@
 	from table_liquor order by lid desc
 </select>
 
+<select id = "getListWithPage" resultType = "com.first.domain.LiquorVO" parameterType="com.first.domain.Criteria">
+
+<![CDATA[
+	select 
+		lid , name, description, cateName, price, stock
+	from (
+		select /*+ INDEX_DESC(table_liquor pk_liquor) */
+		 rownum rn , lid , name, description, cateName, price , stock 
+		from table_liquor
+			where 
+]]>	
+	
+	<include refid="criteria"></include>
+	
+<![CDATA[			
+			rownum <= #{currentPage} * #{size} 
+			)
+		where rn > (#{currentPage}-1) * #{size} 
+]]>
+	
+</select>
+
+<select id = "getTotalCount" resultType = "int">
+	select count(*) from table_liquor where
+		<include refid="criteria"></include>
+	 lid > 0
+</select>
+
 <insert id = "register">
 	insert into table_liquor ( lid , name , description , cateName , price , stock) 
 	values 
@@ -43,6 +71,24 @@
 <delete id = "remove">
 	delete from table_liquor where lid = #{lid}
 </delete>
+
+<sql id = "criteria">
+	<trim prefix = "(" suffix = ") and " prefixOverrides="or">
+		<foreach item = "type" collection="typeArr">
+			<trim prefix = "or">
+				<if test = "type == 'N'.toString">
+					LOWER(name) like '%'||#{keyword}||'%'
+				</if>
+				<if test = "type == 'C'.toString">
+					LOWER(catename) like '%'||#{keyword}||'%'
+				</if>
+				<if test = "type == 'P'.toString">
+					LOWER(price) like '%'||#{keyword}||'%'
+				</if>
+			</trim>
+		</foreach>
+	</trim>
+</sql>
 
 
 </mapper>
