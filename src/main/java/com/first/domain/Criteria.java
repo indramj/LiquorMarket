@@ -19,7 +19,7 @@ public class Criteria {
 		this.currentPage = 1;
 		this.size = 10;
 	}
-	
+
 	public String[] getTypeArr()
 	{
 		return type == null? new String[] {} : type.split("");
