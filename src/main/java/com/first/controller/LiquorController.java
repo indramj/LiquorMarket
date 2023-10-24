@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.first.domain.BoardVO;
@@ -33,6 +34,7 @@ public class LiquorController {
 	LiquorService liquorService;
 	
 	@GetMapping("/liquorList")
+	
 	public void list(Criteria cri , Model model)
 	{
 		cri.setSize(12); // 한페이지에 나오게할 상품의 갯수
@@ -41,6 +43,7 @@ public class LiquorController {
 		
 		model.addAttribute("liquorList" , liquorList);
 		model.addAttribute("pageDTO" , new PageDTO(cri , totalLiquorCount));
+		
 	}
 	
 	@GetMapping("/regist")

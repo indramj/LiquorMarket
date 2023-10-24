@@ -53,28 +53,22 @@ $(document).ready(function(){
 	
 	str = "";
 	
-	<c:forEach items = "${liquorList}" var = "liquor">
-		str += '<li><div class = "goods_images">';
-		str += '<a data-lid = "'+${liquor.lid}+'" href = "">';
-		str += '<img src = "" alt = "상품 이미지"></a></div>';
-		
-		
-		
-		
-	
-			
-			
-				
-	
-		<div class="goods-detail">
-			<div><a data-lid ='<c:out value = "${liquorList.lid}"/>' href = "">${liquorList.name}</a></div>
-			<div>${liquorList.description}</div>
-			<div><c:out value="${liquorList.cateName}" ></c:out></div>
-			<div>${liquorList.price}</div>
-		</div>
-	</li>
-</c:forEach>
-	
+
+	<c:forEach items= "${liquorList}" var = "liquor">
+		var lid = ${liquor.lid}
+		$.getJSON("/liquor/getAttachList", {lid:lid}, function(arr){
+			var str = "";
+			console.log(arr[0].uuid)
+			obj = arr[0];
+			var targetLid = arr[0].lid;
+			var fileCallPath = encodeURIComponent( obj.uploadPath + "/s_" + obj.uuid + "_" + obj.fileName);
+			var targetImage = $('img[data-lid="' + targetLid + '"]');
+			str += '/display?fileName=';
+			str += ''+fileCallPath+'';
+			targetImage.attr('src', str);
+		});
+	</c:forEach>
+
 
 
 });//ready
@@ -102,7 +96,7 @@ $(document).ready(function(){
 									
 									<a data-lid ='<c:out value = "${liquorList.lid}"/>' href = "">
 										
-										<img class="liquor_img_s" src="#" alt="상품 이미지">
+										<img data-lid = "${liquorList.lid}" class="liquor_img_s" src="#" alt="상품 이미지">
 									</a>
 								</div>
 								<div class="goods-detail">

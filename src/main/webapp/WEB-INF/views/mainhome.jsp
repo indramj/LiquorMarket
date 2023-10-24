@@ -12,7 +12,7 @@
 <script type="text/javascript">
 $(document).ready(function(){
 	
-	<c:forEach begin = "0"  end = "5" items="${liquorList}" var="liquor">
+/* 	<c:forEach begin = "0"  end = "5" items="${liquorList}" var="liquor">
 		var lid = ${liquor.lid};
 		
 			$.getJSON("/liquor/getAttachList", {lid: lid}, function(arr){
@@ -31,7 +31,7 @@ $(document).ready(function(){
 				});
 				$(". ul").html(str);
 		})
-	</c:forEach>
+	</c:forEach> */
 			
 	});
 	
