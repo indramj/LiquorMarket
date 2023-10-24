@@ -12,33 +12,38 @@
 <script type="text/javascript">
 $(document).ready(function(){
 	
-/* 	<c:forEach begin = "0"  end = "5" items="${liquorList}" var="liquor">
-		var lid = ${liquor.lid};
-		
-			$.getJSON("/liquor/getAttachList", {lid: lid}, function(arr){
-				console.log(arr);
-				var str = "";
-				$(arr).each(function(i , obj){
-					var fileCallPath = encodeURIComponent( obj.uploadPath + "/s_" + obj.uuid + "_" + obj.fileName);
-					console.log(fileCallPath);
-					var arr=$('img').not('.w-100')
-					arr.attr("src" , "/display?fileName="+fileCallPath+"");
-					
-					
-					str += "<li data-path='"+obj.uploadPath+"' data-uuid='"+obj.uuid+"' data-filename='"+obj.fileName+"'><div>";
-					str += "<img src='/display?fileName="+fileCallPath+"'>";
-					str += "</div></li>";
-				});
-				$(". ul").html(str);
-		})
-	</c:forEach> */
-			
+	<c:forEach begin = "0" end = "5" items= "${liquorList}" var = "liquor">
+	var lid = ${liquor.lid}
+	$.getJSON("/liquor/getAttachList", {lid:lid}, function(arr){
+		var str = "";
+		console.log(arr[0].uuid)
+		obj = arr[0];
+		var targetLid = arr[0].lid;
+		var fileCallPath = encodeURIComponent( obj.uploadPath + "/s_" + obj.uuid + "_" + obj.fileName);
+		var targetImage = $('img[data-lid="' + targetLid + '"]');
+		str += '/display?fileName=';
+		str += ''+fileCallPath+'';
+		targetImage.attr('src', str);
 	});
+</c:forEach>
+
+
+	$(".moveForm a").on("click" , function(e){
+		var moveForm = $(".moveForm");
+		e.preventDefault();
+		var lid = $(this).data('lid');
+		moveForm.append("<input type ='hidden' name = 'lid' value = '"+lid+"' >");
+		moveForm.submit();
+		
+		
+	});
+			
+}); //ready
 	
 
 </script>
 
-<div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+<div id="carouselExampleIndicators" class="m-5carousel slide" data-ride="carousel">
   <ol class="carousel-indicators">
     <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
     <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
@@ -65,35 +70,24 @@ $(document).ready(function(){
   </a>
 </div>
 
-
-
-  <div class="album py-5 bg-body-tertiary">
-    <div class="container">
-      <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
-      <c:forEach begin = "0" end = "5" items="${liquorList}" var="liquor">
-        <div class="col">
-          <div class="card shadow-sm">
-            <svg class="bd-placeholder-img card-img-top" width="100%" height="225" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false">
-            	<rect data-lid = "${liquor.lid}" width="100%" height="100%" fill="#55595c">
-            	<img x="50%" y="50%" dy=".3em"/>
-            	</rect>
-            </svg>
-            <div class="card-body">
-              <p class="card-text">${liquor.description}</p>
-              <div class="d-flex justify-content-between align-items-center">
-                <div class="btn-group">
-                  <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                </div>
-                <small class="text-body-secondary">9 mins</small>
-              </div>
-            </div>
-          </div>
-        </div>
-			</c:forEach>
+<form class = "moveForm" action = "/liquor/read" method = "get">
+<div class="m-5 row row-cols-1 row-cols-md-3 g-4">
+<c:forEach begin = "0" end = "5" items="${liquorList}" var="liquor">
+  <div class="col">
+    <div class="card h-100">
+      <img data-lid = "${liquor.lid}" class="card-img-top" alt="...">
+      <div class="card-body">
+        <h5 class="card-title">${liquor.name }</h5>
+        <p class="card-text">${liquor.description }</p>
+      </div>
+      <div class="card-footer">
+       <a data-lid = "${liquor.lid}" href = ""><small class="text-body-secondary">상품페이지로</small></a>
       </div>
     </div>
   </div>
-
+  </c:forEach>
+ </div>
+</form>
 
 </main>
 

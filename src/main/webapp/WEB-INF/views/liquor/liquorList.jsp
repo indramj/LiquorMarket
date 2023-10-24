@@ -30,7 +30,7 @@ function srch()
 $(document).ready(function(){
 	var moveForm = $(".move");
 	
-	$(".move goods_images a").click(function(e){
+	$(".goods_table a").on("click" , function(e){
 		e.preventDefault();
 		var lid = $(this).data('lid');
 		moveForm.append("<input type ='hidden' name = 'lid' value = '"+lid+"' >");
@@ -85,7 +85,9 @@ $(document).ready(function(){
 				<span>추천 상품</span>
 			</div>
 			<div class="add_menu">    <!-- 나중에 아래로 옮기기 -->
-				<button type ="button" class = "btnRegist">등록</button> 	
+			<sec:authorize access = "isAuthenticated()">
+				<button type ="button" class = "btnRegist">등록</button>
+			</sec:authorize> 	
 			</div>
 			<c:if test="${listcheck != 'empty'}">
 				<form class = "move" action = "/liquor/read/" method = "get">
