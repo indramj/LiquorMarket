@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ include file="../include/header.jsp" %>
 <!DOCTYPE html>
@@ -27,31 +27,57 @@ function srch()
 	search.submit();
 }	
 	
-	$(document).ready(function(){
-		var moveForm = $(".move");
-		
-		$(".move goods_images a").click(function(e){
-			e.preventDefault();
-			var lid = $(this).data('lid');
-			moveForm.append("<input type ='hidden' name = 'lid' value = '"+lid+"' >");
-			moveForm.submit();
-		});
-		
-		$(".btnRegist").on("click" , function(e){
-			e.preventDefault();
-			moveForm.attr("action" , "/liquor/regist")
-			moveForm.submit();
-		});
-		
-		$(".btnPage a").click(function(e){
-			e.preventDefault();
-		
-			moveForm.find("input[name = currentPage]").val($(this).attr("href"));
-			moveForm.attr("action" , "/liquor/liquorList")
-			moveForm.submit();
-		})
-		
+$(document).ready(function(){
+	var moveForm = $(".move");
+	
+	$(".move goods_images a").click(function(e){
+		e.preventDefault();
+		var lid = $(this).data('lid');
+		moveForm.append("<input type ='hidden' name = 'lid' value = '"+lid+"' >");
+		moveForm.submit();
+	});
+	
+	$(".btnRegist").on("click" , function(e){
+		e.preventDefault();
+		moveForm.attr("action" , "/liquor/regist")
+		moveForm.submit();
+	});
+	
+	$(".btnPage a").click(function(e){
+		e.preventDefault();
+	
+		moveForm.find("input[name = currentPage]").val($(this).attr("href"));
+		moveForm.attr("action" , "/liquor/liquorList")
+		moveForm.submit();
 	})
+	
+	str = "";
+	
+	<c:forEach items = "${liquorList}" var = "liquor">
+		str += '<li><div class = "goods_images">';
+		str += '<a data-lid = "'+${liquor.lid}+'" href = "">';
+		str += '<img src = "" alt = "상품 이미지"></a></div>';
+		
+		
+		
+		
+	
+			
+			
+				
+	
+		<div class="goods-detail">
+			<div><a data-lid ='<c:out value = "${liquorList.lid}"/>' href = "">${liquorList.name}</a></div>
+			<div>${liquorList.description}</div>
+			<div><c:out value="${liquorList.cateName}" ></c:out></div>
+			<div>${liquorList.price}</div>
+		</div>
+	</li>
+</c:forEach>
+	
+
+
+});//ready
 	
 	
 </script>
@@ -73,8 +99,10 @@ function srch()
 						<c:forEach items="${liquorList}" var="liquorList">
 							<li>
 								<div class="goods_images">
+									
 									<a data-lid ='<c:out value = "${liquorList.lid}"/>' href = "">
-										<img class="liquor_img_s" src="/resources/images/liquor/liquor1.jpg" alt="상품 이미지">
+										
+										<img class="liquor_img_s" src="#" alt="상품 이미지">
 									</a>
 								</div>
 								<div class="goods-detail">
