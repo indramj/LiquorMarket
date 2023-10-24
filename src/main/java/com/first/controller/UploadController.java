@@ -1,8 +1,10 @@
 package com.first.controller;
 
+import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
 import java.nio.file.Files;
@@ -15,6 +17,8 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.UUID;
+
+import javax.imageio.ImageIO;
 
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -33,6 +37,7 @@ import com.first.domain.AttachFileDTO;
 
 import lombok.extern.log4j.Log4j;
 import net.coobird.thumbnailator.Thumbnailator;
+import net.coobird.thumbnailator.util.BufferedImages;
 
 
 @Log4j
@@ -86,7 +91,14 @@ public class UploadController {
 				if(checkImageType(saveFile) == true) {
 					
 					FileOutputStream thumbnail = new FileOutputStream(new File(uploadPath , "s_" + uploadFileName));
-					Thumbnailator.createThumbnail(multipartFile.getInputStream() , thumbnail , 100 , 100);
+					InputStream imageInputStream = multipartFile.getInputStream();
+					
+					BufferedImage originalImage = ImageIO.read(imageInputStream);
+					BufferedImage thumbnailImage = new BufferedImage(100, 100, BufferedImage.TYPE_INT_RGB);
+					
+					thumbnailImage.createGraphics().drawImage(originalImage.getScaledInstance(100, 100, java.awt.Image.SCALE_SMOOTH), 0, 0, 100, 100, null);
+					
+					ImageIO.write(thumbnailImage, "jpg", thumbnail);
 					multipartFile.transferTo(saveFile);
 					thumbnail.close();
 					
