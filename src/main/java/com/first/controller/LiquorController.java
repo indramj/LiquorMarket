@@ -13,12 +13,14 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.first.domain.BoardVO;
 import com.first.domain.Criteria;
 import com.first.domain.ImageFileVO;
 import com.first.domain.LiquorVO;
+import com.first.domain.PageDTO;
 import com.first.service.LiquorService;
 
 import lombok.extern.log4j.Log4j;
@@ -32,10 +34,16 @@ public class LiquorController {
 	LiquorService liquorService;
 	
 	@GetMapping("/liquorList")
-	public void list(Model model)
+	
+	public void list(Criteria cri , Model model)
 	{
-		List<LiquorVO> liquorList = liquorService.getLiquorList();
+		cri.setSize(12); // 한페이지에 나오게할 상품의 갯수
+		List<LiquorVO> liquorList = liquorService.getList(cri);
+		int totalLiquorCount = liquorService.getTotalCount(cri);
+		
 		model.addAttribute("liquorList" , liquorList);
+		model.addAttribute("pageDTO" , new PageDTO(cri , totalLiquorCount));
+		
 	}
 	
 	@GetMapping("/regist")

@@ -1,0 +1,109 @@
+@charset "UTF-8";
+*{
+	margin: 0;
+	padding:0;
+}
+#content_wrap{
+	position: relative;
+    width: 100%;
+    min-width: 1200px;
+    margin: 0;
+}
+#container{
+	position: relative;
+    width: 100%;
+}
+#container > #contents{
+	position: relative;
+    width: 85%;
+    margin: 0 auto;
+    box-sizing: border-box;
+    min-height: 800px;
+}
+#productDetail{
+	position: relative;
+    margin: 90px auto;
+}
+#productDetail .detailArea{
+    line-height: 0;
+    text-align: center;
+    padding: 0 0 20px 0;
+}
+#imgArea{
+	display: inline-block;
+    vertical-align: top;
+    position: relative;
+    width: 50%;
+}
+#imgArea ul li{
+	display: inline-block;
+    vertical-align: middle;
+    width: 100%;
+    margin: 0;
+}
+#imgArea ul li img {
+	width: 80%;
+}
+#infoArea {
+    position: relative;
+    display: inline-block;
+    width: 46%;
+    padding: 0px 0 0 50px;
+    box-sizing: border-box;
+    text-align: left;
+    line-height: 16px;
+    letter-spacing: 0.3px;
+}
+.form_section_content{
+	line-height: 20px;
+	padding: 3px 0;
+	margin-bottom: 10px;
+}
+.form_section_content input {
+    border:none;
+    background: transparent;
+    
+}
+#description_textarea{
+	border:none;
+    background: transparent;
+    width: 100%;
+    height: 350px;
+    overflow:hidden;
+    color: #b5b5b5;
+}
+.form_section_content #name{
+	font-size: 30px;
+}
+#cateName{
+	color: #f0a8aa;
+}
+#input_width{
+	width: 80px;
+	font-weight: 100;
+}
+.form_section_content label{
+	width: 100px;
+	font-size: 16px;
+	font-weight: 100;
+}
+.form_section_title{
+	font-size: 20px;
+	font-weight: 100;
+	margin-top: 20px;
+}
+.btn_section{
+	margin-top: 50px;
+}
+.btn_section button{
+	border: none;
+    height: 40px;
+    width: 20%;
+    border-radius: 10px;
+    text-align: center;
+    float: center;
+    font-size: 20px;
+    font-weight: 100;
+    background-color: #eeded0;
+    color: #6e6e6e;
+}

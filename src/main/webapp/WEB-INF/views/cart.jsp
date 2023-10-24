@@ -46,6 +46,7 @@
 		    window.location.reload();
 		  }
 		});
+
 		
 const quantityElements = document.querySelectorAll('.quantity');
 const totalElements = document.querySelectorAll('.total_price');
@@ -85,6 +86,7 @@ function updateQuantity(index, operation) {
     // 수량 업데이트
     quantityElement.textContent = quantity;
 }
+
 
 </script>
 </body>

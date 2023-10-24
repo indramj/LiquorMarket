@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.first.domain.BoardVO;
+import com.first.domain.Criteria;
 import com.first.domain.ImageFileVO;
 import com.first.domain.LiquorVO;
 import com.first.mapper.ImageFileMapper;
@@ -26,6 +27,17 @@ public class LiquorServiceImpl implements LiquorService{
 	public List<LiquorVO> getLiquorList()
 	{
 		return mapper.getListAll();
+	}
+	
+	@Override
+	public List<LiquorVO> getList(Criteria cri)
+	{
+		return mapper.getListWithPage(cri);
+	}
+	
+	public int getTotalCount(Criteria cri)
+	{
+		return mapper.getTotalCount(cri);
 	}
 	
 	@Transactional

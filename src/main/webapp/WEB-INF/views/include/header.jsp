@@ -42,9 +42,9 @@
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@docsearch/css@3">
 
+
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 <link rel="stylesheet" href="/resources/css/headerplus.css">
-
 
 <meta name="theme-color" content="#712cf9">
 
@@ -170,7 +170,7 @@
         <li class="nav-item"><a href="../" class="nav-link" id = "home" aria-current="page">Home</a></li>
         <li class="nav-item"><a href="/liquor/liquorList" class="nav-link" id = "liquor">주류 리스트</a></li>
         <li class="nav-item"><a href="/board/list" class="nav-link" id = "board">상품 문의</a></li>
-        <li class="nav-item"><a href="/cart" class="nav-link">장바구니</a></li>
+        <li class="nav-item"><a href="/cart?memberId=kmm" class="nav-link">장바구니</a></li>
         <sec:authorize access="hasRole('ROLE_ADMIN')">
         	<li class="nav-item"><a href="/admin/main" class="nav-link">회원관리</a></li>
         </sec:authorize>

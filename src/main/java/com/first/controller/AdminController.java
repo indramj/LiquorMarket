@@ -59,14 +59,7 @@ import com.first.service.AdminService;
 	
 		
 		
-	    /* 상품 등록 페이지 접속 */
-	    @GetMapping("/enrollGoods")
-	    public void enrollGoods() throws Exception{
-	        logger.info("상품 등록 페이지 접속");
-	        
-	        
-	        List list = adminService.cateList();
-	    }  
+	  
 	    
   	
 	    
