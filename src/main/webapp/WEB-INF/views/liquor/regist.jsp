@@ -8,6 +8,8 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+
 <link rel="stylesheet" href="../resources/css/liquor/regist.css">
 
 
@@ -131,7 +133,7 @@ $(document).ready(function(){
 					<label>주류 이름</label>
 				</div>
 				<div class="form_section_content">
-					<input type = "text" name="name">
+					<input class="form-control" type = "text" name="name">
 				</div>
 			</div>
 
@@ -152,7 +154,7 @@ $(document).ready(function(){
 						<label>주류 가격</label>
 					</div>
 					<div class="form_section_content">
-						<input type = "text" name="price" >
+						<input class="form-control" type = "text" name="price" >
 					</div>
 				</div>
 
@@ -161,7 +163,7 @@ $(document).ready(function(){
 						<label>상품 재고</label>
 					</div>
 					<div class="form_section_content">
-						<input type = "text" name="stock" >
+						<input class="form-control" type = "text" name="stock" >
 					</div>
 				</div>
 
@@ -170,7 +172,8 @@ $(document).ready(function(){
 						<label>주류 소개</label>
 					</div>
 					<div class="form_section_content bit">
-						<textarea name="description" id="description_textarea">${liquor.description}</textarea>
+						<textarea class="form-control" name="description" id="description_textarea" rows="5" style = "resize:none;">${liquor.description}</textarea>
+						
 					</div>
 				
 				<div class="panel-body">
@@ -187,8 +190,8 @@ $(document).ready(function(){
 				
 		<div class = "regist-mb-3">
 		<div class= "col-sm-3">
-			<button type="button" class="btn btn-secondary" id = "Register">등록</button>
-			<button type="button" class="btn btn-secondary btnCancel">취소</button>
+			<button type="button" class="btn btn-primary" id = "Register">등록</button>
+			<button type="button" class="btn btn-primary btnCancel">취소</button>
 			<input type = "hidden" name = "${_csrf.parameterName}" value = "${_csrf.token}">
 		</div>
 		</div>
@@ -210,5 +213,7 @@ $(document).ready(function(){
 			</form>
 -->
 		</div>
+				    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+		
 </body>
 </html>
