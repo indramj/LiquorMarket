@@ -4,18 +4,10 @@ import java.util.List;
 
 
 import com.first.domain.Criteria;
-import com.first.domain.LiquorVO;
+import com.first.domain.MemberVO;
 
 public interface AdminService {
+	
+	public List<MemberVO> getMemberList();
 
-
-	/* 상품 리스트 */
-	public List<LiquorVO> getGoodsList(Criteria cri);
-	
-	/* 상품 총 개수 */
-	public int getGoodsTotal(Criteria cri);
-	
-	public List<LiquorVO> getListAll();
-	
-	public LiquorVO getGoodsDetail(int lId);
 }

@@ -64,14 +64,25 @@ public class LiquorController {
 		return "redirect:/liquor/liquorList";
 	}
 	
-	@GetMapping({"/read" , "/modify"})
+	
+	@GetMapping("/read")
 	public void read(@RequestParam("lid") int lid , Model model)
 	{
 		LiquorVO liquor = new LiquorVO();
 		liquor = liquorService.getLiquor(lid);
 		model.addAttribute("liquor" , liquor);
 	}
-
+	@PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_MANAGER')")
+	@GetMapping("/modify")
+	public void modify(@RequestParam("lid") int lid , Model model)
+	{
+		LiquorVO liquor = new LiquorVO();
+		liquor = liquorService.getLiquor(lid);
+		model.addAttribute("liquor" , liquor);
+	}
+	
+	
+	@PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_MANAGER')")
 	@PostMapping("/modify")
 	public String modify( LiquorVO liquorVO , @ModelAttribute("cri") Criteria cri, Model model , RedirectAttributes rttr)
 	{
@@ -82,6 +93,7 @@ public class LiquorController {
 		
 	}
 	
+	@PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_MANAGER')")
 	@PostMapping("/remove")
 	public String remove(@RequestParam("lid") int lid)
 	{
