@@ -59,8 +59,7 @@ $(document).ready(function(){
     <div class="carousel-item" data-bs-interval="4000">
       <img src="/resources/images/main/main3.jpg" class="d-block w-100" alt="...">
     </div>
-  </div>
-  <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+    <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
     <span class="carousel-control-prev-icon" aria-hidden="true"></span>
     <span class="sr-only">Previous</span>
   </a>
@@ -68,6 +67,8 @@ $(document).ready(function(){
     <span class="carousel-control-next-icon" aria-hidden="true"></span>
     <span class="sr-only">Next</span>
   </a>
+  </div>
+  
 </div>
 
 <form class = "moveForm" action = "/liquor/read" method = "get">

@@ -126,9 +126,11 @@
 						document.getElementById('cartBtn').addEventListener('click',function() { 
 						// 타겟 페이지 링크 클릭
 						document.getElementById('cartPage').click(); });</script> --> 
-	
+						<sec:authorize access = "isAuthenticated()">
+						<sec:authorize access="hasAnyAuthority('ROLE_ADMIN', 'ROLE_MANAGER')">
 						<a href = "/liquor/modify?lid=<c:out value ='${liquor.lid}'/>"><button class="btnModify">수정</button></a>
-
+						</sec:authorize>
+						</sec:authorize>
 						</div>
 					</div>
 				

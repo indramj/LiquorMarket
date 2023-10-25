@@ -172,7 +172,7 @@
         <li class="nav-item"><a href="/board/list" class="nav-link" id = "board">상품 문의</a></li>
         <li class="nav-item"><a href="/cart?memberId=kmm" class="nav-link">장바구니</a></li>
         <sec:authorize access="hasRole('ROLE_ADMIN')">
-        	<li class="nav-item"><a href="/admin/main" class="nav-link">회원관리</a></li>
+        	<li class="nav-item"><a href="/admin/manageMember" class="nav-link">회원관리</a></li>
         </sec:authorize>
       </ul>
     </header>

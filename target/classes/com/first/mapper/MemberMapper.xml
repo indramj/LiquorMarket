@@ -43,5 +43,25 @@
 		<result property="memberId" column="memberid"/>
 		<result property="auth" column="auth"/>
 	</resultMap>
+	
+	<select id = "getMemberList" resultMap = "memberlistMap">
+		select mem.memberid, membername, memberphone , memberemail , memberaddress1 , memberaddress2 , regdate, updatedate, auth
+		from
+			table_member mem LEFT OUTER JOIN table_auth auth on mem.memberid= auth.memberid
+	</select>
+	
+	<resultMap type = "com.first.domain.MemberVO" id="memberlistMap">
+		<result property="memberId" column="memberid"/>
+		<result property="memberName" column="membername"/>
+		<result property="memberPhone" column="memberphone"/>
+		<result property="memberEmail" column="memberemail"/>
+		<result property="memberAddress1" column="memberaddress1"/>
+		<result property="memberAddress2" column="memberaddress2"/>
+		<result property="regDate" column="regdate"/>
+		<result property="updateDate" column="updatedate"/>		
+		<collection property="authList" resultMap="authMap"/>
+	</resultMap>
+	
+	
       
 </mapper>
