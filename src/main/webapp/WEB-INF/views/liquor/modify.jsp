@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ include file="../include/header.jsp" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -47,7 +48,6 @@ $(".btnList").on("click" , function(e){
 </script>
 </head>
 <body>
-	<h1>상품 조회 페이지</h1>
 <form id = "operForm" action = "/liquor/modify" method = "post">
 <input type = "hidden" name = "${_csrf.parameterName}" value = "${_csrf.token}">
 	<div class="admin_content_wrap">
@@ -69,8 +69,14 @@ $(".btnList").on("click" , function(e){
 			<div class="form_section">
 				<div class="form_section_title">
 					<label>주류 카테고리</label>
-					<input name="cateName" value="<c:out value="${liquor.cateName}"/>">
+				<select class="form-select" name = "cateName">			    
+			    <option value="와인" >와인</option>
+			    <option value="위스키">위스키</option>
+			    <option value="소주" >소주</option>
+			    <option value="맥주" >맥주</option>
+		 		</select>
 				</div>
+			</div>
 <!-- 
 
 				<div class="form_section_content">
