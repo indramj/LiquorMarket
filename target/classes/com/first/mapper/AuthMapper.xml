@@ -7,6 +7,10 @@
 	<insert id="join">
 		insert into table_auth (memberid , auth) values (#{memberid} , 'ROLE_USER')
 	</insert>
+	
+	<insert id = "addRole">
+		insert into table_auth (memberid , auth) values (#{memberid} , 'ROLE_MANAGER')
+	</insert>
 		
 </mapper>
 	

@@ -79,16 +79,6 @@ $(".btnList").on("click" , function(e){
 		 		</select>
 				</div>
 			</div>
-<!-- 
-
-				<div class="form_section_content">
-					<div class="cate_wrap">
-						<span>대분류</span> <select class="cate1" disabled>
-							<option value="none">선택</option>
-						</select>
-					</div>
-				</div> -->
-
 
 				<div class="form_section">
 					<div class="form_section_title">
@@ -129,7 +119,9 @@ $(".btnList").on("click" , function(e){
 			<button type="button" class="btn btn-primary btnList">취소</button>
 		</div>
 	</div>
-			</div>
+</div>
+</div>
+</form>
 
 
 		<!--  	<form id="moveForm" action="/admin/manageGoods" method="get">
@@ -138,8 +130,8 @@ $(".btnList").on("click" , function(e){
 				<input type="hidden" name="keyword" value="${pageMaker.cri.keyword}">
 			</form>
 -->
-		</div>
-		    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+		
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
 		
 </body>
 </html>
