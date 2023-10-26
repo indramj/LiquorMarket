@@ -9,5 +9,7 @@ import com.first.domain.MemberVO;
 public interface AdminService {
 	
 	public List<MemberVO> getMemberList();
+	
+	public void addRole(String memberId);
 
 }

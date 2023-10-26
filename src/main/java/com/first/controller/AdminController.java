@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.first.domain.Criteria;
@@ -33,6 +34,13 @@ public class AdminController {
 	{
 		List<MemberVO> memberList = adminService.getMemberList();
 		model.addAttribute("memberList" , memberList);
+	}
+	
+	@GetMapping("/addRole")
+	public void addRole(@RequestParam("memberId") String memberId)
+	{
+		adminService.addRole(memberId);
+		
 	}
 	
 	
