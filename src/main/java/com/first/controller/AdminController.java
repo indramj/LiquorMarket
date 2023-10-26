@@ -16,77 +16,27 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.first.domain.Criteria;
 import com.first.domain.LiquorVO;
+import com.first.domain.MemberVO;
 import com.first.domain.PageDTO;
 import com.first.service.AdminService;
 
 @Controller
 @RequestMapping("/admin")
-	public class AdminController {
+public class AdminController {
 	
-	 private static final Logger logger = LoggerFactory.getLogger(AdminController.class);
-	 
-	 @Autowired
-	 private AdminService adminService;
-	 	 	 
-	 // 관리자 메인 페이지 이동 
-	    @RequestMapping(value="main", method = RequestMethod.GET)
-	    public void getAdminMain() throws Exception{
-	        
-	        logger.info("관리자 페이지로 이동");	        	        
-	    }
-	    
-	    
-	    
-		/* 상품 리스트 데이터 */
-
-		@GetMapping("/manageGoods")
-		public void getManageGoods(Criteria cri, Model model) throws Exception {
-
-			logger.info("상품 관리 (상품 목록) 페이지 접속");
-
-			/* 상품 리스트 데이터 */
-			List<LiquorVO> liqourList = adminService.getListAll();
-
-			if (!liqourList.isEmpty()) {
-				model.addAttribute("liquorList", liqourList);
-			} else {
-				model.addAttribute("listCheck", "empty");
-				return;
-			}
-
-		}
- 
+	@Autowired
+	AdminService adminService;
 	
-		
-		
-	  
-	    
-  	
-	    
-	  //상품 등록 
-	    	@PostMapping("/enrollGoods")
-	    	public String enrollGoodsPOST(LiquorVO liqour, RedirectAttributes rttr) {
-	    		
-	    		logger.info("enrollGoodsPOST......" + liqour);
-	    		
-	    		
-	    		
-	    		rttr.addFlashAttribute("enroll_result", liqour.getName());
-	    		
-	    		return "redirect:/admin/manageGoods";
-	    	}	
-	    	
-	    	/* 상품 조회 페이지 */
-	    	@GetMapping("/goodsDetail")
-	    	public void getGoodsInfo(int lId, Criteria cri, Model model) {
-	    		
-	    		logger.info("getGoodsInfo()........." + lId);
-	    		
-	    		/* 목록 페이지 조건 정보 */
-	    		model.addAttribute("cri", cri);
-	    		
-	    		/* 조회 페이지 정보 */
-	    		model.addAttribute("goodsInfo", adminService.getGoodsDetail(lId));
-	    		
-	    	}
-	    }
+	
+	@GetMapping("/manageMember")
+	public void manageMember(Model model)
+	{
+		List<MemberVO> memberList = adminService.getMemberList();
+		model.addAttribute("memberList" , memberList);
+	}
+	
+	
+	
+
+}
+
