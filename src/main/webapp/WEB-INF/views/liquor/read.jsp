@@ -177,7 +177,7 @@
 						
 						</sec:authorize>
 						</sec:authorize>
-             <a href = "/cart?lid=<c:out value = '${liquor.lid}'/>"><button class="buyBtn">바로 구매</button></a>
+            
 						</div>
 					</div>
 				
