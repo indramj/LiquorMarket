@@ -54,7 +54,42 @@
 			})			
 		})();
 	});
-			
+	
+	// 수량 버튼 조작
+	let quantity = $(".quantity_input").val();
+	$(".plus_btn").on("click", function(){
+		$(".quantity_input").val(++quantity);
+	});
+	$(".minus_btn").on("click", function(){
+		if(quantity > 1){
+			$(".quantity_input").val(--quantity);	
+		}
+	});
+	
+	// 장바구니 필요한 데이터 전송
+	document.getElementById("addToCartButton").addEventListener("click", function() {
+        const memberId = <%--'${member.memberId}' --%> 'kmm';
+        const lid = '${liquor.lid}';
+        addToCart(kmm, lid);
+    });
+
+    function addToCart(memberId, lid) {
+        // AJAX 요청을 만들어 서버로 데이터를 전송
+        const xhr = new XMLHttpRequest();
+        const url = '/cart';
+        const data = `memberId=${memberId}&lid=${lid}`;
+        xhr.open('GET', `${url}?${data}`, true);
+
+        xhr.onreadystatechange = function() {
+            if (xhr.readyState === 4 && xhr.status === 200) {
+                // 서버에서 응답을 처리
+                // 예를 들어, 장바구니 화면 업데이트 등
+            }
+        };
+
+        xhr.send();
+    }
+	
 </script>
 <link rel="stylesheet" href="/resources/css/liquor/read.css">
 </head>
@@ -115,8 +150,18 @@
 								<input id="input_width" name="stock" value="<c:out value="${liquor.stock}"/>" disabled>
 							</div>
 						</div>
-						<div class="btn_section">
-						<a href = "/cart?lid=<c:out value = '${liquor.lid}'/>"><button class="cartBtn">장바구니</button></a>
+							<div class="btn">
+								<div class="btn_quantity">
+									<input type="text" class="quantity_input" value="1"> <span>
+										<button class="plus_btn">+</button>
+										<button class="minus_btn">-</button>
+									</span>
+								</div>
+							</div>
+							<div class="btn_section">
+						
+						
+						<a href = "/cart?memberId=<c:out value = 'kmm'/>"><button class="cartBtn" id="addToCartButton">장바구니 담기</button></a>
 						
 						<!-- <button id="cartBtn" class ="btn_cart">장바구니</button>
 						<a href="cart.jsp" id="cartPage" style="display: none;"></a>
@@ -129,8 +174,10 @@
 						<sec:authorize access = "isAuthenticated()">
 						<sec:authorize access="hasAnyAuthority('ROLE_ADMIN', 'ROLE_MANAGER')">
 						<a href = "/liquor/modify?lid=<c:out value ='${liquor.lid}'/>"><button class="btnModify">수정</button></a>
+						
 						</sec:authorize>
 						</sec:authorize>
+             <a href = "/cart?lid=<c:out value = '${liquor.lid}'/>"><button class="buyBtn">바로 구매</button></a>
 						</div>
 					</div>
 				
