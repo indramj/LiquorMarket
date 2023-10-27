@@ -69,21 +69,20 @@
 	// 장바구니 필요한 데이터 전송
 	document.getElementById("addToCartButton").addEventListener("click", function() {
         const memberId = <%--'${member.memberId}' --%> 'kmm';
-        const lid = '${liquor.lid}';
-        addToCart(kmm, lid);
+        const lid = ${liquor.lid};
+        addToCart(memberId, lid);
     });
 
     function addToCart(memberId, lid) {
         // AJAX 요청을 만들어 서버로 데이터를 전송
         const xhr = new XMLHttpRequest();
-        const url = '/cart';
-        const data = `memberId=${memberId}&lid=${lid}`;
-        xhr.open('GET', `${url}?${data}`, true);
+        const url = '/cart/memberId=${memberId}&lid={lid}';
+        xhr.open('GET', url, true);
 
         xhr.onreadystatechange = function() {
             if (xhr.readyState === 4 && xhr.status === 200) {
-                // 서버에서 응답을 처리
-                // 예를 들어, 장바구니 화면 업데이트 등
+                // 장바구니 화면 업데이트
+                console.log{}
             }
         };
 
@@ -161,7 +160,10 @@
 							<div class="btn_section">
 						
 						
-						<a href = "/cart?memberId=<c:out value = 'kmm'/>"><button class="cartBtn" id="addToCartButton">장바구니 담기</button></a>
+						<a href="/cart?memberId=kmm&lid=<c:out value='${liquor.lid}' />">
+    						<button class="cartBtn" id="addToCartButton">장바구니 담기</button>
+						</a>
+
 						
 						<!-- <button id="cartBtn" class ="btn_cart">장바구니</button>
 						<a href="cart.jsp" id="cartPage" style="display: none;"></a>
