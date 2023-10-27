@@ -7,5 +7,9 @@ public interface AuthMapper {
 	
 	//운영자 권한 부여
 	public void addRole(String memberId);
+	
+	public void removeRole(String memberId);
+	
+	public void removeAllAuth(String memberId);
 
 }

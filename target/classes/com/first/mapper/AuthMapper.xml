@@ -11,6 +11,14 @@
 	<insert id = "addRole">
 		insert into table_auth (memberid , auth) values (#{memberid} , 'ROLE_MANAGER')
 	</insert>
+	
+	<delete id = "removeRole">
+		delete from table_auth where memberid = #{memberid} and auth = 'ROLE_MANAGER'
+	</delete>
+	
+	<delete id = "removeAllAuth">
+		delete from table_auth where memberid = #{memberid}
+	</delete>
 		
 </mapper>
 	

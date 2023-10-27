@@ -10,6 +10,9 @@ public interface AdminService {
 	
 	public List<MemberVO> getMemberList();
 	
-	public void addRole(String memberId);
+	public void addRole(List<String> memberList);
+	
+	public void removeRole(List<String> memberList);
 
+	public void removeMember(List<String> memberList);
 }

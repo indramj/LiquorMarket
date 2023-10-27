@@ -4,7 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
+import org.springframework.transaction.annotation.Transactional;
 
 import com.first.domain.Criteria;
 import com.first.domain.LiquorVO;
@@ -27,17 +27,37 @@ public class AdminServiceImpl implements AdminService {
 	@Autowired
 	AuthMapper authMapper;
 	
-	
+	@Override
 	public List<MemberVO> getMemberList()
 	{
 		return memberMapper.getMemberList();
 	}
 	
-	public void addRole(String memberId)
+	@Override
+	public void addRole(List<String> memberList)
 	{
-		authMapper.addRole(memberId);
+		for (String memberId : memberList) {
+			authMapper.addRole(memberId);
+		}
 	}
 	
+	@Override
+	public void removeRole(List<String> memberList)
+	{
+		for (String memberId : memberList) {
+			authMapper.removeRole(memberId);
+		}
+	}
+	
+	@Transactional
+	@Override
+	public void removeMember(List<String> memberList)
+	{
+		for (String memberId : memberList) {
+			authMapper.removeAllAuth(memberId);
+			memberMapper.remove(memberId);
+		}
+	}
 	
 
 }
