@@ -182,11 +182,12 @@ $(document).ready(function(){
   				</div>
   				
   				<div class='uploadResult'>
-  					<ul>
+  					<ul class='no_dot'>
   						
   					</ul>
   				</div>
   				</div>
+  				
 				
 		<div class = "regist-mb-3">
 		<div class= "col-sm-3">

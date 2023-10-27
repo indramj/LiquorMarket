@@ -22,6 +22,10 @@
     color: #55595C;
     
 }	
+
+.no_dot {
+  list-style-type: none;
+}
 .form_section{
 	width: 95%;
     margin-left: 2%;
