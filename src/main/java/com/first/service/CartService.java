@@ -11,10 +11,6 @@ public interface CartService {
 	
 	public List<CartItemDTO> getCartList(String memberId);
 	
-//	public int addCart(CartDTO cart);
-//	
-//	
-	
-//	
+
 	
 }
