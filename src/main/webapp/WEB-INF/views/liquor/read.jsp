@@ -19,76 +19,72 @@
 		var lid = '<c:out value="${liquor.lid}"/>';
 		
 		var operForm = $("#operForm");
-			$(".btnModify").on("click" , function(e){
-				operForm.attr("action" , "/liquor/modify").submit();
-			});
+		$(".btnModify").on("click" , function(e){
+			operForm.attr("action" , "/liquor/modify").submit();
+		});
 			
-			$(".btnList").on("click" , function(e){
-				var lid = operForm.find("#lid");
-				lid.remove();
- 				var type = operForm.find("#type");
-				var keyword = operForm.find("#keyword");
-				if(type.val() === "")
-					type.remove();
-				if(keyword.val() === "")
-					keyword.remove(); 
+		$(".btnList").on("click" , function(e){
+			var lid = operForm.find("#lid");
+			lid.remove();
+			var type = operForm.find("#type");
+			var keyword = operForm.find("#keyword");
+			if(type.val() === "")
+				type.remove();
+			if(keyword.val() === "")
+				keyword.remove(); 
 
-				operForm.attr("action" , "/liquor/liquorList").submit();
+			operForm.attr("action" , "/liquor/liquorList").submit();
+		});
+		
+		(function(){
+			var lid = '<c:out value="${liquor.lid}"/>';
+			$.getJSON("/liquor/getAttachList", {lid: lid}, function(arr){
+				console.log(arr);
+				var str = "";
+				$(arr).each(function(i , obj){
+					var fileCallPath = encodeURIComponent(obj.uploadPath + "/" + obj.uuid + "_" + obj.fileName);
+					str += "<li data-path='"+obj.uploadPath+"' data-uuid='"+obj.uuid+"' data-filename='"+obj.fileName+"'><div>";
+					str += "<img src='/display?fileName="+fileCallPath+"'>";
+					str += "</div></li>";
+				});
+				$(".uploadResult ul").html(str);
 			});
-			
-			
-			(function(){
-				var lid = '<c:out value="${liquor.lid}"/>';
-				$.getJSON("/liquor/getAttachList", {lid: lid}, function(arr){
-					console.log(arr);
-					var str = "";
-					$(arr).each(function(i , obj){
-
-						
-						var fileCallPath = encodeURIComponent( obj.uploadPath + "/" + obj.uuid + "_" + obj.fileName);
-						str += "<li data-path='"+obj.uploadPath+"' data-uuid='"+obj.uuid+"' data-filename='"+obj.fileName+"'><div>";
-						str += "<img src='/display?fileName="+fileCallPath+"'>";
-						str += "</div></li>";
-					});
-					$(".uploadResult ul").html(str);
-			})			
 		})();
+		
+		// 수량 버튼 조작
+		let quantity = $(".quantity_input").val();
+		$(".plus_btn").on("click", function(){
+			$(".quantity_input").val(++quantity);
+		});
+		$(".minus_btn").on("click", function(){
+			if(quantity > 1){
+				$(".quantity_input").val(--quantity);
+			}
+		});
 	});
-	
-	// 수량 버튼 조작
-	let quantity = $(".quantity_input").val();
-	$(".plus_btn").on("click", function(){
-		$(".quantity_input").val(++quantity);
-	});
-	$(".minus_btn").on("click", function(){
-		if(quantity > 1){
-			$(".quantity_input").val(--quantity);	
-		}
-	});
-	
+
 	// 장바구니 필요한 데이터 전송
-	document.getElementById("addToCartButton").addEventListener("click", function() {
-        const memberId = <%--'${member.memberId}' --%> 'kmm';
-        const lid = ${liquor.lid};
-        addToCart(memberId, lid);
-    });
+	$('#addToCartButton').on('click', function() {
+		const memberId = 'kmm'; // 멤버 아이디
+		const lid = ${liquor.lid}; // 상품 아이디
+		const quantity = 1; // 수량
+        
+		// AJAX 요청을 만들어 서버로 데이터를 전송
+		$.ajax({
+			type: 'POST',
+			url: '/cart', // 실제 URL에 따라 수정
+			data: { memberId: memberId, lid: lid, quantity: quantity },
+			success: function(response) {
+				// 성공한 경우, 필요한 동작 수행 (예: 장바구니 갱신)
+				alert('장바구니에 추가되었습니다.');
+			},
+			error: function() {
+				// 오류 처리 로직 추가
+				alert('장바구니에 추가하는 중 오류가 발생했습니다.');
+			}
+		});
+	});
 
-    function addToCart(memberId, lid) {
-        // AJAX 요청을 만들어 서버로 데이터를 전송
-        const xhr = new XMLHttpRequest();
-        const url = '/cart/memberId=${memberId}&lid={lid}';
-        xhr.open('GET', url, true);
-
-        xhr.onreadystatechange = function() {
-            if (xhr.readyState === 4 && xhr.status === 200) {
-                // 장바구니 화면 업데이트
-                console.log{}
-            }
-        };
-
-        xhr.send();
-    }
-	
 </script>
 <link rel="stylesheet" href="/resources/css/liquor/read.css">
 </head>
