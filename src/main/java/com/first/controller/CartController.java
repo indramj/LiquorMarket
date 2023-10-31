@@ -11,6 +11,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -41,17 +42,17 @@ public class CartController {
 	}
 	
 	@PostMapping("")
-	public String addItemToCart(@RequestParam("memberId") String memberId, 
-	                            @RequestParam("lid") int lid, 
-	                            @RequestParam("price") int price) {
-		
-	    cartService.addItemToCart(memberId, lid, price);
-	    
-	    log.info("addItemToCart method called with memberId: " + memberId + ", lid: " + lid + ", price: " + price);
+	@ResponseBody
+	public String addItemToCart(@RequestBody CartItemVO cartItemVO) {
 
-	    
-	    return "redirect:/cart?memberId=" + memberId;
-	}
+		String memberId = cartItemVO.getMemberId();
+        int lid = cartItemVO.getLid();
+        int price = cartItemVO.getQuantity();
+
+		log.info("addItemToCart method called with memberId: " + memberId + ", lid: " + lid + ", price: " + price);
+
+		return "redirect:/cart?memberId=" + memberId;
+		}
 	
 	 @PostMapping("/delete/{cartItemId}")
 	    public String deleteItemFromCart(@PathVariable("lid") int lid, HttpSession session) {

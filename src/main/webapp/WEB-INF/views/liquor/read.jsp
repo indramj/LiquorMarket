@@ -61,29 +61,31 @@
 				$(".quantity_input").val(--quantity);
 			}
 		});
-	});
-
-	// 장바구니 필요한 데이터 전송
-	$('#addToCartButton').on('click', function() {
-		const memberId = 'kmm'; // 멤버 아이디
-		const lid = ${liquor.lid}; // 상품 아이디
-		const quantity = 1; // 수량
-        
-		// AJAX 요청을 만들어 서버로 데이터를 전송
-		$.ajax({
-			type: 'POST',
-			url: '/cart', // 실제 URL에 따라 수정
-			data: { memberId: memberId, lid: lid, quantity: quantity },
-			success: function(response) {
-				// 성공한 경우, 필요한 동작 수행 (예: 장바구니 갱신)
-				alert('장바구니에 추가되었습니다.');
-			},
-			error: function() {
-				// 오류 처리 로직 추가
-				alert('장바구니에 추가하는 중 오류가 발생했습니다.');
-			}
+		
+		// 장바구니 필요한 데이터 전송
+		$('#addToCartButton').on('click', function() {
+			const memberId = 'kmm'; // 멤버 아이디
+			const lid = $(this).data('lid'); // 상품 아이디
+			const quantity = 1; // 수량
+	        
+			// AJAX 요청을 만들어 서버로 데이터를 전송
+			$.ajax({
+				type: 'POST',
+				url: '/cart', // 실제 URL에 따라 수정
+				data: { memberId: memberId, lid: lid, quantity: quantity },
+				success: function(response) {
+					// 성공한 경우, 필요한 동작 수행 (예: 장바구니 갱신)
+					alert('장바구니에 추가되었습니다.');
+				},
+				error: function() {
+					// 오류 처리 로직 추가
+					alert('장바구니에 추가하는 중 오류가 발생했습니다.');
+				}
+			});
 		});
 	});
+
+	
 
 </script>
 <link rel="stylesheet" href="/resources/css/liquor/read.css">
@@ -154,14 +156,15 @@
 								</div>
 							</div>
 							<div class="btn_section">
-						
-						
-						<a href="/cart?memberId=kmm&lid=<c:out value='${liquor.lid}' />">
-    						<button class="cartBtn" id="addToCartButton">장바구니 담기</button>
-						</a>
 
-						
-						<!-- <button id="cartBtn" class ="btn_cart">장바구니</button>
+
+								<a href="/cart?memberId=kmm&lid=<c:out value='${liquor.lid}' />">
+									<button class="cartBtn" id="addToCartButton"
+										data-lid="${liquor.lid}">장바구니 담기</button>
+								</a>
+
+
+								<!-- <button id="cartBtn" class ="btn_cart">장바구니</button>
 						<a href="cart.jsp" id="cartPage" style="display: none;"></a>
 						
 						<script type="text/javascript">

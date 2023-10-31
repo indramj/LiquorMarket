@@ -13,7 +13,10 @@ public class CartItemDTO {
 	
 	private int price;
 	
-	
+	 public void setLid(LiquorVO liquor) {
+	        this.liquor = liquor;
+	    }
+	 
 //	public void setQuantity(int quantity)
 //	{
 //		this.quantity = quantity;
