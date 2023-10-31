@@ -6,11 +6,14 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -40,17 +43,12 @@ public class CartController {
 		model.addAttribute("cartList" , cartList);
 	}
 	
-	@PostMapping("")
-	public String addItemToCart(@RequestParam("memberId") String memberId, 
-	                            @RequestParam("lid") int lid, 
-	                            @RequestParam("price") int price) {
+	@PostMapping("/addItem")
+	public ResponseEntity<String> addItemToCart(@RequestBody CartItemVO cartItem) {
 		
-	    cartService.addItemToCart(memberId, lid, price);
+	    cartService.addItemToCart(cartItem.getMemberId() , cartItem.getPrice() , cartItem.getQuantity());
 	    
-	    log.info("addItemToCart method called with memberId: " + memberId + ", lid: " + lid + ", price: " + price);
-
-	    
-	    return "redirect:/cart?memberId=" + memberId;
+	    return new ResponseEntity<String>("success" , HttpStatus.OK);
 	}
 	
 	 @PostMapping("/delete/{cartItemId}")

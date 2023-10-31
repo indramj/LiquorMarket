@@ -35,7 +35,7 @@ public class CartServiceImpl implements CartService {
 			cart.setMemberId(memberId);
 			cart.setPrice(voList.get(i).getPrice());
 			cart.setQuantity(voList.get(i).getQuantity());		
-			cart.setLid(liquorMapper.getLiquor(voList.get(i).getLid())); 
+			cart.setLiquor(liquorMapper.getLiquor(voList.get(i).getLid())); 
 			cartList.add(cart);
 		}
 		return cartList;
