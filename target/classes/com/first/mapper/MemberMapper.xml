@@ -61,6 +61,8 @@
 		<collection property="authList" resultMap="authMap"/>
 	</resultMap>
 	
+	<delete id = "remove">
+		delete from table_member where memberid = #{memberid}	</delete>
 	
       
 </mapper>

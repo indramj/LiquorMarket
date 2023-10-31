@@ -13,5 +13,7 @@ public interface MemberMapper {
 	public MemberVO getMember(String memberId);
 	
 	public List<MemberVO> getMemberList();
+	
+	public void remove(String memberId);
 
 }

@@ -20,6 +20,6 @@ public interface CartService {
 	public void deleteCartItem(int lid);
 
 	public void updateCartItem(int lid, int quantity, int price);
-	
+
 	
 }
