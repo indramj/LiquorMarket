@@ -17,6 +17,7 @@ public class CartServiceImpl implements CartService {
 	
 	@Autowired
 	private CartMapper cartMapper;
+	
 	@Autowired
 	private LiquorMapper liquorMapper;
 	
@@ -34,11 +35,31 @@ public class CartServiceImpl implements CartService {
 			cart.setMemberId(memberId);
 			cart.setPrice(voList.get(i).getPrice());
 			cart.setQuantity(voList.get(i).getQuantity());		
-			cart.setLiquor(liquorMapper.getLiquor(voList.get(i).getLid())); 
+			cart.setLid(liquorMapper.getLiquor(voList.get(i).getLid())); 
 			cartList.add(cart);
 		}
 		return cartList;
 
+		
+	}
+
+
+	@Override
+	public void addItemToCart(String memberId, int lid, int price) {
+		cartMapper.addItemToCart(memberId, lid, price);
+	}
+
+
+	@Override
+	public void deleteCartItem(int lid) {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+	@Override
+	public void updateCartItem(int lid, int quantity, int price) {
+		// TODO Auto-generated method stub
 		
 	}
 	

@@ -40,6 +40,26 @@ public class CartController {
 		model.addAttribute("cartList" , cartList);
 	}
 	
+	@PostMapping("")
+	public String addItemToCart(@RequestParam("memberId") String memberId, 
+	                            @RequestParam("lid") int lid, 
+	                            @RequestParam("price") int price) {
+		
+	    cartService.addItemToCart(memberId, lid, price);
+	    
+	    log.info("addItemToCart method called with memberId: " + memberId + ", lid: " + lid + ", price: " + price);
+
+	    
+	    return "redirect:/cart?memberId=" + memberId;
+	}
+	
+	 @PostMapping("/delete/{cartItemId}")
+	    public String deleteItemFromCart(@PathVariable("lid") int lid, HttpSession session) {
+	        String memberId = (String) session.getAttribute("memberId");
+	        cartService.deleteCartItem(lid);
+	        return "redirect:/cart?memberId=" + memberId;
+	 }	
+	
 //	@Autowired
 //	private CartService cartService;
 //	

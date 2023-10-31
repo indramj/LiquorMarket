@@ -72,7 +72,7 @@ function updateQuantity(index, operation) {
     const itemPrice = itemPrices[index];
 
     let quantity = parseInt(quantityElement.textContent);
-    const price = parseFloat(itemPrice.getAttribute('data-price')); // 가격 정보 가져오기
+    const price = parseFloat(itemPrice.getAttribute('data-price'));
 
     if (operation === 'increase') {
         quantity += 1;
