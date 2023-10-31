@@ -87,7 +87,8 @@ $(document).ready(function(){
 			<div class="add_menu">    <!-- 나중에 아래로 옮기기 -->
 			<sec:authorize access = "isAuthenticated()">
 				<button type ="button" class = "btnRegist">등록</button>
-			</sec:authorize> 	
+			</sec:authorize> 
+	
 			</div>
 			<c:if test="${listcheck != 'empty'}">
 				<form class = "move" action = "/liquor/read/" method = "get">
