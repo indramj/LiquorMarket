@@ -9,9 +9,16 @@
     margin-right: auto;
 }
 .page-list{
-	margin-left: 450px;
+	display: table;
+	margin-left: auto;
+    margin-right: auto;
 }
 .board_list_search{
-	margin-left: 450px;
-	background: none;
+    margin-left: 390px;
+}
+.searchForm{
+	min-width: 700px;
+}
+.searchForm .input-search{
+	min-width: 40%;
 }

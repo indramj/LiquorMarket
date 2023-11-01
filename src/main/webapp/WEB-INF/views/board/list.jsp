@@ -127,7 +127,7 @@
 			    <option value="W" <c:out value = "${pageDTO.cri.type eq 'W'? 'selected' : ''}"/>>작성자</option>
 			    <option value="TC" <c:out value = "${pageDTO.cri.type eq 'TC'? 'selected' : ''}"/>>제목+내용</option>
 			  </select>
-		 		<input class = "col-sm-3" type = "text" name = "keyword" onkeypress="if( event.keyCode == 13 ){srch();}">
+		 		<input class = "col-sm-3 input-search" type = "text" name = "keyword" onkeypress="if( event.keyCode == 13 ){srch();}">
 		  	<button class="btn btn-outline-secondary btnSearch" type="button" onclick = "srch();">검색</button>
 			</div>
 			<div class = "mb-3">
