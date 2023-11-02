@@ -15,7 +15,12 @@ public interface CartMapper {
 	    void addItemToCart(CartItemVO cartItem);
 
 	    // 장바구니에서 아이템 조회
-	    List<CartItemDTO> getCartItemsByMemberId(String memberId);
+	    public List<CartItemDTO> getCartItemsByMemberId(String memberId);
+	    
+	    //중복 상품 확인용 lid불러오기
+	    public List<Integer> getLidbyMemberId(String memberId);
+	    
+	    public void updateQuantity(String memberId , int lid , int quantity);
 	   
 
 //	public void addCart(CartDTO cart);

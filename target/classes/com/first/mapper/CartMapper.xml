@@ -12,24 +12,21 @@
 	<insert id="addItemToCart">
 
 		insert into table_cartitem(memberId, lid , price )
-		values(#{memberId},#{lid}, #{price} )
+		values(#{memberId},#{lid}, #{itemTotalPrice} )
 
 	</insert>
-
-
-	<!-- 카트 삭제 -->
-	<delete id="deleteCart">
-
-		delete from table_cart where cartId = #{cartId}
-
-	</delete>
-
-	<!-- 카트 수량 수정 -->
-	<update id="modifyCount">
-
-		update drink_cart set drinkCount=#{drinkCount} where cartId = #{cartId}
-
+	
+	<select id = "getLidbyMemberId" resultType ="int">
+		select lid from table_cartitem where memberid = #{memberId}
+	
+	</select>
+	
+	<update id = "updateQuantity">
+		UPDATE table_cartitem SET quantity = #{quantity} WHERE lid = #{lid} AND memberid = #{memberId}
 	</update>
+
+
+
 
 
 </mapper>

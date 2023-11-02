@@ -11,7 +11,8 @@ public class CartItemVO {
 	
 	private int quantity;
 	
-	private int price;
+	private int itemTotalPrice;
+	
 	
 
 }
