@@ -12,7 +12,7 @@ public interface CartMapper {
 	
 	public List<CartItemVO> getCartList(String memberId);
 	    // 장바구니에 아이템 추가
-	    void addItemToCart(@Param("memberId") String memberId, @Param("lid") int lid, @Param("price") int price);
+	    void addItemToCart(CartItemVO cartItem);
 
 	    // 장바구니에서 아이템 조회
 	    List<CartItemDTO> getCartItemsByMemberId(String memberId);

@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.first.domain.CartItemDTO;
+import com.first.domain.CartItemVO;
 import com.first.mapper.CartMapper;
 
 
@@ -15,7 +16,7 @@ public interface CartService {
 	
 	public List<CartItemDTO> getCartList(String memberId);
 
-	public void addItemToCart(String memberId, int lid, int price);
+	public void addItemToCart(CartItemVO cartItem);
 
 	public void deleteCartItem(int lid);
 

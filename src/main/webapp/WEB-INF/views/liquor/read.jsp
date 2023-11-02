@@ -50,27 +50,39 @@
 				$(".uploadResult ul").html(str);
 			});
 		})();
+		
+		var csrfHeaderName = "${_csrf.headerName}";
+		var csrfTokenValue = "${_csrf.token}";
+		
+		$(document).ajaxSend(function(e, xhr, options) { 
+		    xhr.setRequestHeader(csrfHeaderName, csrfTokenValue); 
+		  });
 
 		$("#addToCartButton").on("click" ,function(e) {
 			e.preventDefault();
 			var lid = ${liquor.lid};
-			console.log(lid);		
+			var price = ${liquor.price}
 			var cartitem = {
 				memberId : "kmm",
 				lid : lid,
-				quantity : 1
+				quantity : 1,
+				price : price
 			}
+			
+			console.log(cartitem);
 	        
 			// AJAX 요청을 만들어 서버로 데이터를 전송
 			$.ajax({
 				type: 'POST',
 				url: '/cart/addItem', // 실제 URL에 따라 수정
 				data: JSON.stringify(cartitem),
+				contentType : 'application/json; charset=utf-8',
+				dataType : 'text',
 				success: function(result) {
 					// 성공한 경우, 필요한 동작 수행 (예: 장바구니 갱신)
 					alert('장바구니에 추가되었습니다.');
 				},
-				error: function() {
+				error: function(result) {
 					// 오류 처리 로직 추가
 					alert('장바구니에 추가하는 중 오류가 발생했습니다.');
 				}

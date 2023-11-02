@@ -45,8 +45,8 @@ public class CartServiceImpl implements CartService {
 
 
 	@Override
-	public void addItemToCart(String memberId, int lid, int price) {
-		cartMapper.addItemToCart(memberId, lid, price);
+	public void addItemToCart(CartItemVO cartItem) {
+		cartMapper.addItemToCart(cartItem);
 	}
 
 
@@ -64,23 +64,6 @@ public class CartServiceImpl implements CartService {
 	}
 	
 	
-//	@Override
-//	public int addCart(CartDTO cart) {
-//		
-//		// 장바구니 데이터 체크
-//				CartDTO checkCart = cartMapper.checkCart(cart);
-//				
-//				if(checkCart != null) {
-//					return 2;
-//				}
-//				
-//				// 장바구니 등록 & 에러 시 0반환
-//				try {
-//					return cartMapper.addCart(cart);
-//				} catch (Exception e) {
-//					return 0;
-//				}
-//	}
 //	
 //	@Override
 //	public List<CartDTO> getCartList(String memberId) {

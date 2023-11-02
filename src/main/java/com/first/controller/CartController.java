@@ -44,9 +44,11 @@ public class CartController {
 	}
 	
 	@PostMapping("/addItem")
+	@ResponseBody
 	public ResponseEntity<String> addItemToCart(@RequestBody CartItemVO cartItem) {
+		log.info("cart/addItem");
 		
-	    cartService.addItemToCart(cartItem.getMemberId() , cartItem.getPrice() , cartItem.getQuantity());
+	    cartService.addItemToCart(cartItem);
 	    
 	    return new ResponseEntity<String>("success" , HttpStatus.OK);
 	}

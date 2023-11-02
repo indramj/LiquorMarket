@@ -9,11 +9,10 @@
 </select>
 	
 	<!-- 카트 추가 -->
-	<insert id="addCart">
+	<insert id="addItemToCart">
 
-		insert into vam_cart(memberId, drinkId, drinkCount)
-		values(#{memberId},
-		#{drinkId}, #{drinkCount})
+		insert into table_cartitem(memberId, lid , price )
+		values(#{memberId},#{lid}, #{price} )
 
 	</insert>
 
