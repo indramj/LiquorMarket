@@ -99,6 +99,7 @@
 <link rel="stylesheet" href="/resources/css/liquor/read.css">
 </head>
 <body>
+<div class="wrapper">
 	<div id="content_wrap">
 		<div id="container">
 			<div id="contents">
@@ -190,5 +191,7 @@
 			</div>
 		</div>
 	</div>
+</div>
+<%@ include file="../include/footer.jsp" %>
 </body>
 </html>

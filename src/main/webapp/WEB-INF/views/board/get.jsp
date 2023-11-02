@@ -229,90 +229,90 @@
 </head>
 <body>
 
-
-<div class = "register">
-	<div class="mb-3" >
-		<div class = "col-sm-5">
-	  <label for="boardTitle" class="form-label">제목</label>
-	  <input class="form-control form-control-lg" id = "boardTitle" type="text" name = "title" value = "${board.title}" aria-label=".form-control-lg example" readonly>
-	  </div>
+<div class="wrapper">
+	<div class = "register">
+		<div class="mb-3" >
+			<div class = "col-sm-5">
+		  <label for="boardTitle" class="form-label">제목</label>
+		  <input class="form-control form-control-lg" id = "boardTitle" type="text" name = "title" value = "${board.title}" aria-label=".form-control-lg example" readonly>
+		  </div>
+		</div>
+		<div class="mb-3">
+			<div class = "col-sm-7">
+		  <label for="boardcontent" class="form-label">내용</label>
+		  <textarea class="form-control" name = "content" id="boardcontent" rows="15" style = "resize:none;" readonly><c:out value = "${board.content}"/></textarea>
+		  </div>
+		</div>
+		<div class = "mb-3">
+			<div class = "col-sm-5">
+				<div class="input-group">	
+				  <span class="input-group-text">닉네임</span>
+				  <input type="text" name = "writer" readonly class="form-control-plaintext" id="staticEmail" value="${board.writer}">
+		    </div>
+			</div>
+		</div>
+		<div class = "mb-3">
+			<div class= "col-sm-3">
+			<sec:authorize access = "isAuthenticated()">
+			<sec:authentication property="principal" var="logined"/>
+				<c:if test = "${logined.username eq board.writer}"> 
+					<button class = "btn btn-secondary btnModify">수정</button>
+				</c:if>
+			</sec:authorize>
+				<button class = "btn btn-secondary btnList" >목록으로</button>
+			</div>
+		</div>
 	</div>
-	<div class="mb-3">
-		<div class = "col-sm-7">
-	  <label for="boardcontent" class="form-label">내용</label>
-	  <textarea class="form-control" name = "content" id="boardcontent" rows="15" style = "resize:none;" readonly><c:out value = "${board.content}"/></textarea>
-	  </div>
-	</div>
+	
+		<!--  댓글을 출력하기 위한 div -->
 	<div class = "mb-3">
-		<div class = "col-sm-5">
-			<div class="input-group">	
-			  <span class="input-group-text">닉네임</span>
-			  <input type="text" name = "writer" readonly class="form-control-plaintext" id="staticEmail" value="${board.writer}">
+		<table class = "table col-sm-7" >
+			<tbody class = "replyList">
+				
+			</tbody>
+		</table>
+	</div>
+	
+	<sec:authorize access = "isAuthenticated()">
+	<div class = "regReply">
+		<div class="col-sm-5">
+		  <input type="text" class="form-control" name = "replyer" id="exampleFormControlInput1" value = "<sec:authentication property="principal.username"/>" readonly>
+		</div>
+		<div class="mb-3 col-sm-7">
+		  <label for="exampleFormControlTextarea1" class="form-label">내용</label>
+		  <textarea class="form-control" name = "reply" id="exampleFormControlTextarea1" rows="3" style = "resize:none;"></textarea>
+		  <button type = "button" class = "btn btn-primary addReply">등록</button>
+		</div>
+	</div>
+	</sec:authorize>
+	<form id = "operForm" action = "/board/list" method = "get">
+		<input type = "hidden" name = "currentPage" value = "${cri.currentPage}">
+		<input type = "hidden" id = "bno" name = "bno" value = "${board.bno}">
+		<input type = "hidden" id = "type" name = "type" value = "${cri.type}">
+		<input type = "hidden" id = "keyword" name = "keyword" value = "${cri.keyword}"> 
+		<input type = "hidden" name = "${_csrf.parameterName}" value = "${_csrf.token}">
+	</form>
+	
+	<div class="modal fade" id = "removeModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+	  <div class="modal-dialog">
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <h1 class="modal-title fs-5">Modal title</h1>
+	        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+	      </div>
+	      <div class="modal-body">
+	        삭제 하시겠습니까?
+	      </div>
+	      <div class="modal-footer">
+	        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">아니요</button>
+	        <button type="button" class="btn btn-primary">네</button>
+	      </div>
 	    </div>
-		</div>
-	</div>
-	<div class = "mb-3">
-		<div class= "col-sm-3">
-		<sec:authorize access = "isAuthenticated()">
-		<sec:authentication property="principal" var="logined"/>
-			<c:if test = "${logined.username eq board.writer}"> 
-				<button class = "btn btn-secondary btnModify">수정</button>
-			</c:if>
-		</sec:authorize>
-			<button class = "btn btn-secondary btnList" >목록으로</button>
-		</div>
+	  </div>
 	</div>
 </div>
 
-	<!--  댓글을 출력하기 위한 div -->
-<div class = "mb-3">
-	<table class = "table col-sm-7" >
-		<tbody class = "replyList">
-			
-		</tbody>
-	</table>
-</div>
 
-<sec:authorize access = "isAuthenticated()">
-<div class = "regReply">
-	<div class="col-sm-5">
-	  <input type="text" class="form-control" name = "replyer" id="exampleFormControlInput1" value = "<sec:authentication property="principal.username"/>" readonly>
-	</div>
-	<div class="mb-3 col-sm-7">
-	  <label for="exampleFormControlTextarea1" class="form-label">내용</label>
-	  <textarea class="form-control" name = "reply" id="exampleFormControlTextarea1" rows="3" style = "resize:none;"></textarea>
-	  <button type = "button" class = "btn btn-primary addReply">등록</button>
-	</div>
-</div>
-</sec:authorize>
-<form id = "operForm" action = "/board/list" method = "get">
-	<input type = "hidden" name = "currentPage" value = "${cri.currentPage}">
-	<input type = "hidden" id = "bno" name = "bno" value = "${board.bno}">
-	<input type = "hidden" id = "type" name = "type" value = "${cri.type}">
-	<input type = "hidden" id = "keyword" name = "keyword" value = "${cri.keyword}"> 
-	<input type = "hidden" name = "${_csrf.parameterName}" value = "${_csrf.token}">
-</form>
-
-<div class="modal fade" id = "removeModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h1 class="modal-title fs-5">Modal title</h1>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        삭제 하시겠습니까?
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">아니요</button>
-        <button type="button" class="btn btn-primary">네</button>
-      </div>
-    </div>
-  </div>
-</div>
-
-
-
-
+<%@ include file="../include/footer.jsp" %>
 </body>
 </html>

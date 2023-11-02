@@ -51,27 +51,20 @@ $(document).ready(function(){
 				
 				<div class="login_button_wrap">
 					<input type="submit" class="login_button" value="로그인">
-					
-					<c:if test="${param.error eq 'true'}">
-          <div class="login_warn">
-              아이디나 비밀번호가 잘못되었습니다.
-          </div>
-        </c:if>
+						<c:if test="${param.error eq 'true'}">
+				          <div class="login_warn">
+				              아이디나 비밀번호가 잘못되었습니다.
+				          </div>
+				        </c:if>
 				</div>
-				
-				
-
 				<div class="join_wrap">
 					<span><a href="/member/join">회원가입</a></span>
 					<span><a href="../">뒤로 가기</a></span>
 				</div>		
 			</div>
 	    </form>
-		
 	</div>
-
 </div>
-
-
+<%@ include file="include/footer.jsp" %>
 </body>
 </html>

@@ -50,79 +50,80 @@ $(".btnList").on("click" , function(e){
 </script>
 </head>
 <body>
-<form id = "operForm" action = "/liquor/modify" method = "post">
-<input type = "hidden" name = "${_csrf.parameterName}" value = "${_csrf.token}">
-	<div class="admin_content_wrap">
-		<div class="admin_content_subject">
-			<span>상품 상세</span>
-		</div>
-
-		<div class="admin_content_main">
-
-			<div class="form_section">
-				<div class="form_section_title">
-					<label>주류 이름</label>
-				</div>
-				<div class="form_section_content">
-					<input class="form-control" name="name" value="<c:out value="${liquor.name}"/>" >
-				</div>
+<div class="wrapper">
+	<form id = "operForm" action = "/liquor/modify" method = "post">
+	<input type = "hidden" name = "${_csrf.parameterName}" value = "${_csrf.token}">
+		<div class="admin_content_wrap">
+			<div class="admin_content_subject">
+				<span>상품 상세</span>
 			</div>
-
-			<div class="form_section">
-				<div class="form_section_title">
-					<label>주류 카테고리</label>
-				<select class="form-select" name = "cateName">			    
-			    <option value="와인" >와인</option>
-			    <option value="위스키">위스키</option>
-			    <option value="소주" >소주</option>
-			    <option value="맥주" >맥주</option>
-		 		</select>
-				</div>
-			</div>
-
+	
+			<div class="admin_content_main">
+	
 				<div class="form_section">
 					<div class="form_section_title">
-						<label>주류 가격</label>
+						<label>주류 이름</label>
 					</div>
 					<div class="form_section_content">
-						<input class="form-control" name="price" value="<c:out value="${liquor.price}"/>">
+						<input class="form-control" name="name" value="<c:out value="${liquor.name}"/>" >
 					</div>
 				</div>
-
-
+	
 				<div class="form_section">
 					<div class="form_section_title">
-						<label>상품 재고</label>
-					</div>
-					<div class="form_section_content">
-						<input class="form-control" name="stock" value="<c:out value="${liquor.stock}"/>">
-					</div>
-				</div>
-
-
-
-
-				<div class="form_section">
-					<div class="form_section_title">
-						<label>주류 소개</label>
-					</div>
-					<div class="form_section_content bit">
-						<textarea class="form-control" name="description" id="description_textarea" rows="5" style = "resize:none;">${liquor.description}</textarea>
+						<label>주류 카테고리</label>
+					<select class="form-select" name = "cateName">			    
+				    <option value="와인" >와인</option>
+				    <option value="위스키">위스키</option>
+				    <option value="소주" >소주</option>
+				    <option value="맥주" >맥주</option>
+			 		</select>
 					</div>
 				</div>
-
-
-				<div class = "mb-3">
-		<div class= "col-sm-3">
-			<button type="button" class="btn btn-primary btnModify">등록</button>
-			<button type="button" class="btn btn-primary btnRemove">삭제</button>
-			<button type="button" class="btn btn-primary btnList">취소</button>
+	
+					<div class="form_section">
+						<div class="form_section_title">
+							<label>주류 가격</label>
+						</div>
+						<div class="form_section_content">
+							<input class="form-control" name="price" value="<c:out value="${liquor.price}"/>">
+						</div>
+					</div>
+	
+	
+					<div class="form_section">
+						<div class="form_section_title">
+							<label>상품 재고</label>
+						</div>
+						<div class="form_section_content">
+							<input class="form-control" name="stock" value="<c:out value="${liquor.stock}"/>">
+						</div>
+					</div>
+	
+	
+	
+	
+					<div class="form_section">
+						<div class="form_section_title">
+							<label>주류 소개</label>
+						</div>
+						<div class="form_section_content bit">
+							<textarea class="form-control" name="description" id="description_textarea" rows="5" style = "resize:none;">${liquor.description}</textarea>
+						</div>
+					</div>
+	
+	
+					<div class = "mb-3">
+			<div class= "col-sm-3">
+				<button type="button" class="btn btn-primary btnModify">등록</button>
+				<button type="button" class="btn btn-primary btnRemove">삭제</button>
+				<button type="button" class="btn btn-primary btnList">취소</button>
+			</div>
 		</div>
 	</div>
+	</div>
+	</form>
 </div>
-</div>
-</form>
-
 
 		<!--  	<form id="moveForm" action="/admin/manageGoods" method="get">
 				<input type="hidden" name="pageNum" value="${pageMaker.cri.pageNum}">
@@ -132,6 +133,6 @@ $(".btnList").on("click" , function(e){
 -->
 		
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
-		
+<%@ include file="../include/footer.jsp" %>
 </body>
 </html>

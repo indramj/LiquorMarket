@@ -50,31 +50,32 @@
 
 </head>
 <body>
-
-<div class = "register">
-<div class = "mb-3">
-		<div class = "col-sm-3">
-			<div class="input-group">	
-			  <span class="input-group-text">닉네임</span>
-			  <input type="text" name = "writer" aria-label="writer" class="form-control" value = "<sec:authentication property="principal.username"/>" readonly/>
+<div class="wrapper">
+	<div class = "register">
+		<div class = "mb-3">
+			<div class = "col-sm-3">
+				<div class="input-group">	
+				  <span class="input-group-text">닉네임</span>
+				  <input type="text" name = "writer" aria-label="writer" class="form-control" value = "<sec:authentication property="principal.username"/>" readonly/>
+				</div>
 			</div>
 		</div>
-	</div>
-	<div class="mb-3" >
-		<div class = "col-sm-5">
-	  <input class="form-control form-control-lg" type="text" name = "title" placeholder="제목" aria-label=".form-control-lg example">
-	  </div>
-	</div>
-	<div class="mb-3">
-		<div class = "col-sm-7">
-	  <label for="exampleFormControlTextarea1" class="form-label">내용</label>
-	  <textarea class="form-control" name = "content" id="exampleFormControlTextarea1" rows="15" style = "resize:none;"></textarea>
-	  </div>
-	</div>
-	<div class = "mb-3">
-		<div class= "col-sm-3">
-			<button type="button" class="btn btn-secondary btnRegister">등록</button>
-			<button type="button" class="btn btn-secondary btnCancel" onclick = "window.location.href = '../board/list'">취소</button>
+		<div class="mb-3" >
+			<div class = "col-sm-5">
+		  <input class="form-control form-control-lg" type="text" name = "title" placeholder="제목" aria-label=".form-control-lg example">
+		  </div>
+		</div>
+		<div class="mb-3">
+			<div class = "col-sm-7">
+		  <label for="exampleFormControlTextarea1" class="form-label">내용</label>
+		  <textarea class="form-control" name = "content" id="exampleFormControlTextarea1" rows="15" style = "resize:none;"></textarea>
+		  </div>
+		</div>
+		<div class = "mb-3">
+			<div class= "col-sm-3">
+				<button type="button" class="btn btn-secondary btnRegister">등록</button>
+				<button type="button" class="btn btn-secondary btnCancel" onclick = "window.location.href = '../board/list'">취소</button>
+			</div>
 		</div>
 	</div>
 </div>
@@ -83,6 +84,6 @@
 <form class = "operForm" method = "post" action = "/board/register">
 <input type = "hidden" name = "${_csrf.parameterName}" value = "${_csrf.token}">
 </form>
-
+<%@ include file="../include/footer.jsp" %>
 </body>
 </html>
