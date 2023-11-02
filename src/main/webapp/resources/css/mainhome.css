@@ -1,7 +1,9 @@
 @charset "UTF-8";
 .carousel{
-	min-width: 1800px;
-	height: 1200px;
+	width: 100%;
+	height: 800px;
+	margin-left: auto;
+	margin-right: auto;
 }
 .carousel-inner{
     position: relative;
@@ -9,5 +11,5 @@
 }
 
 .carousel-item img{
-	height: 1200px;
+	height: 800px;
 }

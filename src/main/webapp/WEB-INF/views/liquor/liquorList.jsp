@@ -84,12 +84,6 @@ $(document).ready(function(){
 			<div class="admin_content_subject">
 				<span>추천 상품</span>
 			</div>
-			<div class="add_menu">    <!-- 나중에 아래로 옮기기 -->
-			<sec:authorize access = "isAuthenticated()">
-				<button type ="button" class = "btnRegist">등록</button>
-			</sec:authorize> 
-	
-			</div>
 			<c:if test="${listcheck != 'empty'}">
 				<form class = "move" action = "/liquor/read/" method = "get">
 					<ul class="goods_table">
@@ -110,7 +104,12 @@ $(document).ready(function(){
 								</div>
 							</li>
 						</c:forEach>
-					</ul>			
+					</ul>
+					<div class="add_menu">
+						<sec:authorize access = "isAuthenticated()">
+							<button type ="button" class = "btnRegist">등록</button>
+						</sec:authorize> 	
+					</div>			
 					<nav aria-label="Page navigation example">
 						<div class="page-list">
 						  <ul class="pagination pageList page-list-1">
@@ -131,9 +130,7 @@ $(document).ready(function(){
  					<input type = "hidden" name = "type" value = "${pageDTO.cri.type}">
 					<input type = "hidden" name = "keyword" value = "${pageDTO.cri.keyword }">
 				</form>
-
 			</c:if>
-			
 	<div class = "mb-3 board_list_search">
 		<form class = "searchForm" action = "/liquor/liquorList" method = "get" >
 			<div class="input-group mb-3 search-2">
