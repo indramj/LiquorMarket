@@ -78,6 +78,7 @@ $(document).ready(function(){
 <link rel="stylesheet" href="/resources/css/liquor/liquorlist.css">
 </head>
 <body>
+<div class="wrapper">
 	<div class="admin_content_wrap">
 		<div class="goods_table_wrap">
 			<!-- 상품 리스트 O -->
@@ -147,18 +148,13 @@ $(document).ready(function(){
 				<input type = "hidden" name = "currentPage">
 		</form>
 	</div>
-			
-	
+</div>
 			<!-- 상품 리스트 X -->
 			<c:if test="${listCheck == 'empty'}">
 				<div class="table_empty">등록된 상품이 없습니다.</div>
 			</c:if>
 		</div>
 	</div>
-	<footer class="footer">
-		<div id="footer_container">
-			<p> &copy; 술 파는 사람들 CO., LTD. </p>
-		</div>
-	</footer>
+<%@ include file="../include/footer.jsp" %>
 </body>
 </html>

@@ -361,6 +361,6 @@ function checkMailForm(email){
 }
 
 </script>
-
+<%@ include file="../include/footer.jsp" %>
 </body>
 </html>
