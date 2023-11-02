@@ -16,4 +16,6 @@ public interface MemberMapper {
 	
 	public void remove(String memberId);
 
+	/* 주문자 주소 정보 */
+	public MemberVO getMemberInfo(String memberId);
 }

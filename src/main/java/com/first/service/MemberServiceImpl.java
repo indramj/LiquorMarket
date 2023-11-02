@@ -54,6 +54,14 @@ public class MemberServiceImpl implements MemberService{
         return membermapper.getMember(memberId);
     }
 	
+	/* 주문자 정보 */
+	@Override
+	public MemberVO getMemberInfo(String memberId) {
+		
+		return membermapper.getMemberInfo(memberId);
+		
+	}
+	
 	@Override
 	public String checkEmail(String email)
 	{

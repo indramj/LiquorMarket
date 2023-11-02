@@ -19,6 +19,8 @@ public interface MemberService {
 	
 	public String checkEmail(String email);
 
+	/* 주문자 정보 */
+	public MemberVO getMemberInfo(String memberId);
 }
 	
 	

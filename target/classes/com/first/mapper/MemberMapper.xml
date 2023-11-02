@@ -25,6 +25,16 @@
 			where mem.memberid = #{memberid}
 	</select>	
 
+<!-- 주문자 정보 -->
+  	<select id="getMemberInfo" resultType="com.first.domain.MemberVO">
+  	
+  		select mem.memberid, memberpw, membername, memberphone , memberemail , memberaddress1 , memberaddress2 , regdate, updatedate, auth
+		from
+			table_member mem LEFT OUTER JOIN table_auth auth on mem.memberid= auth.memberid
+			where mem.memberid = #{memberid}
+  	
+  	</select>
+  	
 	<resultMap type = "com.first.domain.MemberVO" id="memberMap">
 		<result property="memberId" column="memberid"/>
 		<result property="memberPw" column="memberpw"/>
