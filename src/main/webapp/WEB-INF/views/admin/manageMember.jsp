@@ -39,6 +39,17 @@
 </head>
 <body>
 <form class = "admin" action = "/admin/" method = "get">
+<style>
+    .btn-text-right{
+        text-align: right;
+        }
+</style>
+<div class="btn-text-right">
+<button type = "button" class= "btn btn-primary btnRole">권한부여</button>
+<button type = "button" class = "btn btn-secondary btnRemoveRole">권한 삭제</button>
+<button type = "button" class = "btn btn-secondary btnRemoveMember">회원 삭제</button> 
+</div>
+<input type = "hidden" name = "${_csrf.parameterName}" value = "${_csrf.token}">
 <table class="table table-striped table-hover">
 	<thead>
 		<th scope = "col">#</th>
@@ -51,7 +62,11 @@
 	<tbody>
 	<c:forEach items = "${memberList}" var = "member">
 		<tr>
+		
+		
 			<td><input type = "checkbox" name = "checkList" value ="${member.memberId}"></td>
+			
+			
 			<td>${member.memberId}</td>
 			<td>${member.memberName}</td>
 			<td>${member.memberEmail}</td>
@@ -73,10 +88,6 @@
 	</c:forEach>
 	</tbody>
 </table>
-<button type = "button" class= "btnRole">권한부여</button>
-<button type = "button" class = "btnRemoveRole">권한 삭제</button>
-<button type = "button" class = "btnRemoveMember">회원 삭제</button> 
-<input type = "hidden" name = "${_csrf.parameterName}" value = "${_csrf.token}">
 </form>
 </body>
 </html>
