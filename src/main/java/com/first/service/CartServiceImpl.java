@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.first.domain.CartItemDTO;
 import com.first.domain.CartItemVO;
+import com.first.domain.LiquorVO;
 import com.first.mapper.CartMapper;
 import com.first.mapper.LiquorMapper;
 
@@ -31,11 +32,17 @@ public class CartServiceImpl implements CartService {
 		
 		for ( int i = 0; i < voList.size(); i++)
 		{
+			int lid = voList.get(i).getLid();
+			LiquorVO liquor = liquorMapper.getLiquor(lid);
+			int quantity = voList.get(i).getQuantity();
+			int itemTotalPrice = voList.get(i).getItemTotalPrice();
+			
+			
 			CartItemDTO cart = new CartItemDTO();
 			cart.setMemberId(memberId);
-			cart.setPrice(voList.get(i).getPrice());
-			cart.setQuantity(voList.get(i).getQuantity());		
-			cart.setLiquor(liquorMapper.getLiquor(voList.get(i).getLid())); 
+			cart.setItemTotalPrice(itemTotalPrice);
+			cart.setQuantity(quantity);		
+			cart.setLiquor(liquor); 
 			cartList.add(cart);
 		}
 		return cartList;
@@ -46,7 +53,32 @@ public class CartServiceImpl implements CartService {
 
 	@Override
 	public void addItemToCart(CartItemVO cartItem) {
-		cartMapper.addItemToCart(cartItem);
+		
+		//memberid가 가지고 있는 모든 liquor의 lid List
+		List<Integer> lidList = cartMapper.getLidbyMemberId(cartItem.getMemberId());
+		
+		int lid = cartItem.getLid();
+		
+		int quantity = cartItem.getQuantity()+1;
+		
+		String memberId = cartItem.getMemberId();
+		CartItemVO item= new CartItemVO();
+		item.setLid(lid);
+		item.setMemberId(memberId);
+		item.setQuantity(quantity);
+		//item.setItemTotalPrice(quantity * );
+		
+		
+		
+		if (lidList.contains(lid))
+		{
+			cartMapper.updateQuantity(memberId , lid , quantity);
+		}
+		else
+		{
+			cartMapper.addItemToCart(cartItem);
+		}
+
 	}
 
 

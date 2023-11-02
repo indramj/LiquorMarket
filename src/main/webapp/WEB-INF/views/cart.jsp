@@ -18,7 +18,7 @@
 	<c:forEach var="cartItem" items="${cartList}">
     <h4>주류 이름: ${cartItem.liquor.name}</h4>
     <h4>카테고리: ${cartItem.liquor.cateName}</h4>
-    <h4>가격: <span class="item-price" data-price="${cartItem.price}">${cartItem.price}원</span></h4>
+    <h4>가격: <span class="item-price" data-price="${cartItem.liquor.price}">${cartItem.liquor.price}원</span></h4>
     <h4>${cartItem.quantity}개</h4>
     <div>
         <p>
@@ -30,7 +30,7 @@
         <button class="decrease">-</button>
         <!-- 총합 가격 -->
         <p>
-            총합 가격: <span class="total_price">${cartItem.quantity * cartItem.price}원</span>
+            총합 가격: <span class="total_price">${cartItem.itemTotalPrice}원</span>
         </p>
     </div>
 </c:forEach>

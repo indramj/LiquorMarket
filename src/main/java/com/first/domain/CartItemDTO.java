@@ -11,7 +11,7 @@ public class CartItemDTO {
 	
 	private int quantity;
 	
-	private int price;
+	private int itemTotalPrice;
 	
 	
 //	public void setQuantity(int quantity)
