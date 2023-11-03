@@ -22,17 +22,21 @@
 			</div>
 			<div id="myCartWrap">
 				<div class="list-table">
-					<table summary="제품명, 재고, 수량, 가격">
+					<table summary="제품명, 가격, 재고, 수량, 총 가격">
 						<colgroup>
-							<col width="55%">
+							<col width="45%">
+							<col width="10%">
 							<col width="15%">
 							<col width="5%">
-							<col width="15%"> 					
+							<col width="15%">					
 						</colgroup>
 						<thead>
 							<tr>
 								<th scope="col">
 									<div class="tb-sort">제품명</div>
+								</th>
+								<th scope="col">
+									<div class="tb-sort">가격</div>
 								</th>
 								<th scope="col">
 									<div class="tb-sort">재고</div>
@@ -41,7 +45,7 @@
 									<div class="tb-sort">수량</div>
 								</th>
 								<th scope="col">
-									<div class="tb-sort">가격</div>
+									<div class="tb-sort">총 가격</div>
 								</th>
 							</tr>
 						</thead>
@@ -52,6 +56,9 @@
 								<td>
 									<div class="tb-left tb-name">${cartItem.liquor.name}</div>
 									<div class="tb-left tb-cateName">${cartItem.liquor.cateName}</div>
+								</td>
+								<td>
+									<span class="item-price" data-price="${cartItem.liquor.price}">${cartItem.liquor.price}원</span>
 								</td>
 								<td>
 									<div class="tb-sort">${cartItem.quantity}개</div>
