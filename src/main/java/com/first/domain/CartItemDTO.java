@@ -13,9 +13,10 @@ public class CartItemDTO {
 	
 	private int itemTotalPrice;
 	
-	
+	 public void setLid(LiquorVO liquor) {
+	        this.liquor = liquor;
+	    }
 
-	
 }
 
 	

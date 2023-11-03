@@ -106,7 +106,7 @@
 		<div class= "col-sm-3">
 			<button type="button" class="btn btn-primary order_btn">주문하기</button>
 			<button id="deleteSelected">선택된 물품 삭제</button>
-		</div>
+		</div>	
 	
 	
  	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>

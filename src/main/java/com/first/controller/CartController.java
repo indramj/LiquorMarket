@@ -44,6 +44,7 @@ public class CartController {
 		model.addAttribute("cartList" , cartList);
 	}
 	
+
 	@PostMapping("/addItem")
 	@ResponseBody
 	public ResponseEntity<String> addItemToCart(@RequestBody CartItemVO cartItem) {
