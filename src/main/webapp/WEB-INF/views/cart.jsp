@@ -19,7 +19,7 @@
 	<c:forEach var="cartItem" items="${cartList}">
     <h4>주류 이름: ${cartItem.liquor.name}</h4>
     <h4>카테고리: ${cartItem.liquor.cateName}</h4>
-    <h4>가격: <span class="item-price" data-price="${cartItem.liquor.price}">${cartItem.liquor.price}원</span></h4>
+    <h4>가격: <span id="item-price" data-price="${cartItem.liquor.price}">${cartItem.liquor.price}원</span></h4>
     <h4>${cartItem.quantity}개</h4>
     <div>
         <p>
@@ -29,9 +29,10 @@
         <button class="increase">+</button>
         <!-- 수량 감소 버튼 -->
         <button class="decrease">-</button>
+        <button type = "button" class = "btnUpdateQty">수량변경</button>
         <!-- 총합 가격 -->
         <p>
-            총합 가격: <span class="total_price">${cartItem.itemTotalPrice}원</span>
+            총합 가격: <span id="total_price">${cartItem.itemTotalPrice}원</span>
         </p>
     </div>
 </c:forEach>
@@ -102,12 +103,16 @@ function updateQuantity(index, operation) {
     quantityElement.textContent = quantity;
 }
 
+var moveForm = $(".order_form");
 /* 주문 페이지 이동 */	
 $(".order_btn").on("click", function(){
-	
-	$(".order_form").submit();
-	
+	moveForm.submit();
 });
+
+$(".btnUpdateQty").on("click" , function(){
+
+	console.log(cartItem);
+})
 
 
 </script>
