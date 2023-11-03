@@ -14,30 +14,74 @@
 
 </head>
 <body>
-
-	<h1> 장바구니 </h1>
-	<c:forEach var="cartItem" items="${cartList}">
-    <h4>주류 이름: ${cartItem.liquor.name}</h4>
-    <h4>카테고리: ${cartItem.liquor.cateName}</h4>
-    <h4>가격: <span class="item-price" data-price="${cartItem.liquor.price}">${cartItem.liquor.price}원</span></h4>
-    <h4>${cartItem.quantity}개</h4>
-    <div>
-        <p>
-            물품 수량: <span class="quantity">${cartItem.quantity}</span>
-        </p>
-        <!-- 수량 증가 버튼 -->
-        <button class="increase">+</button>
-        <!-- 수량 감소 버튼 -->
-        <button class="decrease">-</button>
-        <!-- 총합 가격 -->
-        <p>
-            총합 가격: <span class="total_price">${cartItem.itemTotalPrice}원</span>
-        </p>
-    </div>
-</c:forEach>
+<div class="wrapper">
+	<div id="container">
+		<div id="contents" class="cartWrap">
+			<div class="titleArea">
+				<h2> 장바구니 </h2>
+			</div>
+			<div id="myCartWrap">
+				<div class="list-table">
+					<table summary="제품명, 재고, 수량, 가격">
+						<colgroup>
+							<col width="55%">
+							<col width="15%">
+							<col width="5%">
+							<col width="15%"> 					
+						</colgroup>
+						<thead>
+							<tr>
+								<th scope="col">
+									<div class="tb-sort">제품명</div>
+								</th>
+								<th scope="col">
+									<div class="tb-sort">재고</div>
+								</th>
+								<th scope="col">
+									<div class="tb-sort">수량</div>
+								</th>
+								<th scope="col">
+									<div class="tb-sort">가격</div>
+								</th>
+							</tr>
+						</thead>
+						<c:forEach var="cartItem" items="${cartList}">
+						
+						<tbody class="tb-body">
+							<tr class="my-cart-list">
+								<td>
+									<div class="tb-left tb-name">${cartItem.liquor.name}</div>
+									<div class="tb-left tb-cateName">${cartItem.liquor.cateName}</div>
+								</td>
+								<td>
+									<div class="tb-sort">${cartItem.quantity}개</div>
+								</td>
+								<td>
+									<div class="tb-sort">
+										<span class="quantity">${cartItem.quantity * 0 + 1}</span>
+								        <button class="tb-btn increase">+</button>
+					      			 	<button class="tb-btn decrease">-</button>
+					      			 	<button class="tb-change-btn">변경</button>
+									</div>
+								</td>
+								<td>
+									<div class="tb-right">
+										<span class="item-price" data-price="${cartItem.liquor.price}" style="display:none">${cartItem.liquor.price}원</span>
+										<span class="total_price">${cartItem.itemTotalPrice}원</span>
+									</div>
+								</td>
+							</tr>
+						</c:forEach>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
 
 <!-- 주문 form -->
-			<form action="/order/${member.memberId}" method="get" class="order_form">
+		<form action="/order/${member.memberId}" method="get" class="order_form">
 
 			</form>
 	
@@ -51,7 +95,9 @@
 	
  	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 	<script type="text/javascript">
-	
+
+ 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script type="text/javascript">
 	
 	//뒤로가기 문제 해결
 	window.addEventListener('pageshow', function(event) {
@@ -108,7 +154,6 @@ $(".order_btn").on("click", function(){
 	let orderNumber = 0;
 	
 	
-
 	$(".order_form").html(form_contents);
 	$(".order_form").submit();
 	
@@ -116,8 +161,6 @@ $(".order_btn").on("click", function(){
 
 
 </script>
+<%@ include file="include/footer.jsp" %>
 </body>
-</html>
-
-        
-        
+</html>   
