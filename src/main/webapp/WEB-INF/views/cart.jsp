@@ -79,6 +79,23 @@
 		</div>
 	</div>
 </div>
+
+<!-- 주문 form -->
+		<form action="/order/${member.memberId}" method="get" class="order_form">
+
+			</form>
+	
+
+	<div class = "mb-3">
+		<div class= "col-sm-3">
+			<button type="button" class="btn btn-primary order_btn">주문하기</button>
+
+		</div>
+	
+	
+ 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script type="text/javascript">
+
  	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 	<script type="text/javascript">
 	
@@ -129,6 +146,18 @@ function updateQuantity(index, operation) {
     // 수량 업데이트
     quantityElement.textContent = quantity;
 }
+
+/* 주문 페이지 이동 */	
+$(".order_btn").on("click", function(){
+	
+	let form_contents ='';
+	let orderNumber = 0;
+	
+	
+	$(".order_form").html(form_contents);
+	$(".order_form").submit();
+	
+});
 
 
 </script>
