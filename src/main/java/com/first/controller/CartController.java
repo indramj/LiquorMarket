@@ -63,12 +63,17 @@ public class CartController {
 		return new ResponseEntity<String>("result" , HttpStatus.OK);
 	}
 	
-	 @PostMapping("/delete/{cartItemId}")
-	    public String deleteItemFromCart(@PathVariable("lid") int lid, HttpSession session) {
-	        String memberId = (String) session.getAttribute("memberId");
-	        cartService.deleteCartItem(lid);
-	        return "redirect:/cart?memberId=" + memberId;
-	 }	
+	@PostMapping("/delete")
+    public ResponseEntity<String> deleteSelectedItems(@RequestParam("lids") List<Integer> lids) {
+        try {
+            // 선택된 물품 삭제
+            cartService.deleteCartItems(lids);
+            return ResponseEntity.ok("Items deleted successfully");
+        } catch (Exception e) {
+            // 오류가 발생한 경우
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Failed to delete items");
+        }
+    }
 	
 //	@Autowired
 //	private CartService cartService;

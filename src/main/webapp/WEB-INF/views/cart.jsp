@@ -24,6 +24,7 @@
 				<div class="list-table">
 					<table summary="제품명, 가격, 재고, 수량, 총 가격">
 						<colgroup>
+							<col width="10%">
 							<col width="45%">
 							<col width="10%">
 							<col width="15%">
@@ -32,6 +33,8 @@
 						</colgroup>
 						<thead>
 							<tr>
+								<th scope="col">
+									<input type="checkbox" class="all_checked">전체선택</div>
 								<th scope="col">
 									<div class="tb-sort">제품명</div>
 								</th>
@@ -53,6 +56,9 @@
 						
 						<tbody class="tb-body">
 							<tr class="my-cart-list">
+								<td>
+									<input type="checkbox" class="cartCheckbox" value="${cartItem.liquor.lid}">
+								</td>
 								<td>
 									<div class="tb-left tb-name">${cartItem.liquor.name}</div>
 									<div class="tb-left tb-cateName">${cartItem.liquor.cateName}</div>
@@ -99,7 +105,7 @@
 	<div class = "mb-3">
 		<div class= "col-sm-3">
 			<button type="button" class="btn btn-primary order_btn">주문하기</button>
-
+			<button id="deleteSelected">선택된 물품 삭제</button>
 		</div>
 	
 	
@@ -165,6 +171,20 @@ $(".order_btn").on("click", function(){
 	
 });
 
+$("#deleteSelected").click(function () {
+            var selectedLids = [];
+
+            // 선택된 체크 박스의 값을 가져와서 배열에 추가
+            $(".cartCheckbox:checked").each(function () {
+                selectedLids.push($(this).val());
+            });
+
+            // 선택된 물품을 서버로 전송하여 삭제
+            $.post('/cart/delete', { lids: selectedLids }, function (data) {
+                // 성공적으로 삭제되었을 때, 페이지 리로딩
+                window.location.reload();
+            });
+        });
 
 </script>
 <%@ include file="include/footer.jsp" %>

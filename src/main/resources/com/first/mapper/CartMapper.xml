@@ -21,6 +21,15 @@
 	
 	</select>
 	
+	<delete id="deleteCartItemsByLids" parameterType="java.util.List">
+        DELETE FROM cart
+        WHERE lid IN
+        <foreach collection="list" item="item" open="(" separator="," close=")">
+            #{item}
+        </foreach>
+    </delete>
+	
+	
 	<update id = "updateCartItem">
 		UPDATE table_cartitem SET quantity = #{quantity} , price = #{itemTotalPrice} WHERE lid = #{lid} AND memberid = #{memberId}
 	</update>
