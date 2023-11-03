@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import com.first.domain.CartItemVO;
 import com.first.service.CartService;
 
 import lombok.extern.log4j.Log4j;
@@ -38,8 +39,11 @@ public class CartMapperTests {
 	@Test
 	public void updateQuantity()
 	{
-		
-		mapper.updateQuantity("kmm" , 122, 10);
+		CartItemVO cartItem = new CartItemVO();
+		cartItem.setMemberId("kmm");
+		cartItem.setLid(122);
+		cartItem.setQuantity(20);
+		mapper.updateCartItem(cartItem);
 	}
 	
 	

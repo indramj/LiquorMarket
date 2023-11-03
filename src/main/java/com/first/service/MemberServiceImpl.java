@@ -49,9 +49,9 @@ public class MemberServiceImpl implements MemberService{
 	}
 
 	@Override
-	public MemberVO getMember(String memberId) {
+	public MemberVO getMemberWithAuth(String memberId) {
         
-        return membermapper.getMember(memberId);
+        return membermapper.getMemberWithAuth(memberId);
     }
 	
 	/* 주문자 정보 */

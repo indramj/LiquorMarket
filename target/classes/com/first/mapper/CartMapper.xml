@@ -21,8 +21,8 @@
 	
 	</select>
 	
-	<update id = "updateQuantity">
-		UPDATE table_cartitem SET quantity = #{quantity} WHERE lid = #{lid} AND memberid = #{memberId}
+	<update id = "updateCartItem">
+		UPDATE table_cartitem SET quantity = #{quantity} , price = #{itemTotalPrice} WHERE lid = #{lid} AND memberid = #{memberId}
 	</update>
 
 

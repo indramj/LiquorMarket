@@ -20,7 +20,8 @@ public interface CartMapper {
 	    //중복 상품 확인용 lid불러오기
 	    public List<Integer> getLidbyMemberId(String memberId);
 	    
-	    public void updateQuantity(String memberId , int lid , int quantity);
+	    //장바구니 수량 조절
+	    public void updateCartItem(CartItemVO cartItem);
 	   
 
 //	public void addCart(CartDTO cart);
