@@ -166,7 +166,6 @@ $(".order_btn").on("click", function(){
 	
 });
 
-
 </script>
 <%@ include file="include/footer.jsp" %>
 </body>
