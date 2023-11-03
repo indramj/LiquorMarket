@@ -13,6 +13,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -51,6 +52,15 @@ public class CartController {
 	    cartService.addItemToCart(cartItem);
 	    
 	    return new ResponseEntity<String>("success" , HttpStatus.OK);
+	}
+	
+	@PutMapping("/updateQty")
+	@ResponseBody
+	public ResponseEntity<String> updateQty(@RequestParam CartItemVO cartItem)
+	{
+		log.info("updateCartItem");
+		cartService.updateCartItem(cartItem);
+		return new ResponseEntity<String>("result" , HttpStatus.OK);
 	}
 	
 	 @PostMapping("/delete/{cartItemId}")

@@ -57,22 +57,13 @@ public class CartServiceImpl implements CartService {
 		//memberid가 가지고 있는 모든 liquor의 lid List
 		List<Integer> lidList = cartMapper.getLidbyMemberId(cartItem.getMemberId());
 		
-		int lid = cartItem.getLid();
-		
-		int quantity = cartItem.getQuantity()+1;
-		
-		String memberId = cartItem.getMemberId();
-		CartItemVO item= new CartItemVO();
-		item.setLid(lid);
-		item.setMemberId(memberId);
-		item.setQuantity(quantity);
-		//item.setItemTotalPrice(quantity * );
-		
-		
-		
-		if (lidList.contains(lid))
+		if (lidList.contains(cartItem.getLid()))
 		{
-			cartMapper.updateQuantity(memberId , lid , quantity);
+			int quantity = cartItem.getQuantity()+1;
+			int totalPrice = (cartItem.getItemTotalPrice() / cartItem.getQuantity()) * quantity;
+			cartItem.setQuantity(quantity);
+			cartItem.setItemTotalPrice(totalPrice);
+			cartMapper.updateCartItem(cartItem);
 		}
 		else
 		{
@@ -90,9 +81,8 @@ public class CartServiceImpl implements CartService {
 
 
 	@Override
-	public void updateCartItem(int lid, int quantity, int price) {
-		// TODO Auto-generated method stub
-		
+	public void updateCartItem(CartItemVO cartItem) {
+		cartMapper.updateCartItem(cartItem);
 	}
 	
 	

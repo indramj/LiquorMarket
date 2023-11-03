@@ -23,7 +23,7 @@ public class CustomUserDetailsService implements UserDetailsService {
 		// TODO Auto-generated method stub
 		log.warn("Load User By UserName: " + username);
 		
-		MemberVO vo = memberMapper.getMember(username);
+		MemberVO vo = memberMapper.getMemberWithAuth(username);
 		
 		log.warn("queried by member mapper: " + vo);
 		if(vo == null)

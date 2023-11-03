@@ -10,7 +10,7 @@ public interface MemberMapper {
 
 	public int checkId(String memberId);
 
-	public MemberVO getMember(String memberId);
+	public MemberVO getMemberWithAuth(String memberId);
 	
 	public List<MemberVO> getMemberList();
 	

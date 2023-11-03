@@ -37,9 +37,10 @@
 </c:forEach>
 
 <!-- 주문 form -->
-			<form action="/order/${member.memberId}" method="get" class="order_form">
+<form action="/order/${member.memberId}" method="get" class="order_form">
+	<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
 
-			</form>
+</form>
 	
 
 	<div class = "mb-3">
@@ -104,12 +105,6 @@ function updateQuantity(index, operation) {
 /* 주문 페이지 이동 */	
 $(".order_btn").on("click", function(){
 	
-	let form_contents ='';
-	let orderNumber = 0;
-	
-	
-
-	$(".order_form").html(form_contents);
 	$(".order_form").submit();
 	
 });

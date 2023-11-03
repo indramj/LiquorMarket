@@ -14,16 +14,7 @@ public class CartItemDTO {
 	private int itemTotalPrice;
 	
 	
-//	public void setQuantity(int quantity)
-//	{
-//		this.quantity = quantity;
-//		update();	
-//	}
-//	
-//	private int update()
-//	{
-//		return this.price = quantity * liquor.getPrice();
-//	}
+
 	
 }
 

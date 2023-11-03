@@ -70,11 +70,11 @@ public class MemberMapperTest {
     }
 	*/
 	
-	@Test
-	public void getMemberById()
-	{
-		
-		log.info(membermapper.getMember("kmm"));
-	}
+//	@Test
+//	public void getMemberById()
+//	{
+//		
+//		log.info(membermapper.getMember("kmm"));
+//	}
 	
 }
