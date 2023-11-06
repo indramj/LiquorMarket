@@ -11,7 +11,7 @@
 	<!-- 카트 추가 -->
 	<insert id="addItemToCart">
 
-		insert into table_cartitem(memberId, lid , price )
+		insert into table_cartitem(memberId, lid , itemtotalprice )
 		values(#{memberId},#{lid}, #{itemTotalPrice} )
 
 	</insert>
@@ -22,8 +22,12 @@
 	</select>
 	
 	<update id = "updateCartItem">
-		UPDATE table_cartitem SET quantity = #{quantity} , price = #{itemTotalPrice} WHERE lid = #{lid} AND memberid = #{memberId}
+		UPDATE table_cartitem SET quantity = #{quantity} , itemtotalprice = #{itemTotalPrice} WHERE lid = #{lid} AND memberid = #{memberId}
 	</update>
+	
+	<delete id = "deleteCartItem">
+		delete from table_cartitem where lid = #{lid} and memberid = #{memberId}
+	</delete>
 
 
 

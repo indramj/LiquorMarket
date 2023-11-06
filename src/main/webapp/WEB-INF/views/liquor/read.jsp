@@ -66,7 +66,7 @@
 				memberId : "kmm",
 				lid : lid,
 				quantity : 1,
-				price : price
+				itemTotalPrice : price
 			}
 			
 			console.log(cartitem);

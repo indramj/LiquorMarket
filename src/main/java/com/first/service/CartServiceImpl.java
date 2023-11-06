@@ -74,8 +74,8 @@ public class CartServiceImpl implements CartService {
 
 
 	@Override
-	public void deleteCartItem(int lid) {
-		// TODO Auto-generated method stub
+	public void deleteCartItem(CartItemVO cartItem) {
+		cartMapper.deleteCartItem(cartItem);
 		
 	}
 
