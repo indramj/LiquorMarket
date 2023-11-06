@@ -1,0 +1,17 @@
+@charset "UTF-8";
+*{
+	margin: 0;
+	padding:0;
+}
+#btnArea .pay-btn{
+	border: none;
+    height: 40px;
+    margin-top: 15px;
+    width: 10%;
+    text-align: center;
+    float: right;
+    font-size: 14px;
+    font-weight: 300;
+    background-color: #938782;
+    color: white;
+}
