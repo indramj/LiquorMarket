@@ -15,6 +15,7 @@
 </head>
 <body>
 <form class = "orderForm" method = "get" action = "/order/${member.memberId}">
+	<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
 <div class="wrapper">
 	<div id="container">
 		<div id="contents" class="cartWrap">
@@ -73,16 +74,15 @@
 								</td>
 								<td>
 									<div class="tb-sort">
-										<span class="quantity">${cartItem.quantity * 0 + 1}</span>
-								        <button class="tb-btn increase">+</button>
-					      			 	<button class="tb-btn decrease">-</button>
-					      			 	<button class="tb-change-btn">변경</button>
+										<span class="quantity" data-quantity = "${cartItem.quantity}">${cartItem.quantity}</span>
+								        <button type = "button" class="tb-btn increase">+</button>
+					      			 	<button type = "button" class="tb-btn decrease">-</button>
+					      			 	<button type ="button" class="tb-change-btn">변경</button>
 									</div>
 								</td>
 								<td>
 									<div class="tb-right">
-										<span class="item-price" data-price="${cartItem.liquor.price}" style="display:none">${cartItem.liquor.price}원</span>
-										<span class="total_price">${cartItem.itemTotalPrice}원</span>
+										<span class="total_price">${cartItem.itemTotalPrice}</span>
 									</div>
 								</td>
 							</tr>
@@ -90,7 +90,7 @@
 						</tbody>
 					</table>
 					<button type = "button" class = "btnOrder">주문하기</button>
-					<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+					<button type = "button" class = "btnDelete">상품 제거</button>
 				</div>
 			</div>
 		</div>
@@ -109,57 +109,69 @@
 		  }
 		});
 
+	$(document).ready(function(){
+		var orderForm = $(".orderForm");
+		/* 주문 페이지 이동 */	
+		$(".btnOrder").on("click", function(){
+			orderForm.submit();
+
+		});
+
+		$(".btnUpdateQty").on("click" , function(){
+			console.log(cartItem);
+			
+		})
 		
-const quantityElements = document.querySelectorAll('.quantity');
-const totalElements = document.querySelectorAll('.total_price');
-const increaseButtons = document.querySelectorAll('.increase');
-const decreaseButtons = document.querySelectorAll('.decrease');
-const itemPrices = document.querySelectorAll('.item-price');
+		$(".btnDelete").on("click" , function(e){
+			e.preventDefault();
+			orderForm.attr("action" , "/cart/delete");
+			orderForm.submit();
+		})
+		
+	  const quantityElements = document.querySelectorAll('.quantity');
+		const totalElements = document.querySelectorAll('.total_price');
+		const increaseButtons = document.querySelectorAll('.increase');
+		const decreaseButtons = document.querySelectorAll('.decrease');
+		const itemPrices = document.querySelectorAll('.item-price');
 
-increaseButtons.forEach((button, index) => {
-    button.addEventListener('click', () => {
-        updateQuantity(index, 'increase');
-    });
-});
+		increaseButtons.forEach((button, index) => {
+		    button.addEventListener('click', () => {
+		        updateQuantity(index, 'increase');
+		    });
+		});
 
-decreaseButtons.forEach((button, index) => {
-    button.addEventListener('click', () => {
-        updateQuantity(index, 'decrease');
-    });
-});
+		decreaseButtons.forEach((button, index) => {
+		    button.addEventListener('click', () => {
+		        updateQuantity(index, 'decrease');
+		    });
+		});
 
-function updateQuantity(index, operation) {
-    const quantityElement = quantityElements[index];
-    const totalElement = totalElements[index];
-    const itemPrice = itemPrices[index];
+		function updateQuantity(index, operation) {
+		    const quantityElement = quantityElements[index];
+		    const totalElement = totalElements[index];
+		    const itemPrice = itemPrices[index];
 
-    let quantity = parseInt(quantityElement.textContent);
-    const price = parseFloat(itemPrice.getAttribute('data-price'));
+		    let quantity = parseInt(quantityElement.textContent);
+		    const price = parseFloat(itemPrice.getAttribute('data-price'));
 
-    if (operation === 'increase') {
-        quantity += 1;
-    } else if (operation === 'decrease' && quantity > 1) {
-        quantity -= 1;
-    }
+		    if (operation === 'increase') {
+		        quantity += 1;
+		    } else if (operation === 'decrease' && quantity > 1) {
+		        quantity -= 1;
+		    }
 
-    // 총합 가격 업데이트
-    totalElement.textContent = (quantity * price).toFixed(2) + '원';
+		    // 총합 가격 업데이트
+		    totalElement.textContent = (quantity * price).toFixed(2) + '원';
 
-    // 수량 업데이트
-    quantityElement.textContent = quantity;
-}
+		    // 수량 업데이트
+		    quantityElement.textContent = quantity; 
+		}
 
-var orderForm = $(".orderForm");
-/* 주문 페이지 이동 */	
-$(".btnOrder").on("click", function(){
-	orderForm.submit();
+	});
+		
 
-});
 
-$(".btnUpdateQty").on("click" , function(){
 
-	console.log(cartItem);
-})
 
 
 </script>
