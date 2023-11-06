@@ -1,5 +1,6 @@
 package com.first.controller;
 
+import java.security.Principal;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -37,9 +38,10 @@ public class CartController {
 	CartService cartService;
 	
 	@GetMapping("")
-	public void cartPageGET(@RequestParam("memberId") String memberId , Model model) {
+	public void cartPageGET(Principal principal , Model model) {
 		
 		log.info("cart/memberId");
+		String memberId = principal.getName();
 		List<CartItemDTO> cartList = cartService.getCartList(memberId);
 		model.addAttribute("cartList" , cartList);
 	}

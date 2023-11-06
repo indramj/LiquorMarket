@@ -14,6 +14,7 @@
 
 </head>
 <body>
+<form class = "orderForm" method = "get" action = "/order/${member.memberId}">
 <div class="wrapper">
 	<div id="container">
 		<div id="contents" class="cartWrap">
@@ -24,6 +25,7 @@
 				<div class="list-table">
 					<table summary="제품명, 가격, 재고, 수량, 총 가격">
 						<colgroup>
+							<col width = "10%">
 							<col width="45%">
 							<col width="10%">
 							<col width="15%">
@@ -32,6 +34,9 @@
 						</colgroup>
 						<thead>
 							<tr>
+								<th scope = "col">
+									<div class = "tb-sort">#</div>
+								</th>
 								<th scope="col">
 									<div class="tb-sort">제품명</div>
 								</th>
@@ -53,6 +58,9 @@
 						
 						<tbody class="tb-body">
 							<tr class="my-cart-list">
+								<td>
+									<input type = "checkbox" name = "cartCheckList"/>
+								</td> 
 								<td>
 									<div class="tb-left tb-name">${cartItem.liquor.name}</div>
 									<div class="tb-left tb-cateName">${cartItem.liquor.cateName}</div>
@@ -81,31 +89,15 @@
 						</c:forEach>
 						</tbody>
 					</table>
+					<button type = "button" class = "btnOrder">주문하기</button>
+					<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
 				</div>
 			</div>
 		</div>
 	</div>
 </div>
-
-<!-- 주문 form -->
-
-<form action="/order/${member.memberId}" method="get" class="order_form">
-	<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
-
-
 </form>
 	
-
-	<div class = "mb-3">
-		<div class= "col-sm-3">
-			<button type="button" class="btn btn-primary order_btn">주문하기</button>
-
-		</div>
-	
-	
- 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-	<script type="text/javascript">
-
  	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 	<script type="text/javascript">
 	
@@ -157,13 +149,17 @@ function updateQuantity(index, operation) {
     quantityElement.textContent = quantity;
 }
 
+var orderForm = $(".orderForm");
 /* 주문 페이지 이동 */	
-$(".order_btn").on("click", function(){
+$(".btnOrder").on("click", function(){
+	orderForm.submit();
 
-
-	$(".order_form").submit();
-	
 });
+
+$(".btnUpdateQty").on("click" , function(){
+
+	console.log(cartItem);
+})
 
 
 </script>
