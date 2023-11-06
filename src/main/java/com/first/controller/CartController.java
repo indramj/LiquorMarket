@@ -65,40 +65,19 @@ public class CartController {
 		return new ResponseEntity<String>("result" , HttpStatus.OK);
 	}
 	
-	 @PostMapping("/delete/{cartItemId}")
-	    public String deleteItemFromCart(@PathVariable("lid") int lid, HttpSession session) {
-	        String memberId = (String) session.getAttribute("memberId");
-	        cartService.deleteCartItem(lid);
-	        return "redirect:/cart?memberId=" + memberId;
-	 }	
+	@PostMapping("/delete")
+	@ResponseBody
+    public ResponseEntity<String> deleteCartItems(@RequestBody List<Integer> lids) {
+        try {
+            // 선택된 물품을 장바구니에서 삭제
+            cartService.deleteCartItems(lids);
+            log.info("Deleted items: " + lids);
+            return ResponseEntity.ok("Selected items deleted successfully");
+        } catch (Exception e) {
+            // 오류가 발생한 경우
+        	log.error("Error deleting items: " + e.getMessage());
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Failed to delete selected items");
+        }
+    }
 	
-//	@Autowired
-//	private CartService cartService;
-//	
-//	@PostMapping("/cart/add")
-//	@ResponseBody
-//	public int addCartPOST(CartDTO cart, HttpServletRequest request) {
-//		
-//		/* 뷰는 숫자를 반환받도록 한다. (0: 등록 실패 / 1 : 등록 성공 / 2 : 등록된 데이터 존재 5: 로그인 필요) */
-//		
-//		// 로그인 체크
-//		HttpSession session = request.getSession();
-//		MemberVO mvo = (MemberVO)session.getAttribute("member");
-//		if(mvo == null) {
-//			return "5";
-//		}
-//		
-//		// 카트 등록
-//	
-//		int result = cartService.addCart(cart);
-//		
-//		return result + "";
-//	}
-//
-//	@GetMapping("/cart/{memberId}")
-//	public String cartPageGET(@PathVariable("memberId") String memberId, Model model) {
-//
-//		
-//		return "/cart";
-//	}
 }

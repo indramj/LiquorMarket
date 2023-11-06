@@ -22,20 +22,8 @@ public interface CartMapper {
 	    
 	    //장바구니 수량 조절
 	    public void updateCartItem(CartItemVO cartItem);
+	    
+	    // 장바구니에서 선택된 아이템 삭제
+		public void deleteCartItemsByLids(List<Integer> lids);
 	   
-
-//	public void addCart(CartDTO cart);
-//	
-//	
-//	public int deleteCart(int cartId);
-//	
-//	
-//	public int modifyCount(CartDTO cart);
-//	
-//	
-//	public List<CartDTO> getCart(String memberId);	
-//	
-//	// 카트 확인
-//	public CartDTO checkCart(CartDTO cart);
-
 }

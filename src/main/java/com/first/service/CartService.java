@@ -18,9 +18,9 @@ public interface CartService {
 
 	public void addItemToCart(CartItemVO cartItem);
 
-	public void deleteCartItem(int lid);
-
 	public void updateCartItem(CartItemVO cartItem);
+
+	void deleteCartItems(List<Integer> lids);
 
 	
 }

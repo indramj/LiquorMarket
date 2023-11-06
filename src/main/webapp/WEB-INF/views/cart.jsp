@@ -59,7 +59,7 @@
 						<tbody class="tb-body">
 							<tr class="my-cart-list">
 								<td>
-									<input type = "checkbox" name = "cartCheckList"/>
+									<input type = "checkbox" class="cartCheckbox" value="${cartItem.liquor.lid}"/>
 								</td> 
 								<td>
 									<div class="tb-left tb-name">${cartItem.liquor.name}</div>
@@ -91,6 +91,7 @@
 					</table>
 					<button type = "button" class = "btnOrder">주문하기</button>
 					<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+					<input type="button" id="deleteSelected" value="선택된 상품 삭제">
 				</div>
 			</div>
 		</div>
@@ -149,17 +150,49 @@ function updateQuantity(index, operation) {
     quantityElement.textContent = quantity;
 }
 
+
+$("#deleteSelected").click(function () {
+    var selectedLids = [];
+
+    // 선택된 체크 박스의 값을 가져와서 배열에 추가
+    $(".cartCheckbox:checked").each(function () {
+        selectedLids.push(parseInt($(this).val()));
+    });
+
+    // 사용자에게 삭제 확인 메시지 표시
+    if (selectedLids.length > 0) {
+        if (confirm("선택한 물품을 삭제하시겠습니까?")) {
+            $.ajax({
+                type: "POST",
+                url: '/cart/delete',
+                contentType: "application/json",
+                data: JSON.stringify(selectedLids),
+                success: function (data) {
+                    // 성공적으로 삭제되었을 때, 필요한 처리 수행
+                    console.log("cartitem_deleted");
+                    location.reload();
+                },
+                error: function (error) {
+                    // 오류 발생 시 처리
+                    console.log("cartitem_deleted_NOT");
+                }
+            });
+        }
+    } else {
+        alert("삭제할 물품을 선택해주세요.");
+    }
+});
+
 var orderForm = $(".orderForm");
+
 /* 주문 페이지 이동 */	
 $(".btnOrder").on("click", function(){
-	orderForm.submit();
-
+    orderForm.submit();
 });
 
 $(".btnUpdateQty").on("click" , function(){
-
 	console.log(cartItem);
-})
+});
 
 
 </script>
