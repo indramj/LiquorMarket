@@ -14,46 +14,92 @@
 
 </head>
 <body>
-
-	<h1> 장바구니 </h1>
-	<c:forEach var="cartItem" items="${cartList}">
-    <h4>주류 이름: ${cartItem.liquor.name}</h4>
-    <h4>카테고리: ${cartItem.liquor.cateName}</h4>
-    <h4>가격: <span id="item-price" data-price="${cartItem.liquor.price}">${cartItem.liquor.price}원</span></h4>
-    <h4>${cartItem.quantity}개</h4>
-    <div>
-        <p>
-            물품 수량: <span class="quantity">${cartItem.quantity}</span>
-        </p>
-        <!-- 수량 증가 버튼 -->
-        <button class="increase">+</button>
-        <!-- 수량 감소 버튼 -->
-        <button class="decrease">-</button>
-        <button type = "button" class = "btnUpdateQty">수량변경</button>
-        <!-- 총합 가격 -->
-        <p>
-            총합 가격: <span id="total_price">${cartItem.itemTotalPrice}원</span>
-        </p>
-    </div>
-</c:forEach>
-
-<!-- 주문 form -->
-<form action="/order/${member.memberId}" method="get" class="order_form">
-	<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
-
-</form>
-	
-
-	<div class = "mb-3">
-		<div class= "col-sm-3">
-			<button type="button" class="btn btn-primary order_btn">주문하기</button>
-
+<form class = "orderForm" method = "get" action = "/order/${member.memberId}">
+<div class="wrapper">
+	<div id="container">
+		<div id="contents" class="cartWrap">
+			<div class="titleArea">
+				<h2> 장바구니 </h2>
+			</div>
+			<div id="myCartWrap">
+				<div class="list-table">
+					<table summary="제품명, 가격, 재고, 수량, 총 가격">
+						<colgroup>
+							<col width = "10%">
+							<col width="45%">
+							<col width="10%">
+							<col width="15%">
+							<col width="5%">
+							<col width="15%">					
+						</colgroup>
+						<thead>
+							<tr>
+								<th scope = "col">
+									<div class = "tb-sort">#</div>
+								</th>
+								<th scope="col">
+									<div class="tb-sort">제품명</div>
+								</th>
+								<th scope="col">
+									<div class="tb-sort">가격</div>
+								</th>
+								<th scope="col">
+									<div class="tb-sort">재고</div>
+								</th>
+								<th scope="col">
+									<div class="tb-sort">수량</div>
+								</th>
+								<th scope="col">
+									<div class="tb-sort">총 가격</div>
+								</th>
+							</tr>
+						</thead>
+						<c:forEach var="cartItem" items="${cartList}">
+						
+						<tbody class="tb-body">
+							<tr class="my-cart-list">
+								<td>
+									<input type = "checkbox" name = "cartCheckList"/>
+								</td> 
+								<td>
+									<div class="tb-left tb-name">${cartItem.liquor.name}</div>
+									<div class="tb-left tb-cateName">${cartItem.liquor.cateName}</div>
+								</td>
+								<td>
+									<span class="item-price" data-price="${cartItem.liquor.price}">${cartItem.liquor.price}원</span>
+								</td>
+								<td>
+									<div class="tb-sort">${cartItem.quantity}개</div>
+								</td>
+								<td>
+									<div class="tb-sort">
+										<span class="quantity">${cartItem.quantity * 0 + 1}</span>
+								        <button class="tb-btn increase">+</button>
+					      			 	<button class="tb-btn decrease">-</button>
+					      			 	<button class="tb-change-btn">변경</button>
+									</div>
+								</td>
+								<td>
+									<div class="tb-right">
+										<span class="item-price" data-price="${cartItem.liquor.price}" style="display:none">${cartItem.liquor.price}원</span>
+										<span class="total_price">${cartItem.itemTotalPrice}원</span>
+									</div>
+								</td>
+							</tr>
+						</c:forEach>
+						</tbody>
+					</table>
+					<button type = "button" class = "btnOrder">주문하기</button>
+					<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+				</div>
+			</div>
 		</div>
-	
+	</div>
+</div>
+</form>
 	
  	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 	<script type="text/javascript">
-	
 	
 	//뒤로가기 문제 해결
 	window.addEventListener('pageshow', function(event) {
@@ -103,10 +149,11 @@ function updateQuantity(index, operation) {
     quantityElement.textContent = quantity;
 }
 
-var moveForm = $(".order_form");
+var orderForm = $(".orderForm");
 /* 주문 페이지 이동 */	
-$(".order_btn").on("click", function(){
-	moveForm.submit();
+$(".btnOrder").on("click", function(){
+	orderForm.submit();
+
 });
 
 $(".btnUpdateQty").on("click" , function(){
@@ -116,8 +163,6 @@ $(".btnUpdateQty").on("click" , function(){
 
 
 </script>
+<%@ include file="include/footer.jsp" %>
 </body>
-</html>
-
-        
-        
+</html>   
