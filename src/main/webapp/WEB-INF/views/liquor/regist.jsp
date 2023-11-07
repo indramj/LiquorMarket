@@ -174,30 +174,26 @@ $(document).ready(function(){
 						</div>
 						<div class="form_section_content bit">
 							<textarea class="form-control" name="description" id="description_textarea" rows="5" style = "resize:none;">${liquor.description}</textarea>
-							
 						</div>
 					
-					<div class="panel-body">
-	  				<div class="form-group uploadDiv">
-	  					<input type="file" id = "uploadFile" name='uploadFile' multiple>
-	  				</div>
-	  				
-	  				<div class='uploadResult'>
-	  					<ul class='no_dot'>
-	  						
-	  					</ul>
-	  				</div>
-	  				</div>
-	  				
-					
-			<div class = "regist-mb-3">
-			<div class= "col-sm-3">
-				<button type="button" class="btn btn-primary" id = "Register">등록</button>
-				<button type="button" class="btn btn-primary btnCancel">취소</button>
-				<input type = "hidden" name = "${_csrf.parameterName}" value = "${_csrf.token}">
+						<div class="panel-body">
+			  				<div class="form-group uploadDiv">
+			  					<input type="file" id = "uploadFile" name='uploadFile' multiple>
+			  				</div>
+			  				<div class='uploadResult'>
+			  					<ul class='no_dot'>
+			  						
+			  					</ul>
+			  				</div>
+		  				</div>
+					</div>
+		<div class = "regist-mb-3">
+				<div class= "col-sm-3">
+					<button type="button" class="btn btn-primary" id = "Register">등록</button>
+					<button type="button" class="btn btn-primary btnCancel">취소</button>
+					<input type = "hidden" name = "${_csrf.parameterName}" value = "${_csrf.token}">
+				</div>
 			</div>
-			</div>
-		</div>
 	</div>
 	</div>
 	</form>
