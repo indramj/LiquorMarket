@@ -20,13 +20,13 @@
 	<div id="container">
 		<div id="contents" class="cartWrap">
 			<div class="titleArea">
-				<h2> 장바구니 </h2>
+				<h2>장바구니</h2>
 			</div>
 			<div id="myCartWrap">
 				<div class="list-table">
 					<table summary="제품명, 가격, 재고, 수량, 총 가격">
 						<colgroup>
-							<col width = "10%">
+							<col width="10%">
 							<col width="45%">
 							<col width="10%">
 							<col width="15%">
@@ -36,7 +36,7 @@
 						<thead>
 							<tr>
 								<th scope = "col">
-									<div class = "tb-sort">#</div>
+									<div class = "tb-sort"></div>
 								</th>
 								<th scope="col">
 									<div class="tb-sort">제품명</div>

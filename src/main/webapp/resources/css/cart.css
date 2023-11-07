@@ -108,5 +108,16 @@ table{
 	font-size: 20px;
 	font-weight: bold;
 	margin-left: 12px;
-	
+}
+.btnOrder{
+	border: none;
+    height: 40px;
+    margin-top: 15px;
+    width: 10%;
+    text-align: center;
+    float: right;
+    font-size: 14px;
+    font-weight: 300;
+    background-color: #575757;
+    color: white;
 }
