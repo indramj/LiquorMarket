@@ -67,10 +67,14 @@ public class CartController {
 	}
 
 	@GetMapping("/delete")
-	 public String deleteItemFromCart(@RequestParam("cartCheckList") List<CartItemVO> cartCheckList) {
-		log.info("CartItemDelete");
-		String memberId = cartCheckList.get(0).getMemberId();
-        return "redirect:/cart?memberId=" + memberId;
+	public String deleteItemFromCart(@RequestParam("cartCheckList") List<String> cartCheckList , Principal principal) {
+		String memberId = principal.getName();
+		for (String string : cartCheckList) {
+			log.info(string + memberId);
+		}
+		cartService.deleteCartItems(cartCheckList , memberId);
+		
+        return "redirect:/cart?memberId=";
 	 }
 
 }

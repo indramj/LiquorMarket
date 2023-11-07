@@ -49,6 +49,7 @@ public class CartServiceImpl implements CartService {
 
 		
 	}
+	
 
 
 	@Override
@@ -74,8 +75,13 @@ public class CartServiceImpl implements CartService {
 
 
 	@Override
-	public void deleteCartItem(CartItemVO cartItem) {
-		cartMapper.deleteCartItem(cartItem);
+	public void deleteCartItems(List<String> cartItems , String memberId) {
+		List<CartItemDTO> cartList = getCartList(memberId);
+		for ( int i = 0; i< cartList.size(); i++)
+		{
+			if (cartItems.contains(String.valueOf(cartList.get(i).getLiquor().getLid())))
+				cartMapper.deleteCartItem(cartList.get(i));
+		}
 		
 	}
 
@@ -84,6 +90,7 @@ public class CartServiceImpl implements CartService {
 	public void updateCartItem(CartItemVO cartItem) {
 		cartMapper.updateCartItem(cartItem);
 	}
+	
 	
 	
 //	

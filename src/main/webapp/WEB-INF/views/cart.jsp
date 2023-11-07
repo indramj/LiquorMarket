@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib uri = "http://www.springframework.org/security/tags" prefix = "sec" %>
 <%@ include file="include/header.jsp" %>
 
 
@@ -60,11 +61,12 @@
 						<tbody class="tb-body">
 							<tr class="my-cart-list">
 								<td>
-									<input type = "checkbox" name = "cartCheckList"/>
+									<input type = "checkbox" name = "cartCheckList" value = "${cartItem.liquor.lid}"/>
 								</td> 
 								<td>
 									<div class="tb-left tb-name">${cartItem.liquor.name}</div>
 									<div class="tb-left tb-cateName">${cartItem.liquor.cateName}</div>
+									
 								</td>
 								<td>
 									<span class="item-price" data-price="${cartItem.liquor.price}">${cartItem.liquor.price}원</span>
@@ -77,12 +79,12 @@
 										<span class="quantity" data-quantity = "${cartItem.quantity}">${cartItem.quantity}</span>
 								        <button type = "button" class="tb-btn increase">+</button>
 					      			 	<button type = "button" class="tb-btn decrease">-</button>
-					      			 	<button type ="button" class="tb-change-btn">변경</button>
+					      			 	<button type ="button" data-lid = "${cartItem.liquor.lid}" class="tb-change-btn btnUpdateQty">변경</button>
 									</div>
 								</td>
 								<td>
 									<div class="tb-right">
-										<span class="total_price">${cartItem.itemTotalPrice}</span>
+										<span id="total_price">${cartItem.itemTotalPrice}</span>
 									</div>
 								</td>
 							</tr>
@@ -117,8 +119,11 @@
 
 		});
 
-		$(".btnUpdateQty").on("click" , function(){
-			console.log(cartItem);
+		$(".btnUpdateQty").on("click" , function(e){
+			var itemTotalPrice = $("#total_price").text();
+			var quantity = $(".quantity").text();
+			var lid = $(this).data('lid');
+			console.log(memberId);
 			
 		})
 		
@@ -129,7 +134,7 @@
 		})
 		
 	  const quantityElements = document.querySelectorAll('.quantity');
-		const totalElements = document.querySelectorAll('.total_price');
+		const totalElements = document.querySelectorAll('#total_price');
 		const increaseButtons = document.querySelectorAll('.increase');
 		const decreaseButtons = document.querySelectorAll('.decrease');
 		const itemPrices = document.querySelectorAll('.item-price');
@@ -161,7 +166,7 @@
 		    }
 
 		    // 총합 가격 업데이트
-		    totalElement.textContent = (quantity * price).toFixed(2) + '원';
+		    totalElement.textContent = (quantity * price);
 
 		    // 수량 업데이트
 		    quantityElement.textContent = quantity; 
