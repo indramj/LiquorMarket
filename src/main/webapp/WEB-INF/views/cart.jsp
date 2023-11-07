@@ -60,7 +60,7 @@
 						<tbody class="tb-body">
 							<tr class="my-cart-list">
 								<td>
-									<input type = "checkbox" name = "cartCheckList"/>
+									<input type = "checkbox" name = "cartCheckList" value = "${cartItem.liquor.lid}"/>
 								</td> 
 								<td>
 									<div class="tb-left tb-name">${cartItem.liquor.name}</div>

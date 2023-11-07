@@ -7,6 +7,10 @@
 <select id = "getCartList" resultType = "com.first.domain.CartItemVO">
 	select * from table_cartitem where memberid = #{memberId}
 </select>
+
+	<delete id = "deleteCartItem">
+		delete from table_cartitem where lid = ${liquor.lid} and memberid = #{memberId}
+	</delete>
 	
 	<!-- 카트 추가 -->
 	<insert id="addItemToCart">
@@ -25,9 +29,12 @@
 		UPDATE table_cartitem SET quantity = #{quantity} , itemtotalprice = #{itemTotalPrice} WHERE lid = #{lid} AND memberid = #{memberId}
 	</update>
 	
-	<delete id = "deleteCartItem">
-		delete from table_cartitem where lid = #{lid} and memberid = #{memberId}
-	</delete>
+
+	
+	<select id = "getCartItem" resultType = "com.first.domain.CartItemVO">
+		select * from table_cartitem where lid = #{liquor.lid} and memberid = #{memberId}
+	</select>
+	
 
 
 
