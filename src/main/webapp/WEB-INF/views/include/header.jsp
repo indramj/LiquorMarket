@@ -20,7 +20,8 @@
 			$("#liquor").addClass("active");
 		if(path === "/cart")
 			$("#cart").addClass("active");
-
+		if(path === "/admin/manageMember")
+			$("#manageMember").addClass("active");
 	})
 	   
 
@@ -173,8 +174,9 @@
         <sec:authorize access = "isAuthenticated()">
         	<li class="nav-item"><a href="/cart?memberId=kmm" class="nav-link">장바구니</a></li>
         </sec:authorize>
+
         <sec:authorize access="hasRole('ROLE_ADMIN')">
-        	<li class="nav-item"><a href="/admin/manageMember" class="nav-link">회원관리</a></li>
+        	<li class="nav-item"><a href="/admin/manageMember" class="nav-link" id = "manageMember">회원관리</a></li>
         </sec:authorize>
       </ul>
     </header>

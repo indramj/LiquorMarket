@@ -21,13 +21,13 @@
 	<div id="container">
 		<div id="contents" class="cartWrap">
 			<div class="titleArea">
-				<h2> 장바구니 </h2>
+				<h2>장바구니</h2>
 			</div>
 			<div id="myCartWrap">
 				<div class="list-table">
 					<table summary="제품명, 가격, 재고, 수량, 총 가격">
 						<colgroup>
-							<col width = "10%">
+							<col width="10%">
 							<col width="45%">
 							<col width="10%">
 							<col width="15%">
@@ -37,7 +37,7 @@
 						<thead>
 							<tr>
 								<th scope = "col">
-									<div class = "tb-sort">#</div>
+									<div class = "tb-sort"></div>
 								</th>
 								<th scope="col">
 									<div class="tb-sort">제품명</div>
@@ -66,7 +66,6 @@
 								<td>
 									<div class="tb-left tb-name">${cartItem.liquor.name}</div>
 									<div class="tb-left tb-cateName">${cartItem.liquor.cateName}</div>
-									
 								</td>
 								<td>
 									<span class="item-price" data-price="${cartItem.liquor.price}">${cartItem.liquor.price}원</span>
@@ -93,6 +92,14 @@
 						</c:forEach>
 						</tbody>
 					</table>
+				</div>
+				<div class="totalArea">
+					<div class="finalPrice">
+						<h5>총 상품금액 =</h5>
+						<div class=""><!-- 총합 가격 넣는곳 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@--></div>
+					</div>
+				</div>
+				<div class="butArea">
 					<button type = "button" class = "btnOrder">주문하기</button>
 					<button type = "button" class = "btnDelete">상품 제거</button>
 				</div>
@@ -218,4 +225,4 @@
 </script>
 <%@ include file="include/footer.jsp" %>
 </body>
-</html>   
+</html> 
