@@ -59,7 +59,7 @@
 						<c:forEach var="cartItem" items="${cartList}">
 						
 						<tbody class="tb-body">
-							<tr class="my-cart-list">
+							<tr class="my-cart-list" data-lid = "${cartItem.liquor.lid}">
 								<td>
 									<input type = "checkbox" name = "cartCheckList" value = "${cartItem.liquor.lid}"/>
 								</td> 
@@ -72,19 +72,21 @@
 									<span class="item-price" data-price="${cartItem.liquor.price}">${cartItem.liquor.price}원</span>
 								</td>
 								<td>
-									<div class="tb-sort">${cartItem.quantity}개</div>
+									<div class="tb-sort">
+										<span class = "stock">
+										${cartItem.liquor.stock}</span>개</div>
 								</td>
 								<td>
 									<div class="tb-sort">
 										<span class="quantity" data-quantity = "${cartItem.quantity}">${cartItem.quantity}</span>
 								        <button type = "button" class="tb-btn increase">+</button>
 					      			 	<button type = "button" class="tb-btn decrease">-</button>
-					      			 	<button type ="button" data-lid = "${cartItem.liquor.lid}" class="tb-change-btn btnUpdateQty">변경</button>
+					      			 	<button type ="button"  class="tb-change-btn btnUpdateQty">변경</button>
 									</div>
 								</td>
 								<td>
 									<div class="tb-right">
-										<span id="total_price">${cartItem.itemTotalPrice}</span>
+										<span class="total_price">${cartItem.itemTotalPrice}</span>
 									</div>
 								</td>
 							</tr>
@@ -118,12 +120,45 @@
 			orderForm.submit();
 
 		});
+		
+		var csrfHeaderName = "${_csrf.headerName}";
+		var csrfTokenValue = "${_csrf.token}";
+		$(document).ajaxSend(function(e, xhr, options) { 
+		    xhr.setRequestHeader(csrfHeaderName, csrfTokenValue); 
+		  });
 
 		$(".btnUpdateQty").on("click" , function(e){
-			var itemTotalPrice = $("#total_price").text();
-			var quantity = $(".quantity").text();
-			var lid = $(this).data('lid');
-			console.log(memberId);
+			var item = $(this).parents(".my-cart-list");
+			var itemTotalPrice = item.find(".tb-right").find("span").text();
+			var quantity = $(this).siblings("span").text();
+			var lid = item.data('lid');
+			var stock = item.find(".tb-sort").find("stock").text();
+			console.log(stock);
+			
+			if(quantity > stock ){
+				quantity = stock;
+				alert("재고가 부족합니다.");
+			}
+			var cartItem = {
+					lid : lid,
+					quantity : quantity,
+					itemTotalPrice : itemTotalPrice			
+			}
+			
+			console.log(cartItem);
+			
+			
+			
+			$.ajax({
+				url : '/cart/updateQty',
+				type : 'put',
+				data : JSON.stringify(cartItem),
+				contentType : 'application/json; charset=utf-8',
+				dataType : 'text',
+				success : function(result){
+					alert ("수량이 변경되었습니다.");
+				}
+			});
 			
 		})
 		
@@ -134,14 +169,15 @@
 		})
 		
 	  const quantityElements = document.querySelectorAll('.quantity');
-		const totalElements = document.querySelectorAll('#total_price');
+		const totalElements = document.querySelectorAll('.total_price');
 		const increaseButtons = document.querySelectorAll('.increase');
 		const decreaseButtons = document.querySelectorAll('.decrease');
 		const itemPrices = document.querySelectorAll('.item-price');
 
+		
 		increaseButtons.forEach((button, index) => {
 		    button.addEventListener('click', () => {
-		        updateQuantity(index, 'increase');
+		      updateQuantity(index, 'increase');
 		    });
 		});
 
@@ -156,11 +192,11 @@
 		    const totalElement = totalElements[index];
 		    const itemPrice = itemPrices[index];
 
-		    let quantity = parseInt(quantityElement.textContent);
+		    let quantity = parseInt(quantityElement.textContent); 
 		    const price = parseFloat(itemPrice.getAttribute('data-price'));
 
 		    if (operation === 'increase') {
-		        quantity += 1;
+ 		        quantity += 1; 
 		    } else if (operation === 'decrease' && quantity > 1) {
 		        quantity -= 1;
 		    }

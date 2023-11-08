@@ -35,6 +35,10 @@
 		select * from table_cartitem where lid = #{liquor.lid} and memberid = #{memberId}
 	</select>
 	
+	<delete id = "deleteCartItemByLid">
+		delete from table_cartitem where lid = #{lid}
+	</delete>
+	
 
 
 
