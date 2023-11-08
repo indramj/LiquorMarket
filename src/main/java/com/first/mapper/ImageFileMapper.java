@@ -10,5 +10,7 @@ public interface ImageFileMapper {
 	
 	public List<ImageFileVO>getListByLid(int lid);
 	
+	public void removeImages(int lid);
+	
 
 }

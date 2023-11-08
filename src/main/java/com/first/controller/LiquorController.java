@@ -97,6 +97,7 @@ public class LiquorController {
 	@PostMapping("/remove")
 	public String remove(@RequestParam("lid") int lid)
 	{
+		log.info("/liquor/remove");
 		liquorService.remove(lid);
 		return "redirect:/liquor/liquorList";
 	}

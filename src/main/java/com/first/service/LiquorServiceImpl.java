@@ -10,6 +10,7 @@ import com.first.domain.BoardVO;
 import com.first.domain.Criteria;
 import com.first.domain.ImageFileVO;
 import com.first.domain.LiquorVO;
+import com.first.mapper.CartMapper;
 import com.first.mapper.ImageFileMapper;
 import com.first.mapper.LiquorMapper;
 
@@ -18,26 +19,29 @@ import com.first.mapper.LiquorMapper;
 public class LiquorServiceImpl implements LiquorService{
 	
 	@Autowired
-	LiquorMapper mapper;
+	LiquorMapper liquorMapper;
 	
 	@Autowired
 	ImageFileMapper imageMapper;
 	
+	@Autowired
+	CartMapper cartMapper;
+	
 	@Override
 	public List<LiquorVO> getLiquorList()
 	{
-		return mapper.getListAll();
+		return liquorMapper.getListAll();
 	}
 	
 	@Override
 	public List<LiquorVO> getList(Criteria cri)
 	{
-		return mapper.getListWithPage(cri);
+		return liquorMapper.getListWithPage(cri);
 	}
 	
 	public int getTotalCount(Criteria cri)
 	{
-		return mapper.getTotalCount(cri);
+		return liquorMapper.getTotalCount(cri);
 	}
 	
 	@Transactional
@@ -48,7 +52,7 @@ public class LiquorServiceImpl implements LiquorService{
 			return;
 		}
 		
-		mapper.registSelectKey(liquorVO);
+		liquorMapper.registSelectKey(liquorVO);
 		
 		liquorVO.getImageList().forEach(image -> {
 			image.setLid(liquorVO.getLid());
@@ -60,20 +64,23 @@ public class LiquorServiceImpl implements LiquorService{
 	@Override
 	public LiquorVO getLiquor(int lid)
 	{
-		return mapper.getLiquor(lid);
+		return liquorMapper.getLiquor(lid);
 	}
 	
 	@Override
 	public boolean modify(LiquorVO liquorVO)
 	{
-		boolean result =  mapper.updateLiquor(liquorVO) == 1;
+		boolean result =  liquorMapper.updateLiquor(liquorVO) == 1;
 		return result;
 	}
 	
 	@Override
+	@Transactional
 	public void remove(int lid)
-	{
-		mapper.remove(lid);
+	{	
+		cartMapper.deleteCartItemByLid(lid);
+		imageMapper.removeImages(lid);
+		liquorMapper.remove(lid);
 	}
 	
 	@Override

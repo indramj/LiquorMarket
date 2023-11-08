@@ -59,9 +59,10 @@ public class CartController {
 	
 	@PutMapping("/updateQty")
 	@ResponseBody
-	public ResponseEntity<String> updateQty(@RequestParam CartItemVO cartItem)
+	public ResponseEntity<String> updateQty(@RequestBody CartItemVO cartItem , Principal principal)
 	{
 		log.info("updateCartItem");
+		cartItem.setMemberId(principal.getName());
 		cartService.updateCartItem(cartItem);
 		return new ResponseEntity<String>("result", HttpStatus.OK);
 	}
