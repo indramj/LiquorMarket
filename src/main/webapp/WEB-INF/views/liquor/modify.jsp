@@ -22,13 +22,14 @@ $(document).ready(function(){
 
 		operForm.append("<input type = 'hidden' name = 'lid' value = '"+lid+"'>");
 		operForm.submit();
+		alert('수정되었습니다.');
 	});
 	
  	$(".btnRemove").on("click" , function(){
 		operForm.attr("action" , "/liquor/remove");
 		operForm.append("<input type = 'hidden' name = 'lid' value = '"+lid+"'>");
 		operForm.submit();
-		
+		alert('삭제되었습니다.');
 	});
 	
 $(".btnList").on("click" , function(e){
@@ -37,6 +38,7 @@ $(".btnList").on("click" , function(e){
 	operForm.attr("method" , "get");
 	operForm.append("<input type = 'hidden' name = 'lid' value = '"+lid+"'>");
 	operForm.submit();
+	alert('취소합니다.');
 	/* window.history.back(); */
 
 })
@@ -115,6 +117,9 @@ $(".btnList").on("click" , function(e){
 	
 					<div class = "mb-3">
 			<div class= "col-sm-3">
+			
+			
+	
 				<button type="button" class="btn btn-primary btnModify">등록</button>
 				<button type="button" class="btn btn-primary btnRemove">삭제</button>
 				<button type="button" class="btn btn-primary btnList">취소</button>
