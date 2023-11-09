@@ -62,3 +62,18 @@
 	background-color: #575757;
 	margin: 0 auto;
 }
+.modal-header{
+	padding-bottom: 40px;
+}
+.btn-primary-ex:hover{
+	color: white;
+	background: #858d96;
+}
+.btn-primary-ex{
+	color: white;
+	background-color: #575757;
+}
+.btn-secondary{
+	border: none;
+	background-color: #c8c8c8;
+}

@@ -132,29 +132,29 @@ $(document).ready(function(){
 					<input type = "hidden" name = "keyword" value = "${pageDTO.cri.keyword }">
 				</form>
 			</c:if>
-	<div class = "mb-3 board_list_search">
-		<form class = "searchForm" action = "/liquor/liquorList" method = "get" >
-			<div class="input-group mb-3 search-2">
-			  <select class="form-select" id="inputGroupSelect04" name = "type">
-			    <option value = "" <c:out value = "${pageDTO.cri.type == null? 'selected' : ''}"/> >...</option>
-			    <option value="N" <c:out value = "${pageDTO.cri.type eq 'N'? 'selected' : ''}"/>>이름</option>
-			    <option value="C" <c:out value = "${pageDTO.cri.type eq 'C'? 'selected' : ''}"/>>카테고리</option>
-			    <option value="P" <c:out value = "${pageDTO.cri.type eq 'P'? 'selected' : ''}"/>>가격</option>
-			    <option value="NC" <c:out value = "${pageDTO.cri.type eq 'P'? 'selected' : ''}"/>>이름+카테고리</option> 
-			  </select>
-		 		<input class = "col-sm-3" type = "text" name = "keyword" onkeypress="if( event.keyCode == 13 ){srch();}">
-		  	<button class="btn btn-outline-secondary btnSearch" type="button" onclick = "srch();">검색</button>
+			<div class = "mb-3 board_list_search">
+				<form class = "searchForm" action = "/liquor/liquorList" method = "get" >
+					<div class="input-group mb-3 search-2">
+					  <select class="form-select" id="inputGroupSelect04" name = "type">
+					    <option value = "" <c:out value = "${pageDTO.cri.type == null? 'selected' : ''}"/> >...</option>
+					    <option value="N" <c:out value = "${pageDTO.cri.type eq 'N'? 'selected' : ''}"/>>이름</option>
+					    <option value="C" <c:out value = "${pageDTO.cri.type eq 'C'? 'selected' : ''}"/>>카테고리</option>
+					    <option value="P" <c:out value = "${pageDTO.cri.type eq 'P'? 'selected' : ''}"/>>가격</option>
+					    <option value="NC" <c:out value = "${pageDTO.cri.type eq 'P'? 'selected' : ''}"/>>이름+카테고리</option> 
+					  </select>
+				 		<input class = "col-sm-3" type = "text" name = "keyword" onkeypress="if( event.keyCode == 13 ){srch();}">
+				  	<button class="btn btn-outline-secondary btnSearch" type="button" onclick = "srch();">검색</button>
+					</div>
+						<input type = "hidden" name = "currentPage">
+				</form>
 			</div>
-				<input type = "hidden" name = "currentPage">
-		</form>
+		</div>
+		<!-- 상품 리스트 X -->
+		<c:if test="${listCheck == 'empty'}">
+			<div class="table_empty">등록된 상품이 없습니다.</div>
+		</c:if>
 	</div>
 </div>
-			<!-- 상품 리스트 X -->
-			<c:if test="${listCheck == 'empty'}">
-				<div class="table_empty">등록된 상품이 없습니다.</div>
-			</c:if>
-		</div>
-	</div>
 <%@ include file="../include/footer.jsp" %>
 </body>
 </html>
