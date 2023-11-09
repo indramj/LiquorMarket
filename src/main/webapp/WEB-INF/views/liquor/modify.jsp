@@ -8,7 +8,8 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.min.js" integrity="sha384-Rx+T1VzGupg4BHQYs2gCW9It+akI2MM/mndMCy36UVfodzcJcF0GGLxZIzObiEfa" crossorigin="anonymous"></script>
 
 <link rel="stylesheet" href="../resources/css/admin/goodsDetail.css">
 <script src="http://code.jquery.com/jquery-3.4.1.js"></script>
@@ -116,13 +117,30 @@ $(".btnList").on("click" , function(e){
 					<div class = "mb-3">
 			<div class= "col-sm-3">
 				<button type="button" class="btn btn-primary btnModify">등록</button>
-				<button type="button" class="btn btn-primary btnRemove">삭제</button>
+				<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">삭제</button>
 				<button type="button" class="btn btn-primary btnList">취소</button>
 			</div>
 		</div>
 	</div>
 	</div>
 	</form>
+	
+	<!-- 모달 -->
+	<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog modal-dialog-centered">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h1 class="modal-title fs-5" id="exampleModalLabel">삭제하시겠습니까?</h1>
+					<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-primary-ex btnRemove">예</button>
+					<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">아니오</button>
+				</div>
+			</div>
+		</div>
+	</div>
+			
 </div>
 
 		<!--  	<form id="moveForm" action="/admin/manageGoods" method="get">
@@ -132,7 +150,7 @@ $(".btnList").on("click" , function(e){
 			</form>
 -->
 		
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
 <%@ include file="../include/footer.jsp" %>
 </body>
 </html>

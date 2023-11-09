@@ -121,9 +121,15 @@ table{
     vertical-align: text-bottom;
     word-break: normal;
     padding: 0 10px 0 6px;
+    font-size: 18px;
+	font-weight: 300;
 }
 .totalArea .finalPrice h5{
-	font-size: 16px;
+	font-size: 18px;
+	font-weight: 300;
+}
+.totalArea .finalPrice span{
+	font-size: 30px;
 	font-weight: 300;
 }
 .btnOrder{

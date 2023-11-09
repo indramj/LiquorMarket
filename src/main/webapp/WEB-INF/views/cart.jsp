@@ -96,9 +96,8 @@
 				<button type = "button" class = "btnDelete">상품 제거</button>
 				<div class="totalArea">
 					<div class="finalPrice">
-						<h5>총 상품금액 =</h5>
-						<span></span>
-						<!-- 총합 가격 넣는곳 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@--></div>
+						<h5>총 상품금액</h5>
+						= <span></span> 원
 					</div>
 				</div>
 				<div class="butArea">

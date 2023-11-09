@@ -69,8 +69,29 @@ h3{
 .tb-sort{
     text-align: center;
 }
-.orderTxt{
-	
+.totalArea {
+    float: right;
+    width: 100%;
+    margin-top: 10px;
+    padding: 30px 0;
+    line-height: 23px;
+    text-align: right;
+}
+.totalArea .finalPrice {
+    display: inline-block;
+    vertical-align: text-bottom;
+    word-break: normal;
+    padding: 0 10px 0 6px;
+    font-size: 18px;
+	font-weight: 300;
+}
+.totalArea .finalPrice h5{
+	font-size: 18px;
+	font-weight: 300;
+}
+.totalArea .finalPrice span{
+	font-size: 32px;
+	font-weight: 300;
 }
 .list-table td{
     padding: 10px 0;
@@ -108,7 +129,7 @@ h3{
     line-height: 3;
     width: 98%;
 }
-#btnArea .pay-btn{
+#btnArea .pay-btn-2{
 	border: none;
 	border-radius: 0px;
     height: 40px;
@@ -122,8 +143,15 @@ h3{
     background-color: #575757;
     color: white;
 }
+.modal-header{
+	padding-bottom: 30px;
+}
 .btn-primary{
+	border: none;
 	background-color: #575757;
+}
+.btn-primary:hover{
+	background: #858d96;
 }
 .btn-secondary{
 	border: none;
