@@ -172,7 +172,7 @@
         <li class="nav-item"><a href="/liquor/liquorList" class="nav-link" id = "liquor">주류 리스트</a></li>
         <li class="nav-item"><a href="/board/list" class="nav-link" id = "board">상품 문의</a></li>
         <sec:authorize access = "isAuthenticated()">
-        	<li class="nav-item"><a href="/cart?memberId=kmm" class="nav-link">장바구니</a></li>
+        	<li class="nav-item"><a href="/cart?memberId=kmm" class="nav-link" id = "cart">장바구니</a></li>
         </sec:authorize>
 
         <sec:authorize access="hasRole('ROLE_ADMIN')">

@@ -93,6 +93,7 @@
 						</tbody>
 					</table>
 				</div>
+				<button type = "button" class = "btnDelete">상품 제거</button>
 				<div class="totalArea">
 					<div class="finalPrice">
 						<h5>총 상품금액 =</h5>
@@ -101,7 +102,6 @@
 				</div>
 				<div class="butArea">
 					<button type = "button" class = "btnOrder">주문하기</button>
-					<button type = "button" class = "btnDelete">상품 제거</button>
 				</div>
 			</div>
 		</div>

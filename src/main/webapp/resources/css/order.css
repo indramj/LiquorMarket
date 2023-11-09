@@ -110,6 +110,7 @@ h3{
 }
 #btnArea .pay-btn{
 	border: none;
+	border-radius: 0px;
     height: 40px;
     margin-top: 15px;
     margin-left: 15px;
@@ -120,4 +121,11 @@ h3{
     font-weight: 300;
     background-color: #575757;
     color: white;
+}
+.btn-primary{
+	background-color: #575757;
+}
+.btn-secondary{
+	border: none;
+	background-color: #c8c8c8;
 }
