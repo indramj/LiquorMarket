@@ -6,5 +6,5 @@ a.nav-link{
 	background: white;
 	margin-bottom: 0!important;
 	min-width: 100%;
-	
+	border-bottom: 1.5px solid #ececec;
 }
