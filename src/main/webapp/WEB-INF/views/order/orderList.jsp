@@ -13,7 +13,7 @@
 	$(document).ready(function(){
 		
 		var orderForm = $(".orderForm");
-		$(".pay-btn").on("click", function(e){
+		$(".pay_btn").on("click", function(e){
 			e.preventDefault();
 			orderForm.submit();
 		})
@@ -133,8 +133,8 @@
 					</div>
 				</div>
 				<div id="btnArea">
-					<button type="button" class="cancel_btn pay-btn">취소</button>
-					<button type="button" class="pay_btn pay-btn">주문하기</button>
+					<button type="button" class="cancel_btn pay-btn-2" onclick="location.href='/cart?memberId=kmm'">취소</button>
+					<button type="button" class="pay_btn pay-btn-2">주문하기</button>
 				</div>
 			</div>
 		</div>
