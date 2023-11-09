@@ -8,3 +8,7 @@ a.nav-link{
 	min-width: 100%;
 	border-bottom: 1.5px solid #ececec;
 }
+.nav-link:hover{
+	background: #e7e7e7;
+	transition: all 0.5s;
+}
