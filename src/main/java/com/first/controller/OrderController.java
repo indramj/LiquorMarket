@@ -8,6 +8,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.first.domain.CartItemDTO;
 import com.first.domain.CartItemVO;
@@ -18,6 +21,7 @@ import com.first.service.MemberService;
 import com.first.service.OrderService;
 
 @Controller
+@RequestMapping("/order")
 public class OrderController {
 
 	@Autowired
@@ -30,16 +34,23 @@ public class OrderController {
 	
 	
 	
-	@GetMapping("/order")
-	public String orderPgaeGET(Principal principal, Model model) {
+	@GetMapping("/orderList")
+	public void orderCartItem(Principal principal, Model model , @RequestParam("totalCartPrice") String totalCartPrice) {
 		
 		String memberId = principal.getName();
 		List<CartItemDTO> cartList = cartService.getCartList(memberId);
 		MemberVO member = memberService.getMemberInfo(memberId);
+		model.addAttribute("totalCartPrice" ,totalCartPrice);
 		model.addAttribute("cartList" , cartList);
 		model.addAttribute("memberInfo" , member);
 		
-		return "/order";
+	}
+	
+	@PostMapping("/confirm")
+	public void orderConfirm(Principal principal)
+	{
+		String memberId = principal.getName();
+		cartService.orderConfirm(memberId);
 	}
 }
 

@@ -91,7 +91,19 @@ public class CartServiceImpl implements CartService {
 		cartMapper.updateCartItem(cartItem);
 	}
 	
-	
+	public void orderConfirm(String memberId)
+	{
+		List<CartItemDTO> cartList = getCartList(memberId);
+		
+		
+		for (CartItemDTO cartItem : cartList) {
+			LiquorVO liquor = liquorMapper.getLiquor(cartItem.getLiquor().getLid());
+			int stock = liquor.getStock();
+			liquor.setStock(stock - cartItem.getQuantity());
+			liquorMapper.updateLiquor(liquor);
+			
+		}
+	}
 	
 //	
 //	@Override

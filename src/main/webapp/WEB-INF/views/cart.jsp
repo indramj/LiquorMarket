@@ -15,7 +15,7 @@
 
 </head>
 <body>
-<form class = "orderForm" method = "get" action = "/order/${member.memberId}">
+<form class = "orderForm" method = "get" action = "/order/orderList/${member.memberId}">
 	<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
 <div class="wrapper">
 	<div id="container">
@@ -72,7 +72,7 @@
 								</td>
 								<td>
 									<div class="tb-sort">
-										<span class = "stock">
+										<span class = "stock" data-stock = "${cartItem.liquor.stock}">
 										${cartItem.liquor.stock}</span>개</div>
 								</td>
 								<td>
@@ -97,7 +97,8 @@
 				<div class="totalArea">
 					<div class="finalPrice">
 						<h5>총 상품금액 =</h5>
-						<div class=""><!-- 총합 가격 넣는곳 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@--></div>
+						<span></span>
+						<!-- 총합 가격 넣는곳 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@--></div>
 					</div>
 				</div>
 				<div class="butArea">
@@ -121,12 +122,17 @@
 		});
 
 	$(document).ready(function(){
+		updateCartPrice();
 		var orderForm = $(".orderForm");
+		
 		/* 주문 페이지 이동 */	
 		$(".btnOrder").on("click", function(){
+			var totalCartPrice =$(".finalPrice").find("span").text();
+			orderForm.append("<input type = 'hidden' , name = 'totalCartPrice' value = '"+totalCartPrice+"'>");
 			orderForm.submit();
 
 		});
+		
 		
 		var csrfHeaderName = "${_csrf.headerName}";
 		var csrfTokenValue = "${_csrf.token}";
@@ -136,26 +142,22 @@
 
 		$(".btnUpdateQty").on("click" , function(e){
 			var item = $(this).parents(".my-cart-list");
-			var itemTotalPrice = item.find(".tb-right").find("span").text();
-			var quantity = $(this).siblings("span").text();
+			var price = item.find(".item-price").data("price");
+			var itemTotalPrice = item.find(".tb-right").find("span");
+			var quantity = $(this).siblings("span");
 			var lid = item.data('lid');
-			var stock = item.find(".tb-sort").find("stock").text();
-			console.log(stock);
+			var stock = item.find(".tb-sort").find(".stock").data("stock");
 			
-			if(quantity > stock ){
-				quantity = stock;
+			if(quantity.text() > stock ){
 				alert("재고가 부족합니다.");
+				item.find(".tb-sort").find(".quantity").text(stock);
+				itemTotalPrice.text(stock * price);
 			}
 			var cartItem = {
 					lid : lid,
-					quantity : quantity,
-					itemTotalPrice : itemTotalPrice			
-			}
-			
-			console.log(cartItem);
-			
-			
-			
+					quantity : quantity.text(),
+					itemTotalPrice : itemTotalPrice.text()			
+			}		
 			$.ajax({
 				url : '/cart/updateQty',
 				type : 'put',
@@ -164,10 +166,22 @@
 				dataType : 'text',
 				success : function(result){
 					alert ("수량이 변경되었습니다.");
+					
 				}
-			});
-			
+			});		
+			updateCartPrice();
 		})
+		
+		function updateCartPrice()
+		{
+			var cartPrice = 0;
+			$(".total_price").each(function(idx , item){
+				cartPrice += parseInt($(this).text());
+			})
+			$(".finalPrice").find("span").text(cartPrice);
+			return cartPrice;
+		}
+		
 		
 		$(".btnDelete").on("click" , function(e){
 			e.preventDefault();
