@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ include file="./include/header.jsp" %>
+<%@ include file="../include/header.jsp" %>
 <%@ taglib uri = "http://www.springframework.org/security/tags" prefix = "sec" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
@@ -9,8 +9,23 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link rel="stylesheet" href="/resources/css/order.css">
+<script>
+	$(document).ready(function(){
+		
+		var orderForm = $(".orderForm");
+		$(".pay-btn").on("click", function(e){
+			e.preventDefault();
+			orderForm.submit();
+		})
+		
+	})
+</script>
+
+
 </head>
 <body>
+<form class = "orderForm" action = "/order/confirm" method = "post">
+<input type = "hidden" name = "${_csrf.parameterName}" value = "${_csrf.token}">
 <div class="wrapper">
 	<div id="container">
 		<div id="contents">
@@ -21,12 +36,14 @@
 				<div class="orderListArea">
 					<h3 class="orderTitle">주문정보</h3>
 					<div class="list-table">
+					
 						<table border="0">
 							<colgroup>
 								<col width="300">
 								<col width="100">
 								<col width="100">
 							</colgroup>
+							
 							<thead>
 								<tr>
 									<th scope="col">
@@ -55,6 +72,15 @@
 								</tr>
 							</tbody>
 							</c:forEach>
+							<tr class = "cart-list">
+								<td>
+									<div class = " tb-left tb-name">총합</div>
+								</td>
+								<td>
+									<c:out value = "${totalCartPrice}"/>원
+								</td>
+							
+							</tr>
 						</table>
 					</div>
 				</div>
@@ -114,6 +140,7 @@
 		</div>
 	</div>
 </div>
-<%@ include file="include/footer.jsp" %>
+</form>
+<%@ include file="../include/footer.jsp" %>
 </body>
 </html>
