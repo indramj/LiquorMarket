@@ -144,7 +144,7 @@ $(document).ready(function(){
 					    <option value="P" <c:out value = "${pageDTO.cri.type eq 'P'? 'selected' : ''}"/>>가격</option>
 					    <option value="NC" <c:out value = "${pageDTO.cri.type eq 'P'? 'selected' : ''}"/>>이름+카테고리</option> 
 					  </select>
-				 		<input class = "col-sm-3" type = "text" name = "keyword" onkeypress="if( event.keyCode == 13 ){srch();}">
+				 		<input class = "col-sm-3" id="listSearch" type = "text" name = "keyword" onkeypress="if( event.keyCode == 13 ){srch();}">
 				  	<button class="btn btn-outline-secondary btnSearch" type="button" onclick = "srch();">검색</button>
 					</div>
 						<input type = "hidden" name = "currentPage">

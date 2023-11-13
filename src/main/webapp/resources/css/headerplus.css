@@ -12,3 +12,49 @@ a.nav-link{
 	background: #e7e7e7;
 	transition: all 0.5s;
 }
+#sideArea{
+	position: fixed;
+    right: 0px;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 999;
+}
+#sideArea ul{
+    border-right: 3px solid #444;
+}
+li{
+    list-style: none;
+}
+#sideArea ul li{
+    padding: 8px 10px;
+}
+#sideArea ul li a{
+    display: block;
+    width: 100%;
+    height: 100%;
+    text-align: right;
+    text-decoration: none;
+    color: #8a8a8a;
+}
+#sideArea ul li a span{
+    display: inline-block;
+    vertical-align: middle;
+    font-size: 12px;
+    padding-right: 6px;
+    letter-spacing: 1px;
+    color: #8a8a8a;
+    opacity: 0;
+    -webkit-transition: 0.1s ease-in-out;
+    -moz-transition: 0.1s ease-in-out;
+    -o-transition: 0.1s ease-in-out;
+    transition: 0.1s ease-in-out;
+}
+#sideArea ul li a span:hover{
+	opacity: 1;
+}
+#sideArea ul li a i{
+    display: inline-block;
+    vertical-align: middle;
+    font-size: 22px;
+    color: #444;
+}
