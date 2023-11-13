@@ -153,7 +153,7 @@
 
   <div class="navbar navbar-dark bg-dark shadow-sm">
     <div class="container">
-      <a href = "../" class="navbar-brand d-flex align-items-right">
+      <a href = "/" class="navbar-brand d-flex align-items-right">
         <strong>술 파는 사람들</strong></a>  
       <sec:authorize access="!isAuthenticated()">
       	<button class = "btn btn-sm btn-outline-secondary" type = "button" onclick = "location.href='/login'">Login</button>
