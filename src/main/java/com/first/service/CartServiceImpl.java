@@ -101,7 +101,7 @@ public class CartServiceImpl implements CartService {
 			int stock = liquor.getStock();
 			liquor.setStock(stock - cartItem.getQuantity());
 			liquorMapper.updateLiquor(liquor);
-			
+			cartMapper.deleteCartItem(cartItem);
 		}
 	}
 	

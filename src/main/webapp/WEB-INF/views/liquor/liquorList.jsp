@@ -108,8 +108,10 @@ $(document).ready(function(){
 					</ul>
 					<div class="add_menu">
 						<sec:authorize access = "isAuthenticated()">
+						<sec:authorize access="hasAnyRole('ROLE_ADMIN' , 'ROLE_MANAGER')">
 							<button type ="button" class = "btnRegist">등록</button>
-						</sec:authorize> 	
+						</sec:authorize> 
+						</sec:authorize>
 					</div>			
 					<nav aria-label="Page navigation example">
 						<div class="page-list">
