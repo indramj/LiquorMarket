@@ -24,8 +24,6 @@ public class CustomLoginSuccessHandler implements AuthenticationSuccessHandler {
 		
 		String uri = request.getSession().getAttribute("prevPage").toString();
 		
-
-		
 		response.sendRedirect(uri);
 	}
 
