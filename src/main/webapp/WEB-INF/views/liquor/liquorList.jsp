@@ -148,6 +148,7 @@ $(document).ready(function(){
 				  	<button class="btn btn-outline-secondary btnSearch" type="button" onclick = "srch();">검색</button>
 					</div>
 						<input type = "hidden" name = "currentPage">
+						<input type = "hidden" name = "${_csrf.parameterName}" value = "${_csrf.token}">
 				</form>
 			</div>
 		</div>
