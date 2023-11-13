@@ -3,12 +3,24 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
   <mapper namespace="com.first.mapper.AdminMapper">
-
-<!-- 주류 등록 -->
-<insert id="drinkEnroll">
   	
-  		insert into tbl_drink(drinkName, drinkId, cateCode, cateName, drinkPrice, drinkIntro)
-		values(#{drinkName},#{drinkId}, #{cateCode},#{cateName},#{drinkPrice},#{drinkIntro})
+  	<!-- 상품 조회 페이지 -->
+	<select id="getGoodsDetail" resultType="com.first.domain.LiquorVO">
+	
+		select lId, name, price, description, cateName, stock 
+		from table_liquor where lId = #{lId}
+	
+	</select>
 
-  	</insert>
+  	<!-- 상품 총 개수   -->
+  	<select id="getGoodsTotal" resultType="int">
+  	
+  		select count(*) from table_liquor
+  		
+  		<if test="keyword != null">
+  		
+  			where Name like '%' || #{keyword} || '%'
+  		</if>
+  		
+  	</select>
   </mapper>

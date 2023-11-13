@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:security="http://www.springframework.org/schema/security"
+	xsi:schemaLocation="http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-5.2.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.3.xsd">
+		
+	<bean id="customAccessDenied" class="com.first.security.CustomAccessDeniedHandler"></bean>
+	<bean id="customLoginSuccess" class="com.first.security.CustomLoginSuccessHandler"></bean>
+	<!-- <bean id="customPasswordEncoder" class="org.zerock.security.CustomNoOpPasswordEncoder"></bean> -->
+	<bean id="bcryptPasswordEncoder" class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder"/>
+	<bean id="customUserDetailsService" class="com.first.security.CustomUserDetailsService"></bean>
+	
+	<security:http>
+ 		<security:intercept-url pattern="/cart" access="isAuthenticated()"/>
+	  <!--  <security:intercept-url pattern="/cart/checkAuthorize" access="isAuthenticated()"/>-->
+		<!--  <security:intercept-url pattern="/sample/admin" access="hasRole('ROLE_ADMIN')"/> -->
+		<!-- <security:form-login/> -->
+		
+		<security:form-login login-page="/login" authentication-success-handler-ref="customLoginSuccess" authentication-failure-url="/login?error=true"/>
+		
+		
+		<security:access-denied-handler ref="customAccessDenied"/>
+		<security:logout logout-url="/logout" logout-success-url = "/" invalidate-session="true"/>
+		
+		<!-- <security:remember-me data-source-ref="dataSource" token-validity-seconds="604800"/>일주일 로그인 상태 유지 -->
+	</security:http>
+	
+	<security:authentication-manager>
+		<security:authentication-provider user-service-ref="customUserDetailsService">
+
+			<security:password-encoder ref="bcryptPasswordEncoder"/>
+		</security:authentication-provider>
+	</security:authentication-manager>
+		
+</beans>

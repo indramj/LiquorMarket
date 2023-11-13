@@ -1,9 +1,18 @@
 package com.first.service;
 
-import com.first.domain.DrinkVO;
+import java.util.List;
+
+
+import com.first.domain.Criteria;
+import com.first.domain.MemberVO;
 
 public interface AdminService {
+	
+	public List<MemberVO> getMemberList();
+	
+	public void addRole(List<String> memberList);
+	
+	public void removeRole(List<String> memberList);
 
-	/* 주류 등록 */
-	public void drinkEnroll(DrinkVO drink);
+	public void removeMember(List<String> memberList);
 }

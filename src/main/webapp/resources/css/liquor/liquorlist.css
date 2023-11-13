@@ -1,0 +1,99 @@
+@charset "UTF-8";
+*{
+	margin: 0;
+	padding:0;
+}
+/*
+.goods_category_wrap{
+	width: auto;
+	padding: 3px;
+	margin-left: auto;
+    margin-right: auto;
+    background: #eeeeee;
+}
+.categoryName{
+	font-weight: 50;
+    font-size: 35px;
+    color: #55595C;
+    text-align: center;
+}
+.categoryList li{
+	display: inline;
+	font-weight: 100;
+	font-size: 20px;
+	text-align: center;
+}
+.categoryList ul{
+	text-align: center;
+}
+.categoryList a{
+	color: black;
+	text-decoration: none;
+	margin-right: 10px;
+}
+*/
+.admin_content_wrap{
+	width: 80%;
+    margin-top: 50px;
+    margin-left: auto;
+    margin-right: auto;
+}
+.admin_content_subject{
+	display: block;
+	text-align: center;
+    margin: 20px 0;
+}
+.admin_content_subject span{
+	font-weight: 500;
+    font-size: 25px;
+    color: #55595C;
+    text-align: center;
+}
+.add_menu{
+	margin: 20px 0;
+	overflow: hidden;
+}
+.btnRegist{
+	border: none;
+    height: 46px;
+    width: 10%;
+    border-radius: 10px;
+    text-align: center;
+    float:right;
+    font-size: 20px;
+    font-weight: 300;
+    background-color: #6c757d;
+    color: white;
+}
+.goods_table{
+    width: 100%;
+    margin-top: 20px;
+}
+.goods_table li{
+	width: 22%;
+	margin-top: 20px;
+	margin-left: 20px;
+	display: inline-block;
+}
+.liquor_img_s{
+	width: 100%;
+    margin: 0 auto;
+}
+.goods-detail{
+	text-align: center;
+}
+.page-list{
+	display: table;
+	margin-left: auto;
+    margin-right: auto;
+}
+.board_list_search{
+	margin-left: 390px;
+	background: none;
+}
+.searchForm{
+	min-width: 700px;
+}
+.searchForm .col-sm-3{
+	min-width: 40%;
+}

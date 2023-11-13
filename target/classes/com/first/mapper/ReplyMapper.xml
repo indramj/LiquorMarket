@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	
+<mapper namespace="com.first.mapper.ReplyMapper">
+
+<insert id = "register">
+	insert into table_reply (rno , bno , replyer , reply) values 
+	(seq_reply.nextval , #{bno} , #{replyer} , #{reply})
+
+</insert>
+
+<select id = "getList" resultType = "com.first.domain.ReplyVO">
+	select * from table_reply where bno = #{bno}
+</select>
+
+<delete id="remove">
+	delete from table_reply where rno = #{rno} 
+</delete>
+
+<select id = "read" resultType = "com.first.domain.ReplyVO">
+	select * from table_reply where rno = #{rno}
+</select>
+
+<update id = "updateReply">
+	update table_reply set reply = #{reply} , updatedate = sysdate where rno = #{rno}
+</update>
+
+<delete id = "removeByBno">
+	delete from table_reply where bno = #{bno}
+</delete>
+
+
+</mapper>

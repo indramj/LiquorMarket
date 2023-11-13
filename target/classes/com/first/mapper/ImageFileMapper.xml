@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	
+<mapper namespace="com.first.mapper.ImageFileMapper">
+	<insert id = "regist">
+		insert into table_image (uuid , filename , uploadpath , lid) values (#{uuid},#{fileName},#{uploadPath},#{lid})
+	</insert>
+	
+	<select id = "getListByLid" resultType = "com.first.domain.ImageFileVO">
+		select * from table_image where lid = #{lid}
+	</select>
+	
+	
+	<delete id = "removeImages">
+		delete from table_image where lid = #{lid}
+	</delete>
+	
+
+</mapper>
+
+

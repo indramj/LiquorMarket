@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.first.mapper.AuthMapper">
+	<insert id="join">
+		insert into table_auth (memberid , auth) values (#{memberid} , 'ROLE_USER')
+	</insert>
+	
+	<insert id = "addRole">
+		insert into table_auth (memberid , auth) values (#{memberid} , 'ROLE_MANAGER')
+	</insert>
+	
+	<delete id = "removeRole">
+		delete from table_auth where memberid = #{memberid} and auth = 'ROLE_MANAGER'
+	</delete>
+	
+	<delete id = "removeAllAuth">
+		delete from table_auth where memberid = #{memberid}
+	</delete>
+		
+</mapper>
+	
+	

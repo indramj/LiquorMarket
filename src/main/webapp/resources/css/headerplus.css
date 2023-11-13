@@ -1,0 +1,14 @@
+@charset "UTF-8";
+a.nav-link{
+	color: #000000;
+}
+.mb-3.headerPlus{
+	background: white;
+	margin-bottom: 0!important;
+	min-width: 100%;
+	border-bottom: 1.5px solid #ececec;
+}
+.nav-link:hover{
+	background: #e7e7e7;
+	transition: all 0.5s;
+}

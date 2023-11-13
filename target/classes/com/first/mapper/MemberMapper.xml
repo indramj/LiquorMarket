@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	<mapper namespace="com.first.mapper.MemberMapper">
+	
+<insert id="joinMember" >
+  	insert into table_member (memberId, memberPw, memberName, memberPhone, memberEmail, memberAddress1, memberAddress2 )
+  	values (#{memberId}, #{memberPw}, #{memberName}, #{memberPhone}, #{memberEmail}, #{memberAddress1}, #{memberAddress2})
+ </insert>
+  
+  <!-- 아이디 중복검사 -->
+ <select id="checkId" resultType="int">
+  	
+  	select count(*) from table_member where memberId = #{memberId}
+  	
+ </select>
+  	
+  <!-- 로그인 -->
+<select id="getMemberWithAuth" resultMap = "memberMap">
+
+		select mem.memberid, memberpw, membername, memberphone , memberemail , memberaddress1 , memberaddress2 , regdate, updatedate, auth
+		from
+			table_member mem LEFT OUTER JOIN table_auth auth on mem.memberid= auth.memberid
+			where mem.memberid = #{memberid}
+	</select>	
+
+<!-- 주문자 정보 -->
+  	<select id="getMemberInfo" resultType="com.first.domain.MemberVO">
+	  	select * from table_member where memberid = #{memberid}
+  	</select>
+  	
+	<resultMap type = "com.first.domain.MemberVO" id="memberMap">
+		<result property="memberId" column="memberid"/>
+		<result property="memberPw" column="memberpw"/>
+		<result property="memberName" column="membername"/>
+		<result property="memberPhone" column="memberphone"/>
+		<result property="memberEmail" column="memberemail"/>
+		<result property="memberAddress1" column="memberaddress1"/>
+		<result property="memberAddress2" column="memberaddress2"/>
+		<result property="regDate" column="regdate"/>
+		<result property="updateDate" column="updatedate"/>		
+		<collection property="authList" resultMap="authMap"/>
+	</resultMap>
+	
+	<resultMap type = "com.first.domain.AuthVO" id="authMap">
+		<result property="memberId" column="memberid"/>
+		<result property="auth" column="auth"/>
+	</resultMap>
+	
+	<select id = "getMemberList" resultMap = "memberlistMap">
+		select mem.memberid, membername, memberphone , memberemail , memberaddress1 , memberaddress2 , regdate, updatedate, auth
+		from
+			table_member mem LEFT OUTER JOIN table_auth auth on mem.memberid= auth.memberid
+	</select>
+	
+	<resultMap type = "com.first.domain.MemberVO" id="memberlistMap">
+		<result property="memberId" column="memberid"/>
+		<result property="memberName" column="membername"/>
+		<result property="memberPhone" column="memberphone"/>
+		<result property="memberEmail" column="memberemail"/>
+		<result property="memberAddress1" column="memberaddress1"/>
+		<result property="memberAddress2" column="memberaddress2"/>
+		<result property="regDate" column="regdate"/>
+		<result property="updateDate" column="updatedate"/>		
+		<collection property="authList" resultMap="authMap"/>
+	</resultMap>
+	
+	<delete id = "remove">
+		delete from table_member where memberid = #{memberid}	</delete>
+	
+      
+</mapper>

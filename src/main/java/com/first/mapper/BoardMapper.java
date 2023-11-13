@@ -16,5 +16,11 @@ public interface BoardMapper {
 	public BoardVO getBoard(Long bno);
 	
 	public int getTotalBoard(Criteria cri);
+	
+	public int updateBoard(BoardVO boardVO);
+	
+	public void updateReplyCnt(Long bno);
+	
+	public int delete(Long bno);
 
 }

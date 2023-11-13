@@ -1,5 +1,6 @@
 package com.first.mapper;
 
+import java.util.Iterator;
 import java.util.List;
 
 import org.junit.Test;
@@ -32,7 +33,7 @@ public class BoardMapperTest {
 //	public void insertDummies()
 //	{
 //		BoardVO board = new BoardVO();
-//		for( int i = 0; i < 100; i++)
+//		for( int i = 0; i < 200; i++)
 //		{
 //			board.setWriter("user"+ i);
 //			board.setTitle("Test Title" + i);
@@ -50,17 +51,45 @@ public class BoardMapperTest {
 //		
 //	}
 	
+//	@Test
+//	public void testListWithPage()
+//	{
+//		Criteria cri = new Criteria();
+//		
+//		cri.setCurrentPage(1);
+//		cri.setSize(10);
+//		
+//		List<BoardVO> list = mapper.getListWithPage(cri);
+//		list.forEach(board -> log.info(board));
+//		
+//	}
+	
+//	@Test
+//	public void testUpdate()
+//	{
+//		BoardVO board = new BoardVO();
+//		board.setBno(99);
+//		board.setTitle("수정된 제목");
+//		board.setContent("수정된내용");
+//		mapper.updateBoard(board);
+//		log.info(mapper.getBoard(board.getBno()));
+//	}
+	
+//	@Test
+//	public void testDelete()
+//	{
+//		Long bno = 101L;
+//		mapper.delete(bno);
+//		
+//	}
+	
 	@Test
-	public void testListWithPage()
+	public void updateReplyCnt()
 	{
-		Criteria cri = new Criteria();
-		
-		cri.setCurrentPage(3);
-		cri.setSize(10);
-		
-		List<BoardVO> list = mapper.getListWithPage(cri);
-		list.forEach(board -> log.info(board));
+		List<BoardVO> boardList = mapper.getList();
+		boardList.forEach(arr -> {
+				mapper.updateReplyCnt(arr.getBno());
+		});
 		
 	}
-	
 }
