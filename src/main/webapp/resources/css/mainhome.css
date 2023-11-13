@@ -1,6 +1,6 @@
 @charset "UTF-8";
 .carousel{
-	width: 80%;
+	width: 70%;
 	height: 600px;
 	margin-left: auto;
 	margin-right: auto;
@@ -15,7 +15,7 @@
 }
 
 .moveForm{
-	max-width: 80%;
+	max-width: 75%;
 	margin-left: auto;
 	margin-right: auto;
 }
