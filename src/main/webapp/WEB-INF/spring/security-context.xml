@@ -12,12 +12,13 @@
 	<bean id="customUserDetailsService" class="com.first.security.CustomUserDetailsService"></bean>
 	
 	<security:http>
-<!-- 		<security:intercept-url pattern="/member/join" access="permitAll"/>
-		<security:intercept-url pattern="/sample/member" access="hasRole('ROLE_MANAGER')"/>
-		<security:intercept-url pattern="/sample/admin" access="hasRole('ROLE_ADMIN')"/> -->
+ 		<security:intercept-url pattern="/cart" access="isAuthenticated()"/>
+	  <!--  <security:intercept-url pattern="/cart/checkAuthorize" access="isAuthenticated()"/>-->
+		<!--  <security:intercept-url pattern="/sample/admin" access="hasRole('ROLE_ADMIN')"/> -->
 		<!-- <security:form-login/> -->
 		
-		<security:form-login login-page="/login" authentication-failure-url="/login?error=true"/>
+		<security:form-login login-page="/login" authentication-success-handler-ref="customLoginSuccess" authentication-failure-url="/login?error=true"/>
+		
 		
 		<security:access-denied-handler ref="customAccessDenied"/>
 		<security:logout logout-url="/logout" logout-success-url = "/" invalidate-session="true"/>

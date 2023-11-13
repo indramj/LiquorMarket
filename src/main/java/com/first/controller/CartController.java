@@ -9,6 +9,8 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -38,6 +40,7 @@ public class CartController {
 	@Autowired
 	CartService cartService;
 	
+	@PreAuthorize("isAuthenticated()")
 	@GetMapping("")
 	public void cartPageGET(Principal principal , Model model) {
 		
@@ -47,15 +50,17 @@ public class CartController {
 		model.addAttribute("cartList" , cartList);
 	}
 	
+	@PreAuthorize("isAuthenticated()")
 	@PostMapping("/addItem")
 	@ResponseBody
 	public ResponseEntity<String> addItemToCart(@RequestBody CartItemVO cartItem ,Principal principal) {
 		log.info("cart/addItem");
-		String memberId = principal.getName();
-		cartItem.setMemberId(memberId);
-	    cartService.addItemToCart(cartItem);
-	    
-	    return new ResponseEntity<String>("success" , HttpStatus.OK);
+
+			String memberId = principal.getName();
+			cartItem.setMemberId(memberId);
+		    cartService.addItemToCart(cartItem);
+		    return new ResponseEntity<String>("success" , HttpStatus.OK);
+		
 	}
 	
 	@PutMapping("/updateQty")
@@ -78,5 +83,13 @@ public class CartController {
 		
         return "redirect:/cart?memberId=";
 	 }
+	
+	@PostMapping("/checkAuthorize")
+	public ResponseEntity<String> checkAuthorize(Authentication authentication){
+		if (authentication != null && authentication.isAuthenticated() == true )
+			return new ResponseEntity<String>("success" , HttpStatus.OK);
+		else
+			return new ResponseEntity<String>("error" , HttpStatus.BAD_REQUEST);
+	}
 
 }

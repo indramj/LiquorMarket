@@ -60,6 +60,7 @@
 		  });
 
 		$("#addToCartButton").on("click" ,function(e) {
+			
  			if(${liquor.stock} < 1 ){
 				alert("재고가 부족합니다.");
 				return;
@@ -67,34 +68,52 @@
 			e.preventDefault();
 			var lid = ${liquor.lid};
 			var price = ${liquor.price}
-			var cartitem = {
+			var cartItem = {
 				lid : lid,
 				quantity : 1,
 				itemTotalPrice : price
 			}
 			
-	        
-			// AJAX 요청을 만들어 서버로 데이터를 전송
 			$.ajax({
-				type: 'POST',
-				url: '/cart/addItem', // 실제 URL에 따라 수정
-				data: JSON.stringify(cartitem),
-				contentType : 'application/json; charset=utf-8',
+				type : 'POST',
+				url : '/cart/checkAuthorize',
 				dataType : 'text',
-				success: function(result) {
-					// 성공한 경우, 필요한 동작 수행 (예: 장바구니 갱신)
-					alert('장바구니에 추가되었습니다.');
-					location.href="/cart";
+				success : function(result){
+					console.log(result);
+					sendAjax(cartItem);
 				},
-				error: function(result) {
-					// 오류 처리 로직 추가
-					alert('장바구니에 추가하는 중 오류가 발생했습니다.');
+				error : function(result){
+					console.log(result);
+					alert("로그인이 필요합니다.");
+					location.href = "../../login";
 				}
-			});
+			})//ajax
 		});
 		
 		
+		function sendAjax( cartItem){
+			$.ajax({
+				type: 'POST',
+				url: '/cart/addItem', 
+				data: JSON.stringify(cartItem),
+				contentType : 'application/json; charset=utf-8',
+				dataType : 'text',
+				success: function(result) {
+					alert('장바구니에 추가되었습니다.');
+					location.href = "/cart";
+				},
+				error: function(result) {
+					alert("장바구니추가에 실패했습니다.");
+
+				}
+			});
+		}
+		
+		
 	});
+	
+	
+	
 
 	// 장바구니 필요한 데이터 전송
 
@@ -162,9 +181,7 @@
 						</div>
 
 							<div class="btn_section">
-							<sec:authorize access = "isAuthenticated()">
     					<button class="cartBtn" id="addToCartButton">장바구니 담기</button>
-    					</sec:authorize>
 						<!-- <button id="cartBtn" class ="btn_cart">장바구니</button>
 						<a href="cart.jsp" id="cartPage" style="display: none;"></a>
 						
