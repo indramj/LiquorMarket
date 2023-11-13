@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib uri = "http://www.springframework.org/security/tags" prefix = "sec" %>
+
 <%@ include file="../include/header.jsp" %>
 
 
@@ -60,13 +60,14 @@
 		  });
 
 		$("#addToCartButton").on("click" ,function(e) {
-			if 
+ 			if(${liquor.stock} < 1 ){
+				alert("재고가 부족합니다.");
+				return;
+			} 
 			e.preventDefault();
 			var lid = ${liquor.lid};
 			var price = ${liquor.price}
-			var memberId = "<sec:authentication property = "principal.username" />";
 			var cartitem = {
-				memberId : memberId,
 				lid : lid,
 				quantity : 1,
 				itemTotalPrice : price
@@ -161,7 +162,9 @@
 						</div>
 
 							<div class="btn_section">
+							<sec:authorize access = "isAuthenticated()">
     					<button class="cartBtn" id="addToCartButton">장바구니 담기</button>
+    					</sec:authorize>
 						<!-- <button id="cartBtn" class ="btn_cart">장바구니</button>
 						<a href="cart.jsp" id="cartPage" style="display: none;"></a>
 						
@@ -170,12 +173,11 @@
 						document.getElementById('cartBtn').addEventListener('click',function() { 
 						// 타겟 페이지 링크 클릭
 						document.getElementById('cartPage').click(); });</script> --> 
-						<sec:authorize access = "isAuthenticated()">
+	
 						<sec:authorize access="hasAnyAuthority('ROLE_ADMIN', 'ROLE_MANAGER')">
 						<a href = "/liquor/modify?lid=<c:out value ='${liquor.lid}'/>"><button class="btnModify">수정</button></a>
-						
 						</sec:authorize>
-						</sec:authorize>
+	
             
 						</div>
 					</div>
