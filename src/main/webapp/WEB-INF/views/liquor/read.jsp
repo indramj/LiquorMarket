@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib uri = "http://www.springframework.org/security/tags" prefix = "sec" %>
 <%@ include file="../include/header.jsp" %>
 
 
@@ -59,17 +60,18 @@
 		  });
 
 		$("#addToCartButton").on("click" ,function(e) {
+			if 
 			e.preventDefault();
 			var lid = ${liquor.lid};
 			var price = ${liquor.price}
+			var memberId = "<sec:authentication property = "principal.username" />";
 			var cartitem = {
-				memberId : "kmm",
+				memberId : memberId,
 				lid : lid,
 				quantity : 1,
 				itemTotalPrice : price
 			}
 			
-			console.log(cartitem);
 	        
 			// AJAX 요청을 만들어 서버로 데이터를 전송
 			$.ajax({
@@ -81,6 +83,7 @@
 				success: function(result) {
 					// 성공한 경우, 필요한 동작 수행 (예: 장바구니 갱신)
 					alert('장바구니에 추가되었습니다.');
+					location.href="/cart";
 				},
 				error: function(result) {
 					// 오류 처리 로직 추가
