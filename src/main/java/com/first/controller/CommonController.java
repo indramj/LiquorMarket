@@ -1,5 +1,7 @@
 package com.first.controller;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -18,7 +20,7 @@ public class CommonController {
 	}
 	
 	@GetMapping("/login")
-	public void loginInput(String error, String logout, Model model) {
+	public void loginInput(String error, String logout, HttpServletRequest request ,Model model) {
 		log.info("error: " + error);
 		log.info("logout: " + logout);
 
@@ -29,7 +31,16 @@ public class CommonController {
 		if (logout != null) {
 			model.addAttribute("logout", "Logout!!");
 		}
+		
+		String uri = request.getHeader("Referer");
+		if(uri != null && !uri.contains("/login")) {
+			request.getSession().setAttribute("prevPage", uri);
+		}
+		
+
+		
 	}
+	
 
 	@GetMapping("/logout")
 	public void logoutGet() {
