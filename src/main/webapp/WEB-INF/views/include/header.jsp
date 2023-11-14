@@ -43,7 +43,7 @@
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@docsearch/css@3">
 
-
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 <link rel="stylesheet" href="/resources/css/headerplus.css">
 
@@ -160,7 +160,7 @@
       </sec:authorize>
       <sec:authorize access="isAuthenticated()">
  				<button class='btn btn-sm btn-outline-secondary' type = "button" onclick = "location.href='/logout'">LogOut</button>
- 			</sec:authorize> 			
+ 			</sec:authorize>
     </div> 
   </div>
 </header>
@@ -180,5 +180,30 @@
         </sec:authorize>
       </ul>
     </header>
-  </div>
- </div>
+	</div>
+	<div id="sideArea">
+		<ul>
+			<li>
+				<a href="/">
+					<span>홈페이지</span><i class="bi bi-house"></i>
+				</a>
+			</li>
+			<li>
+				<a href="/liquor/liquorList#listSearch">
+					<span>검색</span><i class="bi bi-search"></i>
+				</a>
+			</li>
+			<li>
+				<a href="/board/list">
+					<span>문의</span><i class="bi bi-chat"></i>
+				</a>
+			</li>
+			<li>
+				<a href="/cart">
+					<span>장바구니</span><i class="bi bi-cart"></i>
+				</a>
+			</li>
+		</ul>
+	</div>
+  
+</div>
